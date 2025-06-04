@@ -3,3 +3,7 @@ pytest
 typing_extensions
 pre-commit
 filecheck
+ty
+pyrefly
+torch
+triton
