@@ -7,6 +7,7 @@ from helion._testing import run_example
 import helion.language as hl
 
 
+# pyrefly: ignore  # no-matching-overload
 @helion.kernel(config={"block_size": 1})
 def softmax(x: torch.Tensor) -> torch.Tensor:
     n, _m = x.size()
@@ -17,6 +18,7 @@ def softmax(x: torch.Tensor) -> torch.Tensor:
 
 
 # This generates the same code as the above, but avoids using the pytorch softmax decomposition
+# pyrefly: ignore  # no-matching-overload
 @helion.kernel(config={"block_size": 1})
 def softmax_decomposed(x: torch.Tensor) -> torch.Tensor:
     n, _m = x.size()
@@ -31,6 +33,7 @@ def softmax_decomposed(x: torch.Tensor) -> torch.Tensor:
 
 
 # This optimization does softmax in fewer passes, but is less numerically stable
+# pyrefly: ignore  # no-matching-overload
 @helion.kernel(config={"block_sizes": [1, 128]})
 def softmax_two_pass(x: torch.Tensor) -> torch.Tensor:
     m, n = x.size()

@@ -72,6 +72,7 @@ class GenerateAST(NodeVisitor):
         assert isinstance(expr, ExtendedAST), expr
         with expr:
             varname = self.tmpvar(dce=dce, prefix=prefix)
+            # pyrefly: ignore  # bad-argument-type
             self.add_statement(statement_from_string(f"{varname} = expr", expr=expr))
             return create(ast.Name, id=varname, ctx=ast.Load())
 
@@ -126,6 +127,7 @@ class GenerateAST(NodeVisitor):
     def generic_visit(self, node: ast.AST) -> ast.AST:
         assert isinstance(node, ExtendedAST)
         fields = {}
+        # pyrefly: ignore  # bad-argument-type
         for field, old_value in ast.iter_fields(node):
             if isinstance(old_value, list):
                 fields[field] = new_list = []
@@ -140,11 +142,13 @@ class GenerateAST(NodeVisitor):
                 fields[field] = self.visit(old_value)
             else:
                 fields[field] = old_value
+        # pyrefly: ignore  # bad-return
         return node.new(fields)
 
     def visit_For(self, node: ast.For) -> ast.AST | None:
         assert isinstance(node, ExtendedAST)
         if node._loop_type == LoopType.GRID:
+            # pyrefly: ignore  # missing-attribute
             assert not node.orelse
 
             if len(self.host_function.device_ir.root_ids) == 1:
@@ -161,6 +165,7 @@ class GenerateAST(NodeVisitor):
                         )
                     )
                     self.device_function.body.append(
+                        # pyrefly: ignore  # missing-attribute
                         self.device_function.pid.codegen_pid_init()
                     )
                 if node._root_id < len(self.host_function.device_ir.root_ids) - 1:
@@ -173,22 +178,27 @@ class GenerateAST(NodeVisitor):
                 self.set_on_device(),
                 self.set_statements(body),
             ):
+                # pyrefly: ignore  # missing-attribute
                 iter_node = node.iter
                 assert isinstance(iter_node, ExtendedAST)
                 with iter_node:
                     assert isinstance(iter_node, ast.Call)
                     args = []
                     kwargs = {}
+                    # pyrefly: ignore  # bad-assignment
                     for arg_node in iter_node.args:
                         assert not isinstance(arg_node, ast.Starred)
                         assert isinstance(arg_node, ExtendedAST)
+                        # pyrefly: ignore  # missing-attribute
                         args.append(arg_node._type_info.proxy())
                     for kwarg_node in iter_node.keywords:
                         assert kwarg_node.arg is not None
                         assert isinstance(kwarg_node.value, ExtendedAST)
+                        # pyrefly: ignore  # missing-attribute
                         kwargs[kwarg_node.arg] = kwarg_node.value._type_info.proxy()
                     fn_node = iter_node.func
                     assert isinstance(fn_node, ExtendedAST)
+                    # pyrefly: ignore  # missing-attribute
                     fn = fn_node._type_info.proxy()
                     assert is_api_func(fn)
                     assert fn._codegen is not None
@@ -201,6 +211,7 @@ class GenerateAST(NodeVisitor):
                         self,
                         fx_node=None,
                         proxy_args=[*bound.arguments.values()],
+                        # pyrefly: ignore  # bad-argument-type
                         ast_args=None,
                     )
 
@@ -226,6 +237,7 @@ class GenerateAST(NodeVisitor):
                     block.append(
                         create(
                             ast.If,
+                            # pyrefly: ignore  # missing-attribute
                             test=self.device_function.pid.codegen_test(state),
                             body=body,
                             orelse=self.next_else_block,
@@ -235,10 +247,12 @@ class GenerateAST(NodeVisitor):
             if node._root_id == len(self.host_function.device_ir.root_ids) - 1:
                 return self.device_function.codegen_function_call()
             return None
+        # pyrefly: ignore  # bad-argument-type
         return self.generic_visit(node)
 
     def visit_Name(self, node: ast.Name) -> ast.AST:
         assert isinstance(node, ExtendedAST)
+        # pyrefly: ignore  # missing-attribute
         if isinstance(node.ctx, ast.Load) and node._type_info is not None:
             origin = node._type_info.origin
             if (
@@ -251,6 +265,7 @@ class GenerateAST(NodeVisitor):
             if origin.needs_rename():
                 # `x` => `_source_module.x`
                 return expr_from_string(origin.host_str())
+        # pyrefly: ignore  # bad-return
         return node
 
     def visit_Call(self, node: ast.Call) -> ast.AST:
@@ -275,6 +290,7 @@ class GenerateAST(NodeVisitor):
         elif isinstance(type_info, SequenceType):
             values = type_info.unpack()
             if all(isinstance(x, TileIndexType) for x in values):
+                # pyrefly: ignore  # missing-attribute
                 block_infos = [env.block_sizes[x.block_id] for x in values]
                 return expr_from_string(
                     self.host_function.literal_expr(
@@ -291,11 +307,13 @@ class GenerateAST(NodeVisitor):
         ):
             proxy_args = []
             proxy_kwargs = {}
+            # pyrefly: ignore  # missing-attribute
             for arg in node.args:
                 assert not isinstance(arg, ast.Starred)
                 assert isinstance(arg, ExtendedAST)
                 assert arg._type_info is not None
                 proxy_args.append(arg._type_info.proxy())
+            # pyrefly: ignore  # missing-attribute
             for kwarg in node.keywords:
                 assert kwarg.arg is not None
                 assert isinstance(kwarg.value, ExtendedAST)
@@ -303,6 +321,7 @@ class GenerateAST(NodeVisitor):
                 proxy_kwargs[kwarg.arg] = kwarg.value._type_info.proxy()
             proxy_params = api._signature.bind(*proxy_args, **proxy_kwargs)
             proxy_params.apply_defaults()
+            # pyrefly: ignore  # bad-return
             return api._codegen(
                 CodegenState(
                     self,
@@ -310,6 +329,7 @@ class GenerateAST(NodeVisitor):
                     proxy_args=[*proxy_params.arguments.values()],
                 )
             )
+        # pyrefly: ignore  # bad-argument-type
         return self.generic_visit(node)
 
 
@@ -358,6 +378,7 @@ def codegen_precompile_def(
                     assert isinstance(item, ExtendedAST)
                     if item._is_kernel_call:
                         with item:
+                            # pyrefly: ignore  # unknown-name
                             found_calls += 1
                             new_list.append(
                                 statement_from_string(
@@ -388,6 +409,7 @@ def codegen_precompile_def(
     assert isinstance(host_def, ExtendedAST)
     new_fn = transform(host_def)
     assert isinstance(new_fn, ast.FunctionDef)
+    # pyrefly: ignore  # missing-attribute
     new_fn.name = f"_{host_def.name}_make_precompiler"
     assert found_calls == 1
     return new_fn

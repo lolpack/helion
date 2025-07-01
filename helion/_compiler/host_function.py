@@ -75,6 +75,7 @@ class HostFunction:
     ) -> None:
         super().__init__()
         env = CompileEnvironment.current()
+        # pyrefly: ignore  # read-only
         self.fn = fn
         self.constexpr_args = constexpr_args
         self.location: SourceLocation = UnknownLocation()
@@ -93,10 +94,14 @@ class HostFunction:
             assert isinstance(root, ast.FunctionDef)
             assert isinstance(root, ast_extension.ExtendedAST)
             self.location = root._location
+            # pyrefly: ignore  # missing-attribute
             self.name: str = root.name
+            # pyrefly: ignore  # missing-attribute
             self.args: ast.arguments = root.args
+            # pyrefly: ignore  # missing-attribute
             self.body: list[ast.stmt] = root.body
 
+            # pyrefly: ignore  # bad-argument-type
             HostFunction.validate_ast(root)
 
             from .device_ir import lower_to_device_ir
@@ -131,8 +136,10 @@ class HostFunction:
 
     def global_scope_origin(self, name: str) -> AttributeOrigin:
         if SOURCE_MODULE not in self.global_imports:
+            # pyrefly: ignore  # missing-attribute
             module_name = self.fn.__globals__["__name__"]
             module = sys.modules[module_name]
+            # pyrefly: ignore  # missing-attribute
             assert module.__dict__ is self.fn.__globals__
             self.global_imports[SOURCE_MODULE] = GlobalImport(
                 value=module,
@@ -144,6 +151,7 @@ class HostFunction:
     def import_from_module(
         self, module_scope: dict[str, object], name: str
     ) -> AttributeOrigin:
+        # pyrefly: ignore  # missing-attribute
         if module_scope is self.fn.__globals__:
             return self.global_scope_origin(name)
         module_name = module_scope["__name__"]

@@ -65,6 +65,7 @@ _Anchors = collections.namedtuple(  # noqa: PYI024
         "primary_char",
         "secondary_char",
     ],
+    # pyrefly: ignore  # invalid-argument
     defaults=["~", "^"],
 )
 

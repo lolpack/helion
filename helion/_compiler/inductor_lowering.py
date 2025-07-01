@@ -64,6 +64,7 @@ if TYPE_CHECKING:
     from .generate_ast import GenerateAST
     from .tile_dispatch import TileStrategyDispatch
 
+    # pyrefly: ignore  # not-a-type
     CodegenHandler = Callable[["GraphInterpreter", torch.fx.Node], object]
 
 
@@ -628,6 +629,7 @@ def register_lowering(
         aten_lowering_dispatch[fn] = lambda node: make_lowering(
             handler,
             node,
+            # pyrefly: ignore  # unexpected-keyword
             masked_value_fn=masked_value_fn,
         )
         return handler
@@ -828,6 +830,7 @@ def reduce_3d_dot(
                 f"tl.dot(lhs, rhs, acc=acc, input_precision={datatype!r})",
                 lhs=lhs,
                 rhs=rhs,
+                # pyrefly: ignore  # bad-argument-type
                 acc=acc,
             )
         # without accumulator
@@ -851,6 +854,7 @@ def reduce_3d_dot(
         acc_shape_str = ctx.cg.device_function.tile_strategy.shape_str(
             [*node.args[0].meta["val"].size()[1:]]
         )
+        # pyrefly: ignore  # bad-argument-type
         acc_reshape = expr_from_string(f"tl.reshape(rhs, {acc_shape_str})", rhs=acc)
         comp = expr_from_string(
             f"tl.dot(lhs, rhs, acc=acc, input_precision={datatype!r})",
@@ -933,6 +937,7 @@ def _unpack_opsvalue(value: object) -> str:
 
 class GraphInterpreter(Interpreter):
     def __init__(self, graph: torch.fx.Graph, cg: GenerateAST) -> None:
+        # pyrefly: ignore  # bad-argument-type, unexpected-keyword
         super().__init__(_LazyGraphModule({}, graph), garbage_collect_values=False)
         self.cg = cg
 
@@ -975,6 +980,7 @@ class GraphInterpreter(Interpreter):
 
         # Ensure all outputs are found and are ast.Name nodes
         final_outputs = []
+        # pyrefly: ignore  # bad-assignment
         for i, result in enumerate(outputs):
             assert result is not None
             if not isinstance(result, ast.Name):
@@ -1070,6 +1076,7 @@ class CodegenState(NamedTuple):
 
     def ast_arg(self, i: int) -> ast.AST:
         rv = self.ast_args[i]
+        # pyrefly: ignore  # invalid-argument
         if isinstance(rv, int | float | bool):
             rv = ast.Constant(value=rv)
         assert isinstance(rv, ast.AST), "TODO: convert nested/defaults"

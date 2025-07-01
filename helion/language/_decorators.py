@@ -179,8 +179,10 @@ def api(
         api._signature = signature or inspect.signature(
             cast("Callable[..., object]", fn)
         )
+        # pyrefly: ignore  # bad-return
         return wrapper
 
+    # pyrefly: ignore  # bad-return
     return _impl
 
 
@@ -199,6 +201,7 @@ def register_fake(
             )
         return _no_call
 
+    # pyrefly: ignore  # bad-return
     return _impl
 
 
@@ -212,6 +215,7 @@ def type_propagation(
         original_fn._type_function = type_fn
         return _no_call
 
+    # pyrefly: ignore  # bad-return
     return _impl
 
 
@@ -230,6 +234,7 @@ def prepare_args(
         original_fn._prepare_args = prep_fn
         return _no_call
 
+    # pyrefly: ignore  # bad-return
     return _impl
 
 
@@ -246,6 +251,7 @@ def codegen(
         original_fn._codegen = codegen_fn
         return _no_call
 
+    # pyrefly: ignore  # bad-return
     return _impl
 
 
@@ -264,6 +270,7 @@ def get_masked_value(
         original_fn._get_masked_value = mask_value_fn
         return _no_call
 
+    # pyrefly: ignore  # bad-return
     return _impl
 
 
@@ -303,6 +310,7 @@ def device_func_replacement(python_func: object) -> _Decorator:
         _DEVICE_FUNC_REPLACEMENTS[python_func] = fn
         return fn  # pyre-ignore[7]
 
+    # pyrefly: ignore  # bad-return
     return _impl
 
 

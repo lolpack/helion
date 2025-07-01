@@ -112,6 +112,7 @@ class BaseSearch:
             self.log.debug(
                 lambda: f"result: {res:.4f}ms (took {t1 - t0:.1f}s + {t2 - t1:.1f}s)",
             )
+            # pyrefly: ignore  # bad-return
             return res
         except OutOfResources:
             self.log.debug("Benchmarking failed: OutOfResources")

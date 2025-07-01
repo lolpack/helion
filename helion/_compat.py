@@ -68,6 +68,7 @@ def min_dot_size(
         # TODO(jansel): support non-cuda properly
         return (16, 16, 16)
 
+    # pyrefly: ignore  # import-error
     from triton.backends.nvidia.compiler import min_dot_size as min_dot_size_cuda
 
     props = DeviceProperties.create(device)

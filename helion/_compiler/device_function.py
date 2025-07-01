@@ -375,6 +375,7 @@ class DeviceFunction:
         assert isinstance(call_statement, ExtendedAST)
         # Mark the kernel call we can find it in codegen_precompile_def
         call_statement._is_kernel_call = True
+        # pyrefly: ignore  # bad-return
         return call_statement
 
     def dead_code_elimination(self) -> None:

@@ -51,6 +51,7 @@ def _(
     if hasattr(value, "dtype") and value.dtype != tensor.dtype:
         value = value.to(tensor.dtype)
     index = Tile._tiles_to_sizes(index)
+    # pyrefly: ignore  # bad-return
     return (tensor, index, value, extra_mask)
 
 

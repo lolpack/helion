@@ -165,15 +165,19 @@ def statement_from_string(template: str, **placeholders: ast.AST) -> ast.stmt:
 
     def _replace(node: _R) -> _R:
         if isinstance(node, list):
+            # pyrefly: ignore  # bad-return
             return [_replace(item) for item in node]
         if not isinstance(node, ast.AST):
             return node
         if isinstance(node, ast.Name) and node.id in placeholders:
+            # pyrefly: ignore  # bad-return
             return placeholders[node.id]
         cls = get_wrapper_cls(type(node))
+        # pyrefly: ignore  # bad-return
         return location.to_ast(
             cls(
                 **{field: _replace(getattr(node, field)) for field in node._fields},
+                # pyrefly: ignore  # unexpected-keyword
                 _location=location,
             )
         )
@@ -200,9 +204,11 @@ def convert(node: ast.AST) -> ast.AST:
             return cls(
                 **{field: convert(getattr(node, field)) for field in node._fields},
                 **{attr: getattr(node, attr) for attr in node._attributes},
+                # pyrefly: ignore  # unexpected-keyword
                 _location=location,
             )
     elif isinstance(node, list):
+        # pyrefly: ignore  # bad-return
         return [convert(item) for item in node]
     else:
         return node
@@ -218,6 +224,7 @@ class NodeVisitor(ast.NodeVisitor):
                     f"visit_{node.__class__.__name__}",
                     self.generic_visit,
                 )
+                # pyrefly: ignore  # bad-argument-type
                 return visitor(node)
             except exc.Base:
                 raise

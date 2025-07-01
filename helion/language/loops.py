@@ -196,6 +196,7 @@ def _(
         proxy_block_size = [proxy_block_size]
 
     results = []
+    # pyrefly: ignore  # no-matching-overload
     for begin_part, end_part, bs in zip(
         proxy_begin, proxy_end, proxy_block_size, strict=True
     ):
@@ -221,6 +222,7 @@ def _(
     _add_config_choices(
         [x.block_id for x in results],
         is_tile=True,
+        # pyrefly: ignore  # not-iterable
         has_begin=not all((isinstance(x, int) and x == 0) for x in proxy_begin),
     )
     if unpack:
@@ -292,6 +294,7 @@ def _codegen_loop_helper(
     if loop_type == LoopType.GRID:
         env = CompileEnvironment.current()
         env.loop_dependency_checker.register_loop(for_loop)
+        # pyrefly: ignore  # missing-attribute
         block_ids = [t.block_id for t in indices]
         state.tile_strategy.codegen_grid(state, block_ids)
         return expr_from_string("None")
@@ -383,6 +386,7 @@ def _(
         proxy_step = [proxy_step]
 
     results = []
+    # pyrefly: ignore  # no-matching-overload
     for begin_part, end_part, step_part in zip(
         proxy_begin, proxy_end, proxy_step, strict=True
     ):
@@ -396,6 +400,7 @@ def _(
     _add_config_choices(
         [x.block_id for x in results],
         is_tile=False,
+        # pyrefly: ignore  # not-iterable
         has_begin=not all((isinstance(x, int) and x == 0) for x in proxy_begin),
     )
     if unpack:

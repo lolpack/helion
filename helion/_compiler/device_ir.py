@@ -501,25 +501,34 @@ class WalkDeviceAST(NodeVisitor):
 
     def visit_For(self, node: ast.For) -> None:
         assert isinstance(node, ExtendedAST)
+        # pyrefly: ignore  # missing-attribute
         assert not node.orelse
+        # pyrefly: ignore  # missing-attribute
         assert isinstance(node.iter, ExtendedAST)
         iter_type = node.iter._type_info
         if not isinstance(iter_type, IterType):
             raise exc.InvalidDeviceForLoop(iter_type)
         inner_type: TypeInfo = iter_type.inner
         if node._loop_type == LoopType.GRID:
+            # pyrefly: ignore  # missing-attribute
             self._assign(node.target, inner_type.proxy())
+            # pyrefly: ignore  # missing-attribute
             self._body(node.body)
         elif node._loop_type == LoopType.DEVICE:
+            # pyrefly: ignore  # bad-argument-type
             rw: ReadWrites = ReadWrites.from_ast(node)
             inputs: LiftTensorArgs = LiftTensorArgs(
+                # pyrefly: ignore  # bad-argument-type
                 {
+                    # pyrefly: ignore  # bad-argument-type
                     k: self.scope[k]
                     for k in rw
+                    # pyrefly: ignore  # bad-argument-type
                     if k in self.scope and self.should_become_arg(self.scope[k])
                 }
             )
             outputs: LiftTensorArgs | None = None
+            # pyrefly: ignore  # bad-argument-type
             begin, end = self._extract_tile_begin_end(node)
             if isinstance(inner_type, SequenceType):
                 iter_vars = inner_type.unpack()
@@ -562,6 +571,7 @@ class WalkDeviceAST(NodeVisitor):
                 graph_idx = self.device_ir.add_graph(
                     graph,
                     ForLoopGraphInfo,
+                    # pyrefly: ignore  # missing-attribute
                     block_ids=[x.block_id for x in iter_vars],
                     node_args=inputs.get_node_args(tracer),
                 )
@@ -612,9 +622,12 @@ class WalkDeviceAST(NodeVisitor):
     def _create_if_subgraph(self, test_proxy: object, body: list[ast.stmt]) -> None:
         rw: ReadWrites = ReadWrites.from_list(body)
         inputs: LiftTensorArgs = LiftTensorArgs(
+            # pyrefly: ignore  # bad-argument-type
             {
+                # pyrefly: ignore  # bad-argument-type
                 k: self.scope[k]
                 for k in rw
+                # pyrefly: ignore  # bad-argument-type
                 if k in self.scope and self.should_become_arg(self.scope[k])
             }
         )
@@ -680,14 +693,17 @@ class WalkDeviceAST(NodeVisitor):
             return self.scope[node.id]
         assert isinstance(node, ExtendedAST)
         type_info = node._type_info
+        # pyrefly: ignore  # missing-attribute
         assert type_info.origin.is_host()
         try:
+            # pyrefly: ignore  # missing-attribute
             return type_info.proxy()
         except NotImplementedError:
             raise exc.CantReadOnDevice(type_info) from None
 
     def _subscript_slice_proxy(self, slice_node: ast.AST) -> list[object]:
         assert isinstance(slice_node, ExtendedAST)
+        # pyrefly: ignore  # bad-argument-type
         result = self.visit(slice_node)
         if isinstance(result, (list, tuple)):
             return [*result]
@@ -750,11 +766,15 @@ class WalkDeviceAST(NodeVisitor):
             rhs_type, (TensorType, NumericType, LiteralType)
         ):
             raise exc.NonTensorSubscriptAssign(lhs_type, rhs_type)
+        # pyrefly: ignore  # missing-attribute
         assert isinstance(target.value, ExtendedAST)
+        # pyrefly: ignore  # missing-attribute
         target_origin = target.value._type_info.origin
         assert target_origin.is_host()
+        # pyrefly: ignore  # bad-argument-type
         val = self.visit(node.value)
         return hl.store(
+            # pyrefly: ignore  # bad-argument-type, missing-attribute
             self.visit(target.value), self._subscript_slice_proxy(target.slice), val
         )
 
@@ -771,7 +791,9 @@ class WalkDeviceAST(NodeVisitor):
     def visit_AugAssign(self, node: ast.AugAssign) -> None:
         assert isinstance(node.target, ExtendedAST)
         self._assign(
+            # pyrefly: ignore  # bad-argument-type
             node.target,
+            # pyrefly: ignore  # bad-argument-type
             _eval_binary(node.op, self.visit(node.target), self.visit(node.value)),
         )
 
@@ -779,8 +801,11 @@ class WalkDeviceAST(NodeVisitor):
         value = node.value
         assert isinstance(value, ExtendedAST)
         type_info = value._type_info
+        # pyrefly: ignore  # missing-attribute
         if type_info.origin.is_host():
+            # pyrefly: ignore  # bad-argument-type
             return hl.load(self.visit(value), self._subscript_slice_proxy(node.slice))
+        # pyrefly: ignore  # bad-argument-type
         return hl.subscript(self.visit(value), self._subscript_slice_proxy(node.slice))
 
     def visit_Call(self, node: ast.Call) -> object:
@@ -868,15 +893,19 @@ class WalkHostAST(NodeVisitor):
             self.device_ir.add_root_graph(
                 _make_fx(lambda: WalkDeviceAST(self.device_ir).visit(node))
             )
+            # pyrefly: ignore  # missing-attribute
             iter_type = node.iter._type_info
             assert isinstance(iter_type, IterType)
             inner = iter_type.inner
             if isinstance(inner, SequenceType):
+                # pyrefly: ignore  # missing-attribute
                 block_ids = [x.block_id for x in inner.unpack()]
             else:
+                # pyrefly: ignore  # missing-attribute
                 block_ids = [inner.block_id]
             self.device_ir.grid_block_ids.append(block_ids)
         else:
+            # pyrefly: ignore  # bad-argument-type
             self.generic_visit(node)
 
 

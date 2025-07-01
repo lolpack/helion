@@ -91,10 +91,13 @@ def cached_masked_value(
         device_ir = DeviceIR.current()
         for graph_info in device_ir.graphs:
             if node.graph is graph_info.graph and isinstance(
+                # pyrefly: ignore  # invalid-argument
                 graph_info, NodeArgsGraphInfo
             ):
+                # pyrefly: ignore  # missing-attribute
                 outer_node = graph_info.placeholder_to_outer_arg(node)
                 node.meta["masked_value"] = result = cached_masked_value(outer_node)
+                # pyrefly: ignore  # invalid-argument
                 if result is not None and isinstance(graph_info, ForLoopGraphInfo):
                     # check if the loop carry dependency is different
                     for user in outer_node.users:

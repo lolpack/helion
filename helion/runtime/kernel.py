@@ -71,10 +71,12 @@ class Kernel(Generic[_R]):
         assert isinstance(fn, types.FunctionType)
         assert_no_conflicts(fn)
         self.name: str = fn.__name__
+        # pyrefly: ignore  # read-only
         self.fn: types.FunctionType = fn
         self.signature: inspect.Signature = inspect.signature(fn)
         self.settings: Settings = settings or Settings.default()
         self.configs: list[Config] = [
+            # pyrefly: ignore  # bad-argument-type
             Config(**c) if isinstance(c, dict) else c for c in configs or []
         ]
         # pyre-fixme[11]: BoundKernel undefined?
@@ -289,6 +291,7 @@ class BoundKernel(Generic[_R]):
                 patch_inductor_lowerings(),
             ):
                 self.host_function: HostFunction = HostFunction(
+                    # pyrefly: ignore  # bad-argument-type
                     self.kernel.fn, self.fake_args, constexpr_args
                 )
 
@@ -588,6 +591,7 @@ def _function_key(fn: Kernel, obj: types.FunctionType) -> object:
 
 _specialization_extractors: dict[
     type[object] | str, Callable[[Kernel, object], Hashable]
+# pyrefly: ignore  # bad-assignment
 ] = {
     torch.Tensor: _tensor_key,
     torch.nn.Parameter: _tensor_key,
@@ -600,11 +604,15 @@ _specialization_extractors: dict[
     str: lambda fn, x: x,
     list: _sequence_key,
     tuple: _sequence_key,
+    # pyrefly: ignore  # bad-argument-type
     dict: lambda fn, x: _mapping_key(fn, x, type(x)),
+    # pyrefly: ignore  # missing-attribute
     "namedtuple": lambda fn, x: _mapping_key(fn, x._asdict(), type(x)),
+    # pyrefly: ignore  # no-matching-overload
     "dataclass": lambda fn, x: _mapping_key(fn, dataclasses.asdict(x), type(x)),
     types.FunctionType: _function_key,
     types.BuiltinFunctionType: lambda fn, x: x,
+    # pyrefly: ignore  # missing-attribute
     ConstExpr: lambda fn, x: x.value,
 }
 

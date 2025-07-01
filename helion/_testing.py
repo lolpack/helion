@@ -23,8 +23,10 @@ DEVICE = torch.device("cuda")
 def import_path(filename: Path) -> types.ModuleType:
     module_name = f"{__name__}.{filename.stem}"
     if module_name not in sys.modules:
+        # pyrefly: ignore  # missing-attribute
         spec = importlib.util.spec_from_file_location(module_name, filename)
         assert spec is not None
+        # pyrefly: ignore  # missing-attribute
         module = importlib.util.module_from_spec(spec)
         assert spec.loader is not None
         spec.loader.exec_module(module)
@@ -109,6 +111,7 @@ def run_example(
     for name, time in all_times.items():
         is_best_baseline = name in baselines and time == best_baseline_time
         speedup_str = (
+            # pyrefly: ignore  # missing-attribute, bad-argument-type
             "1.00x (ref)" if is_best_baseline else f"{best_baseline_time / time:.2f}x"
         )
         print(f"{name:<20} {time:<12.4f} {speedup_str:<15}", file=sys.stderr)

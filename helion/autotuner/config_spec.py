@@ -189,6 +189,7 @@ class ConfigSpec:
             use_yz_grid = fn(BooleanFragment())
             # pyre-ignore[16]
             if (not config["l2_groupings"] or config["l2_groupings"][0] == 1) and (
+                # pyrefly: ignore  # missing-attribute
                 not config["flatten_loops"] or not config["flatten_loops"][0]
             ):
                 config["use_yz_grid"] = use_yz_grid
@@ -217,10 +218,14 @@ class LoopOrderSpec(_BlockIdItem):
                 raise InvalidConfig(f"{name} must be a list, got {value!r}")
             value = [*value]
         length = len(self.block_ids)
+        # pyrefly: ignore  # bad-argument-type
         if len(value) != length:
+            # pyrefly: ignore  # bad-argument-type
             raise InvalidConfig(f"{name} must be length {length}, got {len(value)}")
+        # pyrefly: ignore  # not-iterable
         if {*value} != {*range(length)}:
             raise InvalidConfig(f"{name} must be permutation, got {value!r}")
+        # pyrefly: ignore  # bad-return
         return value
 
     def _fill_missing(self) -> list[int]:

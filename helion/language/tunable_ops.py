@@ -128,6 +128,7 @@ def _(sizes: TypeInfo, *, origin: Origin) -> TypeInfo:
 
     try:
         proxy_sizes = sizes.proxy()
+        # pyrefly: ignore  # invalid-argument
         if not isinstance(proxy_sizes, int | torch.SymInt):
             raise NotImplementedError
     except NotImplementedError:

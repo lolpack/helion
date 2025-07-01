@@ -67,4 +67,5 @@ def lift_closures(func: FunctionType, origin: Origin) -> FunctionType:
 
     new_func: FunctionType | None = None
     closure_contents: list[object] = []
+    # pyrefly: ignore  # bad-return
     return wrapper

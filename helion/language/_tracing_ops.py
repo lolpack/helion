@@ -77,6 +77,7 @@ def _for_loop(
 
 @_decorators.codegen(_for_loop)
 def _(state: CodegenState) -> None:
+    # pyrefly: ignore  # no-matching-overload
     return HostFunction.current().device_ir.graphs[state.proxy_arg(0)].codegen(state)
 
 
@@ -89,6 +90,7 @@ def _if(test: object, graph_id: int, args: list[object]) -> list[object]:
 
 @_decorators.codegen(_if)
 def _(state: CodegenState) -> None:
+    # pyrefly: ignore  # no-matching-overload
     return HostFunction.current().device_ir.graphs[state.proxy_arg(1)].codegen(state)
 
 
@@ -157,6 +159,7 @@ def _and(left: object, right: object) -> object:
 
 @_decorators.codegen(_and)
 def _(state: CodegenState) -> None:
+    # pyrefly: ignore  # bad-return
     return expr_from_string("lhs and rhs", lhs=state.ast_arg(0), rhs=state.ast_arg(1))
 
 
@@ -208,6 +211,7 @@ def _(left: object, right: object) -> object:
 
 @_decorators.codegen(_or)
 def _(state: CodegenState) -> None:
+    # pyrefly: ignore  # bad-return
     return expr_from_string("lhs or rhs", lhs=state.ast_arg(0), rhs=state.ast_arg(1))
 
 
@@ -301,6 +305,7 @@ def _new_var(value: _T, /) -> _T:
     raise NotInsideKernel
 
 
+# pyrefly: ignore  # bad-argument-type
 @_decorators.register_fake(_new_var)
 def _(value: _T) -> _T:
     if isinstance(value, torch.Tensor):
@@ -312,6 +317,7 @@ def _(value: _T) -> _T:
     raise NotImplementedError(f"Unsupported type for _new_var: {type(value)}")
 
 
+# pyrefly: ignore  # bad-argument-type
 @_decorators.codegen(_new_var)
 def _(state: CodegenState) -> ast.AST:
     value = state.ast_arg(0)
@@ -323,6 +329,7 @@ def _(state: CodegenState) -> ast.AST:
     return create(ast.Name, id=varname, ctx=ast.Load())
 
 
+# pyrefly: ignore  # bad-argument-type
 @_decorators.get_masked_value(_new_var)
 def _(node: torch.fx.Node) -> float | bool | None:
     from .._compiler.node_masking import cached_masked_value

@@ -44,6 +44,7 @@ def _(tensor: torch.Tensor, index: list[object]) -> torch.Tensor:
 @_decorators.codegen(subscript)
 def _(state: CodegenState) -> ast.AST:
     output_keys = []
+    # pyrefly: ignore  # not-iterable
     for val in state.proxy_arg(1):
         if val is None:
             output_keys.append("None")

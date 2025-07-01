@@ -33,6 +33,7 @@ def _(*values: object, sep: str = " ", end: str = "\n") -> None:
     return None
 
 
+# pyrefly: ignore  # bad-argument-type
 @_decorators.type_propagation(device_print)
 def _(*args: object, origin: object, **kwargs: object) -> object:
     from .._compiler.type_propagation import LiteralType
@@ -51,6 +52,7 @@ def _(*args: object, origin: object, **kwargs: object) -> object:
 
     # For compile-time values like tensor shapes, we should error out
     for i, arg in enumerate(args[1:]):
+        # pyrefly: ignore  # invalid-argument
         if not isinstance(arg, TensorType):
             raise TypeError(
                 f"print() only supports runtime tensor values. "
@@ -58,6 +60,7 @@ def _(*args: object, origin: object, **kwargs: object) -> object:
                 f"Compile-time values like tensor shapes are not supported yet."
             )
 
+    # pyrefly: ignore  # bad-argument-type
     return NoType(origin=origin)
 
 

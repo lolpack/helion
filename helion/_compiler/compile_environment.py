@@ -498,6 +498,7 @@ def warning(warning: exc.BaseWarning | type[exc.BaseWarning]) -> None:
         raise TypeError(f"expected BaseWarning, got {type(warning)}")
 
     # Check if this warning type should be ignored
+    # pyrefly: ignore  # invalid-argument
     if not isinstance(warning, tuple(env.settings.ignore_warnings)):
         print(f"WARNING[{type(warning).__name__}]: {warning.args[0]}", file=sys.stderr)
 

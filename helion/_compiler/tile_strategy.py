@@ -345,6 +345,7 @@ class FlattenedTileStrategy(BlockSizeTileStrategy):
         total_numel = sympy.S.One
         statements = []
 
+        # pyrefly: ignore  # bad-assignment
         for i, block_idx in enumerate(self._reorder(block_ids)):
             numel = env.block_sizes[block_idx].numel
             block_index_var = self.index_var(block_idx)
@@ -499,6 +500,7 @@ class _BaseNDTileStrategy(BlockSizeTileStrategy):
             assert len(begins) == len(block_ids)
 
         for i, (block_idx, block_size, begin) in enumerate(
+            # pyrefly: ignore  # no-matching-overload
             reversed(self._reorder([*zip(block_ids, block_sizes, begins, strict=True)]))
         ):
             numel = env.block_sizes[block_idx].numel
@@ -627,6 +629,7 @@ class _BaseNDTileStrategy(BlockSizeTileStrategy):
             )
             if mask_statement is not None:
                 extra_body.append(mask_statement)
+            # pyrefly: ignore  # missing-attribute, not-iterable
             body[:] = [*extra_body, *body]
             body = [for_node]
         assert for_node is not None

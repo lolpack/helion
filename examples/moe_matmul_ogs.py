@@ -142,6 +142,7 @@ def moe_matmul_ogs_reference(
     n_experts = W.size(0)
 
     for e in range(n_experts):
+        # pyrefly: ignore  # missing-attribute
         token_idx = (top1_expert_per_token == e).nonzero(as_tuple=True)[0]
         if token_idx.numel() == 0:
             continue

@@ -17,6 +17,7 @@ def matmul_split_k(x: torch.Tensor, y: torch.Tensor) -> torch.Tensor:
     out = torch.zeros(
         [m, n], dtype=torch.promote_types(x.dtype, y.dtype), device=x.device
     )
+    # pyrefly: ignore  # missing-argument
     split_k = hl.register_tunable("split_k", PowerOfTwoFragment(1, 256))
     k_block = helion.next_power_of_2(helion.cdiv(k, split_k))
     for tile_m, tile_n, outer_k in hl.tile([m, n, k], block_size=[None, None, k_block]):
