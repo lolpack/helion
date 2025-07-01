@@ -1,0 +1,3060 @@
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/add.py:21:25
+   |
+21 |     for tile in hl.tile(out.size()):
+   |                         ^^^^^^^^
+   |
+ERROR Cannot set item in `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/add.py:22:9
+   |
+22 |         out[tile] = x[tile] + y[tile]
+   |         ^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__setitem__`
+ERROR No attribute `float16` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/add.py:27:50
+   |
+27 |     x = torch.randn([m, n], device="cuda", dtype=torch.float16)
+   |                                                  ^^^^^^^^^^^^^
+   |
+ERROR No attribute `float16` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/add.py:28:50
+   |
+28 |     y = torch.randn([m, n], device="cuda", dtype=torch.float16)
+   |                                                  ^^^^^^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/attention.py:33:13
+   |
+33 |     m_dim = q_in.size(-2)
+   |             ^^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/attention.py:34:13
+   |
+34 |     n_dim = k_in.size(-2)
+   |             ^^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/attention.py:35:21
+   |
+35 |     assert n_dim == v_in.size(-2)
+   |                     ^^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/attention.py:36:30
+   |
+36 |     head_dim = hl.specialize(q_in.size(-1))
+   |                              ^^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/attention.py:37:24
+   |
+37 |     assert head_dim == k_in.size(-1) == v_in.size(-1)
+   |                        ^^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/attention.py:37:41
+   |
+37 |     assert head_dim == k_in.size(-1) == v_in.size(-1)
+   |                                         ^^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `reshape` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/attention.py:38:14
+   |
+38 |     q_view = q_in.reshape([-1, m_dim, head_dim])
+   |              ^^^^^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `reshape` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/attention.py:39:14
+   |
+39 |     v_view = v_in.reshape([-1, n_dim, head_dim])
+   |              ^^^^^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `reshape` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/attention.py:40:14
+   |
+40 |     k_view = k_in.reshape([-1, n_dim, head_dim]).transpose(1, 2)
+   |              ^^^^^^^^^^^^
+   |
+ERROR No attribute `float32` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/attention.py:45:62
+   |
+45 |         m_i = hl.full([tile_b, tile_m], float("-inf"), dtype=torch.float32)
+   |                                                              ^^^^^^^^^^^^^
+   |
+ERROR No attribute `float32` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/attention.py:47:58
+   |
+47 |         acc = hl.zeros([tile_b, tile_m, head_dim], dtype=torch.float32)
+   |                                                          ^^^^^^^^^^^^^
+   |
+ERROR `*` is not supported between `Tensor` and `float` [bad-argument-type]
+  --> /Users/aaronpollack/dev/helion/examples/attention.py:52:39
+   |
+52 |             m_ij = torch.maximum(m_i, torch.amax(qk, -1) * qk_scale)
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+  Argument `Tensor` is not assignable to parameter `value` with type `float` in function `float.__rmul__`
+ERROR Argument `float` is not assignable to parameter `other` with type `Tensor` in function `torch._C._VariableFunctions.maximum` [bad-argument-type]
+  --> /Users/aaronpollack/dev/helion/examples/attention.py:52:39
+   |
+52 |             m_ij = torch.maximum(m_i, torch.amax(qk, -1) * qk_scale)
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+ERROR `*` is not supported between `Tensor` and `float` [bad-argument-type]
+  --> /Users/aaronpollack/dev/helion/examples/attention.py:53:18
+   |
+53 |             qk = qk * qk_scale - m_ij[:, :, None]
+   |                  ^^^^^^^^^^^^^
+   |
+  Argument `Tensor` is not assignable to parameter `value` with type `float` in function `float.__rmul__`
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/attention.py:53:34
+   |
+53 |             qk = qk * qk_scale - m_ij[:, :, None]
+   |                                  ^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR Argument `float` is not assignable to parameter `input` with type `Tensor` in function `torch._C._VariableFunctions.exp2` [bad-argument-type]
+  --> /Users/aaronpollack/dev/helion/examples/attention.py:54:28
+   |
+54 |             p = torch.exp2(qk)
+   |                            ^^
+   |
+ERROR `*` is not supported between `Tensor` and `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/attention.py:57:19
+   |
+57 |             l_i = l_i * alpha + l_ij
+   |                   ^^^^^^^^^^^
+   |
+  Cannot find `__mul__` or `__rmul__`
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/attention.py:58:25
+   |
+58 |             acc = acc * alpha[:, :, None]
+   |                         ^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR Object of class `Tensor` has no attribute `to` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/attention.py:60:17
+   |
+60 |             p = p.to(v.dtype)
+   |                 ^^^^
+   |
+ERROR `+=` is not supported between `Tensor` and `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/attention.py:63:9
+   |
+63 |         m_i += torch.log2(l_i)
+   |         ^^^^^^^^^^^^^^^^^^^^^^
+   |
+  Cannot find `__iadd__` or `__add__` or `__radd__`
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/attention.py:64:21
+   |
+64 |         acc = acc / l_i[:, :, None]
+   |                     ^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR Cannot set item in `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/attention.py:65:9
+   |
+65 |         out[tile_b, tile_m, :] = acc.to(out.dtype)
+   |         ^^^^^^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__setitem__`
+ERROR Object of class `Tensor` has no attribute `view` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/attention.py:66:12
+   |
+66 |     return out.view(q_in.size())
+   |            ^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/attention.py:66:21
+   |
+66 |     return out.view(q_in.size())
+   |                     ^^^^^^^^^
+   |
+ERROR No attribute `float32` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/attention.py:82:26
+   |
+82 |     dtype: torch.dtype = torch.float32,
+   |                          ^^^^^^^^^^^^^
+   |
+ERROR `/` is not supported between `Tensor` and `float` [bad-argument-type]
+  --> /Users/aaronpollack/dev/helion/examples/attention.py:94:13
+   |
+94 |         p = torch.matmul(q, k.transpose(2, 3)) / math.sqrt(head_dim)
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+  Argument `Tensor` is not assignable to parameter `value` with type `float` in function `float.__rtruediv__`
+ERROR Object of class `Tensor` has no attribute `transpose` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/attention.py:94:29
+   |
+94 |         p = torch.matmul(q, k.transpose(2, 3)) / math.sqrt(head_dim)
+   |                             ^^^^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `to` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/attention.py:95:13
+   |
+95 |         p = torch.softmax(p.float(), dim=-1).to(dtype)
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+ERROR Object of class `float` has no attribute `float` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/attention.py:95:27
+   |
+95 |         p = torch.softmax(p.float(), dim=-1).to(dtype)
+   |                           ^^^^^^^
+   |
+ERROR No attribute `float16` in module `torch` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/examples/attention.py:111:27
+    |
+111 |     test(2, 32, 1024, 64, torch.float16)
+    |                           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/bmm.py:14:15
+   |
+14 |     b, m, k = A.size()
+   |               ^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/bmm.py:15:15
+   |
+15 |     b, k, n = B.size()
+   |               ^^^^^^
+   |
+ERROR No attribute `float32` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/bmm.py:20:56
+   |
+20 |         acc = hl.zeros([tile_b, tile_m, tile_n], dtype=torch.float32)
+   |                                                        ^^^^^^^^^^^^^
+   |
+ERROR `Tensor | Unknown` is not assignable to `bool | complex | float | int` (caused by inconsistent types when breaking cycles) [bad-assignment]
+  --> /Users/aaronpollack/dev/helion/examples/bmm.py:21:9
+   |
+21 | /         for tile_k in hl.tile(k):
+22 | |             acc = torch.baddbmm(
+23 | |                 acc, A[tile_b, tile_m, tile_k], B[tile_b, tile_k, tile_n]
+24 | |             )
+   | |_____________^
+   |
+ERROR No matching overload found for function `torch._C._VariableFunctions.baddbmm` [no-matching-overload]
+  --> /Users/aaronpollack/dev/helion/examples/bmm.py:22:32
+   |
+22 |               acc = torch.baddbmm(
+   |  ________________________________^
+23 | |                 acc, A[tile_b, tile_m, tile_k], B[tile_b, tile_k, tile_n]
+24 | |             )
+   | |_____________^
+   |
+  Possible overloads:
+  (beta: bool | complex | float | int, self: Tensor, alpha: bool | complex | float | int, batch1: Tensor, batch2: Tensor) -> Tensor
+  (beta: bool | complex | float | int, self: Tensor, alpha: bool | complex | float | int, batch1: Tensor, batch2: Tensor, *, out: Tensor) -> Tensor
+  (input: Tensor, batch1: Tensor, batch2: Tensor, *, beta: bool | complex | float | int, alpha: bool | complex | float | int, out: Tensor | None) -> Tensor [closest match]
+  (beta: bool | complex | float | int, self: Tensor, batch1: Tensor, batch2: Tensor) -> Tensor
+  (beta: bool | complex | float | int, self: Tensor, batch1: Tensor, batch2: Tensor, *, out: Tensor) -> Tensor
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/bmm.py:23:22
+   |
+23 |                 acc, A[tile_b, tile_m, tile_k], B[tile_b, tile_k, tile_n]
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/bmm.py:23:49
+   |
+23 |                 acc, A[tile_b, tile_m, tile_k], B[tile_b, tile_k, tile_n]
+   |                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR Cannot set item in `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/bmm.py:25:9
+   |
+25 |         out[tile_b, tile_m, tile_n] = acc
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__setitem__`
+ERROR No attribute `float16` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/bmm.py:30:53
+   |
+30 |     x = torch.randn([b, m, k], device="cuda", dtype=torch.float16)
+   |                                                     ^^^^^^^^^^^^^
+   |
+ERROR No attribute `float16` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/bmm.py:31:53
+   |
+31 |     y = torch.randn([b, k, n], device="cuda", dtype=torch.float16)
+   |                                                     ^^^^^^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/concatenate.py:14:12
+   |
+14 |     assert x.size(0) == y.size(0)
+   |            ^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/concatenate.py:14:25
+   |
+14 |     assert x.size(0) == y.size(0)
+   |                         ^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/concatenate.py:16:10
+   |
+16 |         [x.size(0), x.size(1) + y.size(1)], dtype=x.dtype, device=x.device
+   |          ^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/concatenate.py:16:21
+   |
+16 |         [x.size(0), x.size(1) + y.size(1)], dtype=x.dtype, device=x.device
+   |                     ^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/concatenate.py:16:33
+   |
+16 |         [x.size(0), x.size(1) + y.size(1)], dtype=x.dtype, device=x.device
+   |                                 ^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/concatenate.py:18:33
+   |
+18 |     for tile0, tile1 in hl.tile(out.size()):
+   |                                 ^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/concatenate.py:21:58
+   |
+21 |             x, [tile0, tile1], extra_mask=(tile1.index < x.size(1))[None, :]
+   |                                                          ^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/concatenate.py:25:35
+   |
+25 |             [tile0, tile1.index - x.size(1)],
+   |                                   ^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/concatenate.py:26:40
+   |
+26 |             extra_mask=(tile1.index >= x.size(1))[None, :],
+   |                                        ^^^^^^
+   |
+ERROR Cannot set item in `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/concatenate.py:28:9
+   |
+28 |         out[tile0, tile1] = torch.where(
+   |         ^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__setitem__`
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/concatenate.py:29:28
+   |
+29 |             (tile1.index < x.size(1))[None, :], x_part, y_part
+   |                            ^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `reshape` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/embedding.py:16:14
+   |
+16 |     x_flat = x.reshape(-1)  # collapse x into a single dimension
+   |              ^^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/embedding.py:17:24
+   |
+17 |     _, embedding_dim = weight.size()
+   |                        ^^^^^^^^^^^
+   |
+ERROR Cannot set item in `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/embedding.py:22:9
+   |
+22 |         out[tile_b, tile_e] = weight[x_flat[tile_b], tile_e]
+   |         ^^^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__setitem__`
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/embedding.py:22:31
+   |
+22 |         out[tile_b, tile_e] = weight[x_flat[tile_b], tile_e]
+   |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR Object of class `Tensor` has no attribute `view` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/embedding.py:24:12
+   |
+24 |     return out.view(*x.size(), embedding_dim)
+   |            ^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/embedding.py:24:22
+   |
+24 |     return out.view(*x.size(), embedding_dim)
+   |                      ^^^^^^
+   |
+ERROR No attribute `int32` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/embedding.py:29:74
+   |
+29 |     x = torch.randint(0, num_embeddings, [256, 32], device="cuda", dtype=torch.int32)
+   |                                                                          ^^^^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/jagged_dense_add.py:46:16
+   |
+46 |     num_rows = y.size(0)
+   |                ^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/jagged_dense_add.py:47:12
+   |
+47 |     assert x_offsets.size(0) == num_rows + 1
+   |            ^^^^^^^^^^^^^^
+   |
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/jagged_dense_add.py:50:18
+   |
+50 |         starts = x_offsets[tile0]
+   |                  ^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/jagged_dense_add.py:51:16
+   |
+51 |         ends = x_offsets[tile0.index + 1]
+   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR `+` is not supported between `Tensor` and `Literal[1]` [bad-argument-type]
+  --> /Users/aaronpollack/dev/helion/examples/jagged_dense_add.py:51:26
+   |
+51 |         ends = x_offsets[tile0.index + 1]
+   |                          ^^^^^^^^^^^^^^^
+   |
+  Argument `Tensor` is not assignable to parameter `value` with type `int` in function `int.__radd__`
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/jagged_dense_add.py:60:36
+   |
+60 |                 [starts[:, None] + tile1.index[None, :]],
+   |                                    ^^^^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/jagged_dense_add.py:61:28
+   |
+61 |                 extra_mask=tile1.index[None, :] < nnz[:, None],
+   |                            ^^^^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR Argument `bool` is not assignable to parameter `extra_mask` with type `Tensor | None` in function `helion.language.memory_ops.load` [bad-argument-type]
+  --> /Users/aaronpollack/dev/helion/examples/jagged_dense_add.py:61:28
+   |
+61 |                 extra_mask=tile1.index[None, :] < nnz[:, None],
+   |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+ERROR Cannot set item in `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/jagged_dense_add.py:63:13
+   |
+63 |             out[tile0, tile1] = y[tile0, tile1] + x_slice
+   |             ^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__setitem__`
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/jagged_dense_add.py:63:33
+   |
+63 |             out[tile0, tile1] = y[tile0, tile1] + x_slice
+   |                                 ^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/jagged_dense_add.py:64:39
+   |
+64 |         for tile1 in hl.tile(max_nnz, out.size(1)):
+   |                                       ^^^^^^^^
+   |
+ERROR Cannot set item in `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/jagged_dense_add.py:66:13
+   |
+66 |             out[tile0, tile1] = y[tile0, tile1]
+   |             ^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__setitem__`
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/jagged_dense_add.py:66:33
+   |
+66 |             out[tile0, tile1] = y[tile0, tile1]
+   |                                 ^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR Object of class `Tensor` has no attribute `numel` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/jagged_dense_add.py:76:16
+   |
+76 |     num_rows = x_offsets.numel() - 1
+   |                ^^^^^^^^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `clone` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/jagged_dense_add.py:78:11
+   |
+78 |     out = y.clone()
+   |           ^^^^^^^
+   |
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/jagged_dense_add.py:80:21
+   |
+80 |         start = int(x_offsets[i])
+   |                     ^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/jagged_dense_add.py:81:19
+   |
+81 |         end = int(x_offsets[i + 1])
+   |                   ^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/jagged_dense_add.py:82:36
+   |
+82 |         out[i, 0 : end - start] += x_data[start:end]
+   |                                    ^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR No attribute `float32` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/jagged_dense_add.py:90:26
+   |
+90 |     dtype: torch.dtype = torch.float32,
+   |                          ^^^^^^^^^^^^^
+   |
+ERROR No attribute `long` in module `torch` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/examples/jagged_dense_add.py:103:31
+    |
+103 |         [torch.zeros(1, dtype=torch.long, device=device), torch.cumsum(lengths, dim=0)]
+    |                               ^^^^^^^^^^
+    |
+ERROR Cannot index into `Tensor` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/examples/jagged_dense_add.py:106:15
+    |
+106 |     nnz = int(x_offsets[-1])
+    |               ^^^^^^^^^^^^^
+    |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR Object of class `Tensor` has no attribute `sum` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/long_sum.py:11:12
+   |
+11 |     return x.sum(-1)
+   |            ^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/long_sum.py:25:12
+   |
+25 |     m, _ = x.size()
+   |            ^^^^^^
+   |
+ERROR Cannot set item in `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/long_sum.py:29:9
+   |
+29 |         out[tile_m] = x[tile_m, :].sum(-1)
+   |         ^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__setitem__`
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/long_sum.py:29:23
+   |
+29 |         out[tile_m] = x[tile_m, :].sum(-1)
+   |                       ^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/long_sum.py:46:12
+   |
+46 |     m, _ = x.size()
+   |            ^^^^^^
+   |
+ERROR Cannot set item in `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/long_sum.py:50:9
+   |
+50 |         out[tile_m] = x[tile_m, :].sum(-1)
+   |         ^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__setitem__`
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/long_sum.py:50:23
+   |
+50 |         out[tile_m] = x[tile_m, :].sum(-1)
+   |                       ^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/long_sum.py:61:12
+   |
+61 |     m, n = x.size()
+   |            ^^^^^^
+   |
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/long_sum.py:70:20
+   |
+70 |             acc += x[tile_m, tile_n]
+   |                    ^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR Cannot set item in `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/long_sum.py:71:9
+   |
+71 |         out[tile_m] = acc.sum(-1)
+   |         ^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__setitem__`
+ERROR Object of class `Tensor` has no attribute `sum` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/long_sum.py:71:23
+   |
+71 |         out[tile_m] = acc.sum(-1)
+   |                       ^^^^^^^
+   |
+ERROR No attribute `float32` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/long_sum.py:76:50
+   |
+76 |     x = torch.randn([m, n], device="cuda", dtype=torch.float32)
+   |                                                  ^^^^^^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul.py:13:12
+   |
+13 |     m, k = x.size()
+   |            ^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul.py:14:13
+   |
+14 |     k2, n = y.size()
+   |             ^^^^^^
+   |
+ERROR No attribute `float32` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul.py:20:48
+   |
+20 |         acc = hl.zeros([tile_m, tile_n], dtype=torch.float32)
+   |                                                ^^^^^^^^^^^^^
+   |
+ERROR `Tensor | Unknown` is not assignable to `bool | complex | float | int` (caused by inconsistent types when breaking cycles) [bad-assignment]
+  --> /Users/aaronpollack/dev/helion/examples/matmul.py:21:9
+   |
+21 | /         for tile_k in hl.tile(k):
+22 | |             acc = torch.addmm(acc, x[tile_m, tile_k], y[tile_k, tile_n])
+   | |________________________________________________________________________^
+   |
+ERROR No matching overload found for function `torch._C._VariableFunctions.addmm` [no-matching-overload]
+  --> /Users/aaronpollack/dev/helion/examples/matmul.py:22:30
+   |
+22 |             acc = torch.addmm(acc, x[tile_m, tile_k], y[tile_k, tile_n])
+   |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+  Possible overloads:
+  (beta: bool | complex | float | int, self: Tensor, alpha: bool | complex | float | int, mat1: Tensor, mat2: Tensor) -> Tensor
+  (beta: bool | complex | float | int, self: Tensor, alpha: bool | complex | float | int, mat1: Tensor, mat2: Tensor, *, out: Tensor) -> Tensor
+  (input: Tensor, mat1: Tensor, mat2: Tensor, *, beta: bool | complex | float | int, alpha: bool | complex | float | int, out: Tensor | None) -> Tensor [closest match]
+  (beta: bool | complex | float | int, self: Tensor, mat1: Tensor, mat2: Tensor) -> Tensor
+  (beta: bool | complex | float | int, self: Tensor, mat1: Tensor, mat2: Tensor, *, out: Tensor) -> Tensor
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul.py:22:36
+   |
+22 |             acc = torch.addmm(acc, x[tile_m, tile_k], y[tile_k, tile_n])
+   |                                    ^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul.py:22:55
+   |
+22 |             acc = torch.addmm(acc, x[tile_m, tile_k], y[tile_k, tile_n])
+   |                                                       ^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR Cannot set item in `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul.py:23:9
+   |
+23 |         out[tile_m, tile_n] = acc
+   |         ^^^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__setitem__`
+ERROR No attribute `float16` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul.py:28:50
+   |
+28 |     x = torch.randn([m, k], device="cuda", dtype=torch.float16)
+   |                                                  ^^^^^^^^^^^^^
+   |
+ERROR No attribute `float16` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul.py:29:50
+   |
+29 |     y = torch.randn([k, n], device="cuda", dtype=torch.float16)
+   |                                                  ^^^^^^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_layernorm.py:15:12
+   |
+15 |     m, k = x.size()
+   |            ^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_layernorm.py:16:10
+   |
+16 |     k2 = y.size(0)
+   |          ^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_layernorm.py:17:35
+   |
+17 |     n = hl.register_reduction_dim(y.size(1))
+   |                                   ^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_layernorm.py:19:12
+   |
+19 |     assert weight.size(0) == n, f"weight size mismatch {weight.size(0)} != {n}"
+   |            ^^^^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_layernorm.py:19:57
+   |
+19 |     assert weight.size(0) == n, f"weight size mismatch {weight.size(0)} != {n}"
+   |                                                         ^^^^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_layernorm.py:20:12
+   |
+20 |     assert bias.size(0) == n, f"bias size mismatch {bias.size(0)} != {n}"
+   |            ^^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_layernorm.py:20:53
+   |
+20 |     assert bias.size(0) == n, f"bias size mismatch {bias.size(0)} != {n}"
+   |                                                     ^^^^^^^^^
+   |
+ERROR No attribute `float32` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_layernorm.py:25:43
+   |
+25 |         acc = hl.zeros([tile_m, n], dtype=torch.float32)
+   |                                           ^^^^^^^^^^^^^
+   |
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_layernorm.py:27:31
+   |
+27 |             mm = torch.matmul(x[tile_m, tile_k], y[tile_k, :])
+   |                               ^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_layernorm.py:27:50
+   |
+27 |             mm = torch.matmul(x[tile_m, tile_k], y[tile_k, :])
+   |                                                  ^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR `+` is not supported between `Tensor` and `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_layernorm.py:28:19
+   |
+28 |             acc = acc + mm
+   |                   ^^^^^^^^
+   |
+  Cannot find `__add__` or `__radd__`
+ERROR `*` is not supported between `Tensor` and `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_layernorm.py:31:22
+   |
+31 |         normalized = (acc - mean) * torch.rsqrt(var + eps)
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+  Cannot find `__mul__` or `__rmul__`
+ERROR `+` is not supported between `Tensor` and `float` [bad-argument-type]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_layernorm.py:31:49
+   |
+31 |         normalized = (acc - mean) * torch.rsqrt(var + eps)
+   |                                                 ^^^^^^^^^
+   |
+  Argument `Tensor` is not assignable to parameter `value` with type `float` in function `float.__radd__`
+ERROR Argument `float` is not assignable to parameter `input` with type `Tensor` in function `torch._C._VariableFunctions.rsqrt` [bad-argument-type]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_layernorm.py:31:49
+   |
+31 |         normalized = (acc - mean) * torch.rsqrt(var + eps)
+   |                                                 ^^^^^^^^^
+   |
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_layernorm.py:32:29
+   |
+32 |         acc = normalized * (weight[:].to(torch.float32)) + (bias[:].to(torch.float32))
+   |                             ^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR No attribute `float32` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_layernorm.py:32:42
+   |
+32 |         acc = normalized * (weight[:].to(torch.float32)) + (bias[:].to(torch.float32))
+   |                                          ^^^^^^^^^^^^^
+   |
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_layernorm.py:32:61
+   |
+32 |         acc = normalized * (weight[:].to(torch.float32)) + (bias[:].to(torch.float32))
+   |                                                             ^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR No attribute `float32` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_layernorm.py:32:72
+   |
+32 |         acc = normalized * (weight[:].to(torch.float32)) + (bias[:].to(torch.float32))
+   |                                                                        ^^^^^^^^^^^^^
+   |
+ERROR Cannot set item in `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_layernorm.py:33:9
+   |
+33 |         out[tile_m, :] = acc
+   |         ^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__setitem__`
+ERROR Object of class `Tensor` has no attribute `to` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_layernorm.py:45:9
+   |
+45 |         matmul_out.to(torch.float32),
+   |         ^^^^^^^^^^^^^
+   |
+ERROR No attribute `float32` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_layernorm.py:45:23
+   |
+45 |         matmul_out.to(torch.float32),
+   |                       ^^^^^^^^^^^^^
+   |
+ERROR Argument `tuple[int]` is not assignable to parameter `normalized_shape` with type `list[int]` in function `torch.nn.functional.layer_norm` [bad-argument-type]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_layernorm.py:46:26
+   |
+46 |         normalized_shape=(matmul_out.shape[-1],),
+   |                          ^^^^^^^^^^^^^^^^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `to` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_layernorm.py:47:16
+   |
+47 |         weight=weight.to(torch.float32),
+   |                ^^^^^^^^^
+   |
+ERROR No attribute `float32` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_layernorm.py:47:26
+   |
+47 |         weight=weight.to(torch.float32),
+   |                          ^^^^^^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `to` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_layernorm.py:48:14
+   |
+48 |         bias=bias.to(torch.float32),
+   |              ^^^^^^^
+   |
+ERROR No attribute `float32` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_layernorm.py:48:22
+   |
+48 |         bias=bias.to(torch.float32),
+   |                      ^^^^^^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `to` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_layernorm.py:51:12
+   |
+51 |     return ln_out.to(torch.promote_types(x.dtype, y.dtype))
+   |            ^^^^^^^^^
+   |
+ERROR No attribute `float16` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_layernorm.py:55:50
+   |
+55 |     x = torch.randn([m, k], device="cuda", dtype=torch.float16)
+   |                                                  ^^^^^^^^^^^^^
+   |
+ERROR No attribute `float16` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_layernorm.py:56:50
+   |
+56 |     y = torch.randn([k, n], device="cuda", dtype=torch.float16)
+   |                                                  ^^^^^^^^^^^^^
+   |
+ERROR No attribute `float16` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_layernorm.py:57:52
+   |
+57 |     weight = torch.randn([n], device="cuda", dtype=torch.float16)
+   |                                                    ^^^^^^^^^^^^^
+   |
+ERROR No attribute `float16` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_layernorm.py:58:50
+   |
+58 |     bias = torch.randn([n], device="cuda", dtype=torch.float16)
+   |                                                  ^^^^^^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_split_k.py:14:12
+   |
+14 |     m, k = x.size()
+   |            ^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_split_k.py:15:13
+   |
+15 |     k2, n = y.size()
+   |             ^^^^^^
+   |
+ERROR No attribute `float32` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_split_k.py:24:48
+   |
+24 |         acc = hl.zeros([tile_m, tile_n], dtype=torch.float32)
+   |                                                ^^^^^^^^^^^^^
+   |
+ERROR `Tensor | Unknown` is not assignable to `bool | complex | float | int` (caused by inconsistent types when breaking cycles) [bad-assignment]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_split_k.py:25:9
+   |
+25 | /         for inner_k in hl.tile(outer_k.begin, outer_k.end):
+26 | |             acc = torch.addmm(acc, x[tile_m, inner_k], y[inner_k, tile_n])
+   | |__________________________________________________________________________^
+   |
+ERROR No matching overload found for function `torch._C._VariableFunctions.addmm` [no-matching-overload]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_split_k.py:26:30
+   |
+26 |             acc = torch.addmm(acc, x[tile_m, inner_k], y[inner_k, tile_n])
+   |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+  Possible overloads:
+  (beta: bool | complex | float | int, self: Tensor, alpha: bool | complex | float | int, mat1: Tensor, mat2: Tensor) -> Tensor
+  (beta: bool | complex | float | int, self: Tensor, alpha: bool | complex | float | int, mat1: Tensor, mat2: Tensor, *, out: Tensor) -> Tensor
+  (input: Tensor, mat1: Tensor, mat2: Tensor, *, beta: bool | complex | float | int, alpha: bool | complex | float | int, out: Tensor | None) -> Tensor [closest match]
+  (beta: bool | complex | float | int, self: Tensor, mat1: Tensor, mat2: Tensor) -> Tensor
+  (beta: bool | complex | float | int, self: Tensor, mat1: Tensor, mat2: Tensor, *, out: Tensor) -> Tensor
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_split_k.py:26:36
+   |
+26 |             acc = torch.addmm(acc, x[tile_m, inner_k], y[inner_k, tile_n])
+   |                                    ^^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_split_k.py:26:56
+   |
+26 |             acc = torch.addmm(acc, x[tile_m, inner_k], y[inner_k, tile_n])
+   |                                                        ^^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR No attribute `float16` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_split_k.py:32:50
+   |
+32 |     x = torch.randn([m, k], device="cuda", dtype=torch.float16)
+   |                                                  ^^^^^^^^^^^^^
+   |
+ERROR No attribute `float16` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/matmul_split_k.py:33:50
+   |
+33 |     y = torch.randn([k, n], device="cuda", dtype=torch.float16)
+   |                                                  ^^^^^^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `numel` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:27:9
+   |
+27 |         max_T_per_expert_tensor.numel()
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:40:17
+   |
+40 |         start = expert_token_offsets[e_idx]  # Starting index in sorted token array
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:41:22
+   |
+41 |         num_tokens = expert_token_counts[e_idx]  # Number of tokens for this expert
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR No matching overload found for function `torch._C._VariableFunctions.where` [no-matching-overload]
+  --> /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:55:56
+   |
+55 |                   local_token_offsets_valid = torch.where(
+   |  ________________________________________________________^
+56 | |                     token_valid,
+57 | |                     local_token_offsets,
+58 | |                     0,
+59 | |                 )  # [BLOCK_T]
+   | |_________________^
+   |
+  Possible overloads:
+  (condition: Tensor) -> tuple[Tensor, ...]
+  (condition: Tensor, input: Tensor, other: Tensor, *, out: Tensor | None) -> Tensor
+  (condition: Tensor, self: bool | complex | float | int, other: Tensor) -> Tensor
+  (condition: Tensor, input: Tensor, other: bool | complex | float | int) -> Tensor [closest match]
+  (condition: Tensor, self: bool | complex | float | int, other: bool | complex | float | int) -> Tensor
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:67:45
+   |
+67 |                   expert_orig_token_indices = sorted_to_orig_token_idx[
+   |  _____________________________________________^
+68 | |                     expert_sorted_token_indices.squeeze(0)
+69 | |                 ]  # [BLOCK_T]
+   | |_________________^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR No attribute `float32` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:71:56
+   |
+71 |                 acc = hl.zeros([tile_t, tile_n], dtype=torch.float32)
+   |                                                        ^^^^^^^^^^^^^
+   |
+ERROR `Tensor | Unknown` is not assignable to `bool | complex | float | int` (caused by inconsistent types when breaking cycles) [bad-assignment]
+  --> /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:74:17
+   |
+74 | /                 for tile_k in hl.tile(K):
+75 | |                     A_frag = A[expert_orig_token_indices, tile_k]  # [BLOCK_T, BLOCK_K]
+76 | |                     W_frag = W[e_idx, tile_k, tile_n]  # [BLOCK_K, BLOCK_N]
+77 | |                     acc = torch.addmm(acc, A_frag, W_frag)
+   | |__________________________________________________________^
+   |
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:75:30
+   |
+75 |                     A_frag = A[expert_orig_token_indices, tile_k]  # [BLOCK_T, BLOCK_K]
+   |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:76:30
+   |
+76 |                     W_frag = W[e_idx, tile_k, tile_n]  # [BLOCK_K, BLOCK_N]
+   |                              ^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR No matching overload found for function `torch._C._VariableFunctions.addmm` [no-matching-overload]
+  --> /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:77:38
+   |
+77 |                     acc = torch.addmm(acc, A_frag, W_frag)
+   |                                      ^^^^^^^^^^^^^^^^^^^^^
+   |
+  Possible overloads:
+  (beta: bool | complex | float | int, self: Tensor, alpha: bool | complex | float | int, mat1: Tensor, mat2: Tensor) -> Tensor
+  (beta: bool | complex | float | int, self: Tensor, alpha: bool | complex | float | int, mat1: Tensor, mat2: Tensor, *, out: Tensor) -> Tensor
+  (input: Tensor, mat1: Tensor, mat2: Tensor, *, beta: bool | complex | float | int, alpha: bool | complex | float | int, out: Tensor | None) -> Tensor [closest match]
+  (beta: bool | complex | float | int, self: Tensor, mat1: Tensor, mat2: Tensor) -> Tensor
+  (beta: bool | complex | float | int, self: Tensor, mat1: Tensor, mat2: Tensor, *, out: Tensor) -> Tensor
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:80:27
+   |
+80 |                 block_T = acc.size(0)
+   |                           ^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:81:27
+   |
+81 |                 block_N = acc.size(1)
+   |                           ^^^^^^^^
+   |
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:82:35
+   |
+82 |                 existing_values = C[expert_orig_token_indices, tile_n]
+   |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR Object of class `bool` has no attribute `view` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:83:27
+   |
+83 |                 mask_2d = token_valid.view(block_T, 1).expand(block_T, block_N)
+   |                           ^^^^^^^^^^^^^^^^
+   |
+ERROR Cannot set item in `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:85:17
+   |
+85 |                 C[expert_orig_token_indices, tile_n] = torch.where(
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__setitem__`
+ERROR Object of class `Tensor` has no attribute `to` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:86:30
+   |
+86 |                     mask_2d, acc.to(C.dtype), existing_values
+   |                              ^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:99:9
+   |
+99 |     E = W.size(0)  # Number of experts
+   |         ^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `to` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:103:32
+    |
+103 |     sorted_to_orig_token_idx = torch.argsort(top1_expert_per_token, stable=True).to(
+    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+ERROR No attribute `int32` in module `torch` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:104:9
+    |
+104 |         torch.int32
+    |         ^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `to` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:108:27
+    |
+108 |     expert_token_counts = torch.bincount(top1_expert_per_token, minlength=E).to(
+    |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+ERROR No attribute `int32` in module `torch` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:109:9
+    |
+109 |         torch.int32
+    |         ^^^^^^^^^^^
+    |
+ERROR No attribute `int32` in module `torch` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:114:53
+    |
+114 |     expert_token_offsets = torch.empty(E + 1, dtype=torch.int32, device=device)  # [E+1]
+    |                                                     ^^^^^^^^^^^
+    |
+ERROR Cannot set item in `Tensor` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:115:5
+    |
+115 |     expert_token_offsets[0] = 0
+    |     ^^^^^^^^^^^^^^^^^^^^^^^
+    |
+  Object of class `Tensor` has no attribute `__setitem__`
+ERROR Cannot set item in `Tensor` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:116:5
+    |
+116 |     expert_token_offsets[1:] = torch.cumsum(expert_token_counts, 0, dtype=torch.int32)
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+  Object of class `Tensor` has no attribute `__setitem__`
+ERROR No attribute `int32` in module `torch` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:116:75
+    |
+116 |     expert_token_offsets[1:] = torch.cumsum(expert_token_counts, 0, dtype=torch.int32)
+    |                                                                           ^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:138:9
+    |
+138 |     N = W.size(2)
+    |         ^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:142:17
+    |
+142 |     n_experts = W.size(0)
+    |                 ^^^^^^
+    |
+ERROR Cannot set item in `Tensor` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:149:9
+    |
+149 |         C[token_idx] = A[token_idx] @ W[e]  # [Ne, K] @ [K, N]
+    |         ^^^^^^^^^^^^
+    |
+  Object of class `Tensor` has no attribute `__setitem__`
+ERROR Cannot index into `Tensor` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:149:24
+    |
+149 |         C[token_idx] = A[token_idx] @ W[e]  # [Ne, K] @ [K, N]
+    |                        ^^^^^^^^^^^^
+    |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR Cannot index into `Tensor` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:149:39
+    |
+149 |         C[token_idx] = A[token_idx] @ W[e]  # [Ne, K] @ [K, N]
+    |                                       ^^^^
+    |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR No attribute `float16` in module `torch` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:155:13
+    |
+155 |     dtype = torch.float16
+    |             ^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/softmax.py:13:13
+   |
+13 |     n, _m = x.size()
+   |             ^^^^^^
+   |
+ERROR Cannot set item in `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/softmax.py:16:9
+   |
+16 |         out[tile_n, :] = torch.nn.functional.softmax(x[tile_n, :], dim=1)
+   |         ^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__setitem__`
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/softmax.py:16:54
+   |
+16 |         out[tile_n, :] = torch.nn.functional.softmax(x[tile_n, :], dim=1)
+   |                                                      ^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/softmax.py:24:13
+   |
+24 |     n, _m = x.size()
+   |             ^^^^^^
+   |
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/softmax.py:27:18
+   |
+27 |         values = x[tile_n, :]
+   |                  ^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR Cannot set item in `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/softmax.py:31:9
+   |
+31 |         out[tile_n, :] = exp / sum_exp
+   |         ^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__setitem__`
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/softmax.py:39:12
+   |
+39 |     m, n = x.size()
+   |            ^^^^^^
+   |
+ERROR No attribute `float32` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/softmax.py:44:53
+   |
+44 |         mi = hl.full([tile_m], float("-inf"), dtype=torch.float32)
+   |                                                     ^^^^^^^^^^^^^
+   |
+ERROR No attribute `float32` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/softmax.py:45:39
+   |
+45 |         di = hl.zeros([tile_m], dtype=torch.float32)
+   |                                       ^^^^^^^^^^^^^
+   |
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/softmax.py:47:22
+   |
+47 |             values = x[tile_m, tile_n]
+   |                      ^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR `*` is not supported between `Tensor` and `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/softmax.py:50:18
+   |
+50 |             di = di * torch.exp(mi - mi_next) + torch.exp(
+   |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+  Cannot find `__mul__` or `__rmul__`
+ERROR Object of class `Tensor` has no attribute `sum` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/softmax.py:50:49
+   |
+50 |               di = di * torch.exp(mi - mi_next) + torch.exp(
+   |  _________________________________________________^
+51 | |                 values - mi_next[:, None]
+52 | |             ).sum(dim=1)
+   | |_________________^
+   |
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/softmax.py:51:26
+   |
+51 |                 values - mi_next[:, None]
+   |                          ^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/softmax.py:55:22
+   |
+55 |             values = x[tile_m, tile_n]
+   |                      ^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR Cannot set item in `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/softmax.py:56:13
+   |
+56 |             out[tile_m, tile_n] = torch.exp(values - mi[:, None]) / di[:, None]
+   |             ^^^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__setitem__`
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/softmax.py:56:54
+   |
+56 |             out[tile_m, tile_n] = torch.exp(values - mi[:, None]) / di[:, None]
+   |                                                      ^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/softmax.py:56:69
+   |
+56 |             out[tile_m, tile_n] = torch.exp(values - mi[:, None]) / di[:, None]
+   |                                                                     ^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR No attribute `float16` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/softmax.py:61:50
+   |
+61 |     x = torch.randn([m, n], device="cuda", dtype=torch.float16)
+   |                                                  ^^^^^^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/template_via_closure.py:32:12
+   |
+32 |     m, k = x.size()
+   |            ^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/template_via_closure.py:33:13
+   |
+33 |     k2, n = y.size()
+   |             ^^^^^^
+   |
+ERROR No attribute `float32` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/template_via_closure.py:39:48
+   |
+39 |         acc = hl.zeros([tile_m, tile_n], dtype=torch.float32)
+   |                                                ^^^^^^^^^^^^^
+   |
+ERROR `Tensor | Unknown` is not assignable to `bool | complex | float | int` (caused by inconsistent types when breaking cycles) [bad-assignment]
+  --> /Users/aaronpollack/dev/helion/examples/template_via_closure.py:40:9
+   |
+40 | /         for tile_k in hl.tile(k):
+41 | |             acc = torch.addmm(acc, x[tile_m, tile_k], y[tile_k, tile_n])
+   | |________________________________________________________________________^
+   |
+ERROR No matching overload found for function `torch._C._VariableFunctions.addmm` [no-matching-overload]
+  --> /Users/aaronpollack/dev/helion/examples/template_via_closure.py:41:30
+   |
+41 |             acc = torch.addmm(acc, x[tile_m, tile_k], y[tile_k, tile_n])
+   |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+  Possible overloads:
+  (beta: bool | complex | float | int, self: Tensor, alpha: bool | complex | float | int, mat1: Tensor, mat2: Tensor) -> Tensor
+  (beta: bool | complex | float | int, self: Tensor, alpha: bool | complex | float | int, mat1: Tensor, mat2: Tensor, *, out: Tensor) -> Tensor
+  (input: Tensor, mat1: Tensor, mat2: Tensor, *, beta: bool | complex | float | int, alpha: bool | complex | float | int, out: Tensor | None) -> Tensor [closest match]
+  (beta: bool | complex | float | int, self: Tensor, mat1: Tensor, mat2: Tensor) -> Tensor
+  (beta: bool | complex | float | int, self: Tensor, mat1: Tensor, mat2: Tensor, *, out: Tensor) -> Tensor
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/template_via_closure.py:41:36
+   |
+41 |             acc = torch.addmm(acc, x[tile_m, tile_k], y[tile_k, tile_n])
+   |                                    ^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/template_via_closure.py:41:55
+   |
+41 |             acc = torch.addmm(acc, x[tile_m, tile_k], y[tile_k, tile_n])
+   |                                                       ^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR Cannot set item in `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/template_via_closure.py:42:9
+   |
+42 |         out[tile_m, tile_n] = epilogue(acc, [tile_m, tile_n])
+   |         ^^^^^^^^^^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__setitem__`
+ERROR No attribute `float16` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/template_via_closure.py:47:50
+   |
+47 |     x = torch.randn([n, k], device="cuda", dtype=torch.float16)
+   |                                                  ^^^^^^^^^^^^^
+   |
+ERROR No attribute `float16` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/template_via_closure.py:48:50
+   |
+48 |     y = torch.randn([k, m], device="cuda", dtype=torch.float16)
+   |                                                  ^^^^^^^^^^^^^
+   |
+ERROR No attribute `float16` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/template_via_closure.py:49:53
+   |
+49 |     bias = torch.randn([1, m], device="cuda", dtype=torch.float16)
+   |                                                     ^^^^^^^^^^^^^
+   |
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/template_via_closure.py:50:54
+   |
+50 |     args = (x, y, lambda acc, tile: torch.relu(acc + bias[tile]))
+   |                                                      ^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR No attribute `float16` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/template_via_closure.py:57:50
+   |
+57 |     x = torch.randn([n, k], device="cuda", dtype=torch.float16)
+   |                                                  ^^^^^^^^^^^^^
+   |
+ERROR No attribute `float16` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/template_via_closure.py:58:50
+   |
+58 |     y = torch.randn([k, m], device="cuda", dtype=torch.float16)
+   |                                                  ^^^^^^^^^^^^^
+   |
+ERROR No attribute `float16` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/template_via_closure.py:59:67
+   |
+59 |     bias: torch.Tensor = torch.randn([1, m], device="cuda", dtype=torch.float16)
+   |                                                                   ^^^^^^^^^^^^^
+   |
+ERROR Cannot index into `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/template_via_closure.py:63:33
+   |
+63 |         return torch.relu(acc + bias[tile])
+   |                                 ^^^^^^^^^^
+   |
+  Object of class `Tensor` has no attribute `__getitem__`
+ERROR `+` is not supported between `Tensor` and `Tensor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/examples/template_via_closure.py:69:27
+   |
+69 |         return torch.relu(x @ y + bias)
+   |                           ^^^^^^^^^^^^
+   |
+  Cannot find `__add__` or `__radd__`
+ERROR Attribute `device` of class `CompileEnvironment` is a read-only descriptor with no `__set__` and cannot be set [read-only]
+  --> /Users/aaronpollack/dev/helion/helion/_compiler/compile_environment.py:56:9
+   |
+56 |         self.device = device
+   |         ^^^^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/compile_environment.py:260:17
+    |
+260 |                 tensor.size(),
+    |                 ^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `stride` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/compile_environment.py:261:17
+    |
+261 |                 tensor.stride(),
+    |                 ^^^^^^^^^^^^^
+    |
+ERROR Object of class `FakeTensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/compile_environment.py:271:35
+    |
+271 |             for i, s in enumerate(result.size()):
+    |                                   ^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/compile_environment.py:271:35
+    |
+271 |             for i, s in enumerate(result.size()):
+    |                                   ^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/device_function.py:327:28
+    |
+327 |         if isinstance(v := fake_value.size(dim), int) or isinstance(
+    |                            ^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `stride` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/device_function.py:335:29
+    |
+335 |             isinstance(v := fake_value.stride(dim), int)
+    |                             ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/indexing_strategy.py:207:40
+    |
+207 |         input_size = collections.deque(tensor.size())
+    |                                        ^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/indexing_strategy.py:221:28
+    |
+221 |                         if tensor.size(tensor.ndim - len(input_size) - 1) != 1:
+    |                            ^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/indexing_strategy.py:236:36
+    |
+236 |                 output_size.extend(k.size())
+    |                                    ^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/indexing_strategy.py:273:27
+    |
+273 |                     ) and fake_value.size(i) != 1:
+    |                           ^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/indexing_strategy.py:282:24
+    |
+282 |                 size = fake_value.size(len(index_values))
+    |                        ^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/indexing_strategy.py:327:16
+    |
+327 |             if fake_value.size(i) != 1:
+    |                ^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `stride` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/indexing_strategy.py:384:65
+    |
+384 |         stride = sorted([(hint(s), -i, i) for i, s in enumerate(self.base.stride())])
+    |                                                                 ^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/indexing_strategy.py:434:41
+    |
+434 |         input_sizes = collections.deque(fake_tensor.size())
+    |                                         ^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/indexing_strategy.py:496:24
+    |
+496 |                     if fake_value.size(len(res.offsets)) != 1:
+    |                        ^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/indexing_strategy.py:508:24
+    |
+508 |                 size = fake_value.size(len(res.offsets))
+    |                        ^^^^^^^^^^^^^^^
+    |
+ERROR No attribute `int64` in module `torch` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:125:31
+    |
+125 |                 torch.SymInt: torch.int64,
+    |                               ^^^^^^^^^^^
+    |
+ERROR No attribute `float32` in module `torch` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:126:33
+    |
+126 |                 torch.SymFloat: torch.float32,
+    |                                 ^^^^^^^^^^^^^
+    |
+ERROR No attribute `bool` in module `torch` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:127:32
+    |
+127 |                 torch.SymBool: torch.bool,
+    |                                ^^^^^^^^^^
+    |
+ERROR Returned type `ShapeAsConstantBuffer | TensorBox` is not assignable to declared return type `TensorBox` [bad-return]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:129:20
+    |
+129 |               return TensorBox.create(
+    |  ____________________^
+130 | |                 InputBuffer(
+131 | |                     name=name,
+132 | |                     layout=FixedLayout(
+133 | |                         CompileEnvironment.current().device,
+134 | |                         dtype,
+135 | |                         [],
+136 | |                         [],
+137 | |                     ),
+138 | |                 )
+139 | |             )
+    | |_____________^
+    |
+ERROR Unexpected keyword argument `name` in function `object.__init__` [unexpected-keyword]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:131:21
+    |
+131 |                     name=name,
+    |                     ^^^^^^^^^
+    |
+ERROR Unexpected keyword argument `layout` in function `object.__init__` [unexpected-keyword]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:132:21
+    |
+132 | /                     layout=FixedLayout(
+133 | |                         CompileEnvironment.current().device,
+134 | |                         dtype,
+135 | |                         [],
+136 | |                         [],
+137 | |                     ),
+    | |_____________________^
+    |
+ERROR Returned type `ShapeAsConstantBuffer | TensorBox` is not assignable to declared return type `TensorBox` [bad-return]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:143:16
+    |
+143 |           return TensorBox.create(
+    |  ________________^
+144 | |             InputBuffer(
+145 | |                 name=name,
+146 | |                 layout=FixedLayout(
+147 | |                     example.device,
+148 | |                     example.dtype,
+149 | |                     [*map(_unpack_symint, example.size())],
+150 | |                     [*map(_unpack_symint, example.stride())],
+151 | |                 ),
+152 | |             )
+153 | |         )
+    | |_________^
+    |
+ERROR Unexpected keyword argument `name` in function `object.__init__` [unexpected-keyword]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:145:17
+    |
+145 |                 name=name,
+    |                 ^^^^^^^^^
+    |
+ERROR Unexpected keyword argument `layout` in function `object.__init__` [unexpected-keyword]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:146:17
+    |
+146 | /                 layout=FixedLayout(
+147 | |                     example.device,
+148 | |                     example.dtype,
+149 | |                     [*map(_unpack_symint, example.size())],
+150 | |                     [*map(_unpack_symint, example.stride())],
+151 | |                 ),
+    | |_________________^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:149:43
+    |
+149 |                     [*map(_unpack_symint, example.size())],
+    |                                           ^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `stride` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:150:43
+    |
+150 |                     [*map(_unpack_symint, example.stride())],
+    |                                           ^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Mapping` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:691:12
+    |
+691 |     ndim = node.args[0].meta["val"].ndim
+    |            ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `OpOverload` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:691:12
+    |
+691 |     ndim = node.args[0].meta["val"].ndim
+    |            ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Sequence` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:691:12
+    |
+691 |     ndim = node.args[0].meta["val"].ndim
+    |            ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `SymBool` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:691:12
+    |
+691 |     ndim = node.args[0].meta["val"].ndim
+    |            ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `SymFloat` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:691:12
+    |
+691 |     ndim = node.args[0].meta["val"].ndim
+    |            ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `SymInt` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:691:12
+    |
+691 |     ndim = node.args[0].meta["val"].ndim
+    |            ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:691:12
+    |
+691 |     ndim = node.args[0].meta["val"].ndim
+    |            ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `bool` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:691:12
+    |
+691 |     ndim = node.args[0].meta["val"].ndim
+    |            ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `complex` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:691:12
+    |
+691 |     ndim = node.args[0].meta["val"].ndim
+    |            ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `device` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:691:12
+    |
+691 |     ndim = node.args[0].meta["val"].ndim
+    |            ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `dtype` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:691:12
+    |
+691 |     ndim = node.args[0].meta["val"].ndim
+    |            ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `float` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:691:12
+    |
+691 |     ndim = node.args[0].meta["val"].ndim
+    |            ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `int` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:691:12
+    |
+691 |     ndim = node.args[0].meta["val"].ndim
+    |            ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `layout` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:691:12
+    |
+691 |     ndim = node.args[0].meta["val"].ndim
+    |            ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `memory_format` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:691:12
+    |
+691 |     ndim = node.args[0].meta["val"].ndim
+    |            ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `range` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:691:12
+    |
+691 |     ndim = node.args[0].meta["val"].ndim
+    |            ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `slice` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:691:12
+    |
+691 |     ndim = node.args[0].meta["val"].ndim
+    |            ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `str` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:691:12
+    |
+691 |     ndim = node.args[0].meta["val"].ndim
+    |            ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `tuple` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:691:12
+    |
+691 |     ndim = node.args[0].meta["val"].ndim
+    |            ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `NoneType` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:691:12
+    |
+691 |     ndim = node.args[0].meta["val"].ndim
+    |            ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:747:15
+    |
+747 |     shape = [*val.size()]
+    |               ^^^^^^^^
+    |
+ERROR Object of class `Mapping` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:748:8
+    |
+748 |     if node.args[0].meta["val"].ndim != len(shape):
+    |        ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `OpOverload` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:748:8
+    |
+748 |     if node.args[0].meta["val"].ndim != len(shape):
+    |        ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Sequence` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:748:8
+    |
+748 |     if node.args[0].meta["val"].ndim != len(shape):
+    |        ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `SymBool` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:748:8
+    |
+748 |     if node.args[0].meta["val"].ndim != len(shape):
+    |        ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `SymFloat` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:748:8
+    |
+748 |     if node.args[0].meta["val"].ndim != len(shape):
+    |        ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `SymInt` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:748:8
+    |
+748 |     if node.args[0].meta["val"].ndim != len(shape):
+    |        ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:748:8
+    |
+748 |     if node.args[0].meta["val"].ndim != len(shape):
+    |        ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `bool` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:748:8
+    |
+748 |     if node.args[0].meta["val"].ndim != len(shape):
+    |        ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `complex` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:748:8
+    |
+748 |     if node.args[0].meta["val"].ndim != len(shape):
+    |        ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `device` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:748:8
+    |
+748 |     if node.args[0].meta["val"].ndim != len(shape):
+    |        ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `dtype` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:748:8
+    |
+748 |     if node.args[0].meta["val"].ndim != len(shape):
+    |        ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `float` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:748:8
+    |
+748 |     if node.args[0].meta["val"].ndim != len(shape):
+    |        ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `int` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:748:8
+    |
+748 |     if node.args[0].meta["val"].ndim != len(shape):
+    |        ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `layout` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:748:8
+    |
+748 |     if node.args[0].meta["val"].ndim != len(shape):
+    |        ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `memory_format` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:748:8
+    |
+748 |     if node.args[0].meta["val"].ndim != len(shape):
+    |        ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `range` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:748:8
+    |
+748 |     if node.args[0].meta["val"].ndim != len(shape):
+    |        ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `slice` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:748:8
+    |
+748 |     if node.args[0].meta["val"].ndim != len(shape):
+    |        ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `str` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:748:8
+    |
+748 |     if node.args[0].meta["val"].ndim != len(shape):
+    |        ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `tuple` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:748:8
+    |
+748 |     if node.args[0].meta["val"].ndim != len(shape):
+    |        ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `NoneType` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:748:8
+    |
+748 |     if node.args[0].meta["val"].ndim != len(shape):
+    |        ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Mapping` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:750:37
+    |
+750 |         for i in range(len(shape) - node.args[0].meta["val"].ndim):
+    |                                     ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `OpOverload` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:750:37
+    |
+750 |         for i in range(len(shape) - node.args[0].meta["val"].ndim):
+    |                                     ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Sequence` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:750:37
+    |
+750 |         for i in range(len(shape) - node.args[0].meta["val"].ndim):
+    |                                     ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `SymBool` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:750:37
+    |
+750 |         for i in range(len(shape) - node.args[0].meta["val"].ndim):
+    |                                     ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `SymFloat` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:750:37
+    |
+750 |         for i in range(len(shape) - node.args[0].meta["val"].ndim):
+    |                                     ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `SymInt` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:750:37
+    |
+750 |         for i in range(len(shape) - node.args[0].meta["val"].ndim):
+    |                                     ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:750:37
+    |
+750 |         for i in range(len(shape) - node.args[0].meta["val"].ndim):
+    |                                     ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `bool` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:750:37
+    |
+750 |         for i in range(len(shape) - node.args[0].meta["val"].ndim):
+    |                                     ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `complex` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:750:37
+    |
+750 |         for i in range(len(shape) - node.args[0].meta["val"].ndim):
+    |                                     ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `device` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:750:37
+    |
+750 |         for i in range(len(shape) - node.args[0].meta["val"].ndim):
+    |                                     ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `dtype` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:750:37
+    |
+750 |         for i in range(len(shape) - node.args[0].meta["val"].ndim):
+    |                                     ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `float` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:750:37
+    |
+750 |         for i in range(len(shape) - node.args[0].meta["val"].ndim):
+    |                                     ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `int` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:750:37
+    |
+750 |         for i in range(len(shape) - node.args[0].meta["val"].ndim):
+    |                                     ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `layout` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:750:37
+    |
+750 |         for i in range(len(shape) - node.args[0].meta["val"].ndim):
+    |                                     ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `memory_format` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:750:37
+    |
+750 |         for i in range(len(shape) - node.args[0].meta["val"].ndim):
+    |                                     ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `range` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:750:37
+    |
+750 |         for i in range(len(shape) - node.args[0].meta["val"].ndim):
+    |                                     ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `slice` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:750:37
+    |
+750 |         for i in range(len(shape) - node.args[0].meta["val"].ndim):
+    |                                     ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `str` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:750:37
+    |
+750 |         for i in range(len(shape) - node.args[0].meta["val"].ndim):
+    |                                     ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `tuple` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:750:37
+    |
+750 |         for i in range(len(shape) - node.args[0].meta["val"].ndim):
+    |                                     ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `NoneType` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:750:37
+    |
+750 |         for i in range(len(shape) - node.args[0].meta["val"].ndim):
+    |                                     ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:771:14
+    |
+771 |     lshape = lproxy.size()
+    |              ^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:772:14
+    |
+772 |     rshape = rproxy.size()
+    |              ^^^^^^^^^^^
+    |
+ERROR Object of class `Mapping` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:810:16
+    |
+810 |     lhs_size = lhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `OpOverload` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:810:16
+    |
+810 |     lhs_size = lhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `Sequence` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:810:16
+    |
+810 |     lhs_size = lhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `SymBool` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:810:16
+    |
+810 |     lhs_size = lhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `SymFloat` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:810:16
+    |
+810 |     lhs_size = lhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `SymInt` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:810:16
+    |
+810 |     lhs_size = lhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:810:16
+    |
+810 |     lhs_size = lhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `bool` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:810:16
+    |
+810 |     lhs_size = lhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `complex` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:810:16
+    |
+810 |     lhs_size = lhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `device` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:810:16
+    |
+810 |     lhs_size = lhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `dtype` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:810:16
+    |
+810 |     lhs_size = lhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `float` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:810:16
+    |
+810 |     lhs_size = lhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `int` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:810:16
+    |
+810 |     lhs_size = lhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `layout` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:810:16
+    |
+810 |     lhs_size = lhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `memory_format` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:810:16
+    |
+810 |     lhs_size = lhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `range` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:810:16
+    |
+810 |     lhs_size = lhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `slice` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:810:16
+    |
+810 |     lhs_size = lhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `str` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:810:16
+    |
+810 |     lhs_size = lhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `tuple` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:810:16
+    |
+810 |     lhs_size = lhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `NoneType` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:810:16
+    |
+810 |     lhs_size = lhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `Mapping` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:811:16
+    |
+811 |     rhs_size = rhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `OpOverload` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:811:16
+    |
+811 |     rhs_size = rhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `Sequence` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:811:16
+    |
+811 |     rhs_size = rhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `SymBool` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:811:16
+    |
+811 |     rhs_size = rhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `SymFloat` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:811:16
+    |
+811 |     rhs_size = rhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `SymInt` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:811:16
+    |
+811 |     rhs_size = rhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:811:16
+    |
+811 |     rhs_size = rhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `bool` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:811:16
+    |
+811 |     rhs_size = rhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `complex` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:811:16
+    |
+811 |     rhs_size = rhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `device` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:811:16
+    |
+811 |     rhs_size = rhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `dtype` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:811:16
+    |
+811 |     rhs_size = rhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `float` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:811:16
+    |
+811 |     rhs_size = rhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `int` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:811:16
+    |
+811 |     rhs_size = rhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `layout` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:811:16
+    |
+811 |     rhs_size = rhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `memory_format` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:811:16
+    |
+811 |     rhs_size = rhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `range` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:811:16
+    |
+811 |     rhs_size = rhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `slice` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:811:16
+    |
+811 |     rhs_size = rhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `str` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:811:16
+    |
+811 |     rhs_size = rhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `tuple` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:811:16
+    |
+811 |     rhs_size = rhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `NoneType` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:811:16
+    |
+811 |     rhs_size = rhs_node.meta["val"].size()
+    |                ^^^^^^^^^^^^^
+    |
+ERROR Object of class `Mapping` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:843:11
+    |
+843 |         [*lhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `OpOverload` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:843:11
+    |
+843 |         [*lhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `Sequence` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:843:11
+    |
+843 |         [*lhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `SymBool` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:843:11
+    |
+843 |         [*lhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `SymFloat` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:843:11
+    |
+843 |         [*lhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `SymInt` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:843:11
+    |
+843 |         [*lhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:843:11
+    |
+843 |         [*lhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `bool` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:843:11
+    |
+843 |         [*lhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `complex` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:843:11
+    |
+843 |         [*lhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `device` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:843:11
+    |
+843 |         [*lhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `dtype` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:843:11
+    |
+843 |         [*lhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `float` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:843:11
+    |
+843 |         [*lhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `int` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:843:11
+    |
+843 |         [*lhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `layout` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:843:11
+    |
+843 |         [*lhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `memory_format` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:843:11
+    |
+843 |         [*lhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `range` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:843:11
+    |
+843 |         [*lhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `slice` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:843:11
+    |
+843 |         [*lhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `str` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:843:11
+    |
+843 |         [*lhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `tuple` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:843:11
+    |
+843 |         [*lhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `NoneType` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:843:11
+    |
+843 |         [*lhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `Mapping` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:846:11
+    |
+846 |         [*rhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `OpOverload` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:846:11
+    |
+846 |         [*rhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `Sequence` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:846:11
+    |
+846 |         [*rhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `SymBool` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:846:11
+    |
+846 |         [*rhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `SymFloat` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:846:11
+    |
+846 |         [*rhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `SymInt` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:846:11
+    |
+846 |         [*rhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:846:11
+    |
+846 |         [*rhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `bool` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:846:11
+    |
+846 |         [*rhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `complex` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:846:11
+    |
+846 |         [*rhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `device` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:846:11
+    |
+846 |         [*rhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `dtype` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:846:11
+    |
+846 |         [*rhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `float` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:846:11
+    |
+846 |         [*rhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `int` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:846:11
+    |
+846 |         [*rhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `layout` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:846:11
+    |
+846 |         [*rhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `memory_format` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:846:11
+    |
+846 |         [*rhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `range` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:846:11
+    |
+846 |         [*rhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `slice` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:846:11
+    |
+846 |         [*rhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `str` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:846:11
+    |
+846 |         [*rhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `tuple` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:846:11
+    |
+846 |         [*rhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `NoneType` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:846:11
+    |
+846 |         [*rhs_node.meta["val"].size()[1:]]
+    |           ^^^^^^^^^^^^^
+    |
+ERROR Object of class `Mapping` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:855:15
+    |
+855 |             [*node.args[0].meta["val"].size()[1:]]
+    |               ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `OpOverload` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:855:15
+    |
+855 |             [*node.args[0].meta["val"].size()[1:]]
+    |               ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Sequence` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:855:15
+    |
+855 |             [*node.args[0].meta["val"].size()[1:]]
+    |               ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `SymBool` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:855:15
+    |
+855 |             [*node.args[0].meta["val"].size()[1:]]
+    |               ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `SymFloat` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:855:15
+    |
+855 |             [*node.args[0].meta["val"].size()[1:]]
+    |               ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `SymInt` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:855:15
+    |
+855 |             [*node.args[0].meta["val"].size()[1:]]
+    |               ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:855:15
+    |
+855 |             [*node.args[0].meta["val"].size()[1:]]
+    |               ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `bool` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:855:15
+    |
+855 |             [*node.args[0].meta["val"].size()[1:]]
+    |               ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `complex` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:855:15
+    |
+855 |             [*node.args[0].meta["val"].size()[1:]]
+    |               ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `device` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:855:15
+    |
+855 |             [*node.args[0].meta["val"].size()[1:]]
+    |               ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `dtype` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:855:15
+    |
+855 |             [*node.args[0].meta["val"].size()[1:]]
+    |               ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `float` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:855:15
+    |
+855 |             [*node.args[0].meta["val"].size()[1:]]
+    |               ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `int` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:855:15
+    |
+855 |             [*node.args[0].meta["val"].size()[1:]]
+    |               ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `layout` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:855:15
+    |
+855 |             [*node.args[0].meta["val"].size()[1:]]
+    |               ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `memory_format` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:855:15
+    |
+855 |             [*node.args[0].meta["val"].size()[1:]]
+    |               ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `range` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:855:15
+    |
+855 |             [*node.args[0].meta["val"].size()[1:]]
+    |               ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `slice` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:855:15
+    |
+855 |             [*node.args[0].meta["val"].size()[1:]]
+    |               ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `str` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:855:15
+    |
+855 |             [*node.args[0].meta["val"].size()[1:]]
+    |               ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `tuple` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:855:15
+    |
+855 |             [*node.args[0].meta["val"].size()[1:]]
+    |               ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `NoneType` has no attribute `meta` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:855:15
+    |
+855 |             [*node.args[0].meta["val"].size()[1:]]
+    |               ^^^^^^^^^^^^^^^^^
+    |
+ERROR No attribute `int32` in module `torch` [missing-attribute]
+    --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:1125:17
+     |
+1125 |     if dtype != torch.int32:
+     |                 ^^^^^^^^^^^
+     |
+ERROR No attribute `lowering` in module `torch._inductor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering_extra.py:28:26
+   |
+28 |     original_lowerings = torch._inductor.lowering.lowerings.copy()
+   |                          ^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+ERROR No attribute `lowering` in module `torch._inductor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering_extra.py:30:9
+   |
+30 |         torch._inductor.lowering.lowerings.update(inductor_lowering_dispatch)
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+ERROR No attribute `lowering` in module `torch._inductor` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering_extra.py:33:9
+   |
+33 |         torch._inductor.lowering.lowerings = original_lowerings
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+ERROR No attribute `ir` in module `torch._inductor` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering_extra.py:110:8
+    |
+110 |     x: torch._inductor.ir.TensorBox,
+    |        ^^^^^^^^^^^^^^^^^^
+    |
+ERROR No attribute `ir` in module `torch._inductor` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering_extra.py:116:6
+    |
+116 | ) -> torch._inductor.ir.TensorBox:
+    |      ^^^^^^^^^^^^^^^^^^
+    |
+ERROR No attribute `ir` in module `torch._inductor` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering_extra.py:141:8
+    |
+141 |     x: torch._inductor.ir.TensorBox,
+    |        ^^^^^^^^^^^^^^^^^^
+    |
+ERROR No attribute `ir` in module `torch._inductor` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering_extra.py:146:6
+    |
+146 | ) -> torch._inductor.ir.TensorBox:
+    |      ^^^^^^^^^^^^^^^^^^
+    |
+ERROR No attribute `ir` in module `torch._inductor` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering_extra.py:160:8
+    |
+160 |     x: torch._inductor.ir.TensorBox,
+    |        ^^^^^^^^^^^^^^^^^^
+    |
+ERROR No attribute `ir` in module `torch._inductor` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering_extra.py:165:6
+    |
+165 | ) -> torch._inductor.ir.TensorBox:
+    |      ^^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/reduction_strategy.py:117:18
+    |
+117 |         size = [*fake_input.size()]
+    |                  ^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/reduction_strategy.py:119:14
+    |
+119 |         if [*fake_output.size()] == size:
+    |              ^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/reduction_strategy.py:121:51
+    |
+121 |         shape = self.fn.tile_strategy.shape_str([*fake_output.size()])
+    |                                                   ^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/reduction_strategy.py:125:24
+    |
+125 |         input_size = [*fake_input.size()]
+    |                        ^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/reduction_strategy.py:292:51
+    |
+292 |         shape = self.fn.tile_strategy.shape_str([*fake_input.size()])
+    |                                                   ^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/roll_reduction.py:104:25
+    |
+104 |             for size in val.size():
+    |                         ^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/roll_reduction.py:115:33
+    |
+115 |                     for size in item.size():
+    |                                 ^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/roll_reduction.py:265:33
+    |
+265 |                     for size in val.size():
+    |                                 ^^^^^^^^
+    |
+ERROR Class member `FlattenedTileStrategy.block_size` overrides parent class `BlockSizeTileStrategy` in an inconsistent manner [bad-override]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/tile_strategy.py:295:5
+    |
+295 |     block_size: SymIntLike
+    |     ^^^^^^^^^^
+    |
+  `FlattenedTileStrategy.block_size` has type `SymInt | int`, which is not consistent with `SymInt | int | list[SymInt | int]` in `BlockSizeTileStrategy.block_size` (the type of read-write attributes cannot be changed)
+ERROR Class member `_BaseNDTileStrategy.block_size` overrides parent class `BlockSizeTileStrategy` in an inconsistent manner [bad-override]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/tile_strategy.py:466:5
+    |
+466 |     block_size: list[SymIntLike]
+    |     ^^^^^^^^^^
+    |
+  `_BaseNDTileStrategy.block_size` has type `list[SymInt | int]`, which is not consistent with `SymInt | int | list[SymInt | int]` in `BlockSizeTileStrategy.block_size` (the type of read-write attributes cannot be changed)
+ERROR Argument `object` is not assignable to parameter `iterable` with type `Iterable[object]` in function `enumerate.__new__` [bad-argument-type]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:212:71
+    |
+212 |             return SequenceType(origin, cls._unpack_example(enumerate(value), origin))
+    |                                                                       ^^^^^
+    |
+ERROR Argument `object` is not assignable to parameter `iterable` with type `Iterable[object]` in function `enumerate.__new__` [bad-argument-type]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:217:53
+    |
+217 |                 tuple(cls._unpack_example(enumerate(value), origin)),
+    |                                                     ^^^^^
+    |
+ERROR Argument `object` is not assignable to parameter `iterable` with type `Iterable[@_]` in function `tuple.__new__` [bad-argument-type]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:220:43
+    |
+220 |             return cls.from_example(tuple(value), origin)
+    |                                           ^^^^^
+    |
+ERROR Type `object` is not iterable [not-iterable]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:223:59
+    |
+223 |             if not all(type(key) in (str, int) for key in value):
+    |                                                           ^^^^^
+    |
+ERROR Object of class `object` has no attribute `items` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:227:55
+    |
+227 |             items: list[tuple[int | str, object]] = [*value.items()]
+    |                                                       ^^^^^^^^^^^
+    |
+ERROR Object of class `object` has no attribute `keys` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:231:25
+    |
+231 |                     zip(value.keys(), cls._unpack_example(items, origin), strict=False)
+    |                         ^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:377:65
+    |
+377 |             CompileEnvironment.current().add_kernel_tensor_size(fake_value.size())
+    |                                                                 ^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:381:18
+    |
+381 |         for s in self.fake_value.size():
+    |                  ^^^^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:436:24
+    |
+436 |                 size = self.fake_value.size(inputs_consumed)
+    |                        ^^^^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:452:37
+    |
+452 |                 output_sizes.append(k.fake_value.size(0))
+    |                                     ^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `new_empty` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:498:21
+    |
+498 |             origin, self.fake_value.new_empty(self._device_indexing_size(key))
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `dim` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:513:16
+    |
+513 |             if self.fake_value.dim() != other.fake_value.dim():
+    |                ^^^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `dim` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:513:41
+    |
+513 |             if self.fake_value.dim() != other.fake_value.dim():
+    |                                         ^^^^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `dim` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:515:55
+    |
+515 |                     f"rank mismatch in control flow: {self.fake_value.dim()} != {other.fake_value.dim()}"
+    |                                                       ^^^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `dim` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:515:82
+    |
+515 |                     f"rank mismatch in control flow: {self.fake_value.dim()} != {other.fake_value.dim()}"
+    |                                                                                  ^^^^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:517:16
+    |
+517 |             if self.fake_value.size() != other.fake_value.size():
+    |                ^^^^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:517:42
+    |
+517 |             if self.fake_value.size() != other.fake_value.size():
+    |                                          ^^^^^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:519:55
+    |
+519 |                     f"size mismatch in control flow: {self.fake_value.size()} != {other.fake_value.size()}"
+    |                                                       ^^^^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:519:83
+    |
+519 |                     f"size mismatch in control flow: {self.fake_value.size()} != {other.fake_value.size()}"
+    |                                                                                   ^^^^^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:535:34
+    |
+535 |         for i, size in enumerate(self.fake_value.size()):
+    |                                  ^^^^^^^^^^^^^^^^^^^^
+    |
+ERROR Expected class object, got `type[SymBool | SymFloat] | type[SymFloat | SymInt]` [invalid-argument]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:871:30
+    |
+871 |         if isinstance(left, (torch.SymInt | torch.SymBool | torch.SymFloat)):
+    |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `object` has no attribute `_sympy_` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:872:21
+    |
+872 |             vleft = left._sympy_()
+    |                     ^^^^^^^^^^^^
+    |
+ERROR Expected class object, got `type[SymBool | SymFloat] | type[SymFloat | SymInt]` [invalid-argument]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:879:31
+    |
+879 |         if isinstance(right, (torch.SymInt | torch.SymBool | torch.SymFloat)):
+    |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `object` has no attribute `_sympy_` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:880:22
+    |
+880 |             vright = right._sympy_()
+    |                      ^^^^^^^^^^^^^
+    |
+ERROR Class member `SymIntType.value` overrides parent class `NumericType` in an inconsistent manner [bad-override]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:909:5
+    |
+909 |     value: torch.SymInt
+    |     ^^^^^
+    |
+  `SymIntType.value` has type `SymInt`, which is not consistent with `SymBool | SymFloat | SymInt` in `NumericType.value` (the type of read-write attributes cannot be changed)
+ERROR Class member `SymFloatType.value` overrides parent class `NumericType` in an inconsistent manner [bad-override]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:929:5
+    |
+929 |     value: torch.SymFloat
+    |     ^^^^^
+    |
+  `SymFloatType.value` has type `SymFloat`, which is not consistent with `SymBool | SymFloat | SymInt` in `NumericType.value` (the type of read-write attributes cannot be changed)
+ERROR Class member `SymBoolType.value` overrides parent class `NumericType` in an inconsistent manner [bad-override]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:946:5
+    |
+946 |     value: torch.SymBool
+    |     ^^^^^
+    |
+  `SymBoolType.value` has type `SymBool`, which is not consistent with `SymBool | SymFloat | SymInt` in `NumericType.value` (the type of read-write attributes cannot be changed)
+ERROR Class `_TorchDispatchModeKey` has no class attribute `FAKE` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:990:17
+    |
+990 |                 torch._C._TorchDispatchModeKey.FAKE
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+ERROR `ForkProcess` is not assignable to `Process` [bad-assignment]
+   --> /Users/aaronpollack/dev/helion/helion/autotuner/base_search.py:147:31
+    |
+147 |         process: mp.Process = ctx.Process(target=precompiler)
+    |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+ERROR Object of class `NoneType` has no attribute `meta` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/helion/language/_tracing_ops.py:44:11
+   |
+44 |     val = state.fx_node.meta["val"]
+   |           ^^^^^^^^^^^^^^^^^^
+   |
+ERROR Argument `SymBool | SymFloat | SymInt` is not assignable to parameter `size` with type `Expr | SymInt | int` in function `helion._compiler.compile_environment.CompileEnvironment.get_block_id` [bad-argument-type]
+  --> /Users/aaronpollack/dev/helion/helion/language/_tracing_ops.py:46:64
+   |
+46 |     if (block_idx := CompileEnvironment.current().get_block_id(val)) is not None:
+   |                                                                ^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/language/_tracing_ops.py:113:12
+    |
+113 |     assert lhs.size() == rhs.size()
+    |            ^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/language/_tracing_ops.py:113:26
+    |
+113 |     assert lhs.size() == rhs.size()
+    |                          ^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/language/_tracing_ops.py:271:21
+    |
+271 |     input_sizes = [*tensor.size()]
+    |                     ^^^^^^^^^^^
+    |
+ERROR Returned type `Tensor` is not assignable to declared return type `_T` [bad-return]
+   --> /Users/aaronpollack/dev/helion/helion/language/_tracing_ops.py:312:16
+    |
+312 |         return torch.empty_like(value)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^
+    |
+ERROR Returned type `SymInt` is not assignable to declared return type `_T` [bad-return]
+   --> /Users/aaronpollack/dev/helion/helion/language/_tracing_ops.py:314:16
+    |
+314 |         return CompileEnvironment.current().create_unbacked_symint()
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+ERROR Returned type `bool | float | int` is not assignable to declared return type `_T` [bad-return]
+   --> /Users/aaronpollack/dev/helion/helion/language/_tracing_ops.py:316:16
+    |
+316 |         return value
+    |                ^^^^^
+    |
+ERROR No attribute `float32` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/helion/language/creation_ops.py:21:53
+   |
+21 | def zeros(shape: list[object], dtype: torch.dtype = torch.float32) -> torch.Tensor:
+   |                                                     ^^^^^^^^^^^^^
+   |
+ERROR No attribute `float32` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/helion/language/creation_ops.py:34:61
+   |
+34 |     shape: list[object], value: float, dtype: torch.dtype = torch.float32
+   |                                                             ^^^^^^^^^^^^^
+   |
+ERROR No attribute `float32` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/helion/language/creation_ops.py:51:26
+   |
+51 |     dtype: torch.dtype = torch.float32,
+   |                          ^^^^^^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/helion/language/creation_ops.py:68:63
+   |
+68 |     shape_str = state.device_function.tile_strategy.shape_str(fake_value.size())
+   |                                                               ^^^^^^^^^^^^^^^
+   |
+ERROR Argument `Unknown | None` is not assignable to parameter `numel` with type `SymInt | int` in function `helion._compiler.type_propagation.GridIndexType.allocate` [bad-argument-type]
+   --> /Users/aaronpollack/dev/helion/helion/language/loops.py:398:47
+    |
+398 |         results.append(GridIndexType.allocate(size, origin, step_part))
+    |                                               ^^^^
+    |
+ERROR Object of class `SymInt` has no attribute `dtype` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/helion/language/memory_ops.py:51:36
+   |
+51 |     if hasattr(value, "dtype") and value.dtype != tensor.dtype:
+   |                                    ^^^^^^^^^^^
+   |
+ERROR Object of class `float` has no attribute `dtype` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/helion/language/memory_ops.py:51:36
+   |
+51 |     if hasattr(value, "dtype") and value.dtype != tensor.dtype:
+   |                                    ^^^^^^^^^^^
+   |
+ERROR Object of class `SymInt` has no attribute `to` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/helion/language/memory_ops.py:52:17
+   |
+52 |         value = value.to(tensor.dtype)
+   |                 ^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `to` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/helion/language/memory_ops.py:52:17
+   |
+52 |         value = value.to(tensor.dtype)
+   |                 ^^^^^^^^
+   |
+ERROR Object of class `float` has no attribute `to` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/helion/language/memory_ops.py:52:17
+   |
+52 |         value = value.to(tensor.dtype)
+   |                 ^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `new_empty` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/language/memory_ops.py:102:12
+    |
+102 |     return tensor.new_empty(SubscriptIndexing.compute_shape(tensor, index))
+    |            ^^^^^^^^^^^^^^^^
+    |
+ERROR Class `Tensor` has no class attribute `__getitem__` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/helion/language/tile_proxy.py:60:20
+   |
+60 |         if func is torch.Tensor.__getitem__:
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+ERROR Class `Tensor` has no class attribute `__setitem__` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/helion/language/tile_proxy.py:66:20
+   |
+66 |         if func is torch.Tensor.__setitem__:
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+ERROR Class `Tensor` has no class attribute `__index__` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/helion/language/tile_proxy.py:74:21
+   |
+74 |             func is torch.Tensor.__index__
+   |                     ^^^^^^^^^^^^^^^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/helion/language/view_ops.py:31:36
+   |
+31 |     input_size = collections.deque(tensor.size())
+   |                                    ^^^^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `new_empty` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/helion/language/view_ops.py:41:12
+   |
+41 |     return tensor.new_empty(output_size)
+   |            ^^^^^^^^^^^^^^^^
+   |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:556:15
+    |
+556 |             (*obj.size(),),
+    |               ^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `stride` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:557:15
+    |
+557 |             (*obj.stride(),),
+    |               ^^^^^^^^^^
+    |
+ERROR Object of class `Tensor` has no attribute `size` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:563:35
+    |
+563 |         tuple([min(s, 2) for s in obj.size()]),
+    |                                   ^^^^^^^^
+    |
+ERROR No attribute `experimental` in module `torch.fx` [missing-attribute]
+   --> /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:654:16
+    |
+654 |     if hasattr(torch.fx.experimental._config, "skip_dtype_check_in_meta_registrations"):
+    |                ^^^^^^^^^^^^^^^^^^^^^
+    |
+ERROR Cannot index into `defaultdict[str, tuple[dict[Unknown, Unknown], Unknown | None, BaseBackend, Unknown]]` [bad-argument-type]
+  --> /Users/aaronpollack/dev/helion/helion/runtime/precompile_shim.py:29:66
+   |
+29 |         kernel_cache, target, backend, binder = fn.device_caches[device]
+   |                                                                  ^^^^^^
+   |
+  Argument `device` is not assignable to parameter `key` with type `str` in function `dict.__getitem__`
+ERROR No attribute `int32` in module `torch` [missing-attribute]
+  --> /Users/aaronpollack/dev/helion/helion/runtime/settings.py:55:32
+   |
+55 |     index_dtype: torch.dtype = torch.int32
+   |                                ^^^^^^^^^^^
+   |

@@ -2,6 +2,6 @@ project_includes = ["helion", "examples"]
 project_excludes = ["venv", "triton"]
 python_version = "3.10"
 search_path = ["triton/python", "triton/third_party", "../pytorch", "../pytorch-hg", "../pytorch-nightly", "../pytorch_typings"]
-replace_imports_with_any = [
-    "torch.*"
-]
+# replace_imports_with_any = [
+#     "torch.*"
+# ]
