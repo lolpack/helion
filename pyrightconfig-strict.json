@@ -1,0 +1,17 @@
+{
+  // Folders to type‑check
+  "include": ["helion", "examples"],
+
+    "venv": "venv",
+    "venvPath": ".",
+  // Paths Pyright should skip
+  "exclude": ["venv"],
+  
+  // find triton and pytorch in local development 
+  "extraPaths": ["typings", "triton/python", "triton/third_party", "../pytorch", "../pytorch-hg", "../pytorch-nightly"],
+
+  // Target Python language level
+  "pythonVersion": "3.10",
+
+  "typeCheckingMode": "strict"
+}
