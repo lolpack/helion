@@ -1,0 +1,371 @@
+▶ Pyright: pyright
+▶ Pyrefly: pyrefly check --output-format=min-text
+
+================ SUMMARY ================
+Total errors in Pyright         : 843
+Total errors in Pyrefly         : 786
+Overlapping files               : 46
+Overlapping file & row pairs    : 380
+Rows only in Pyright            : 108
+Rows only in Pyrefly            : 129
+=========================================
+
+▶ PYRIGHT-only locations:
+  /Users/aaronpollack/dev/helion/examples/attention.py:69: 29 - error: No overloads for "kernel" match the provided arguments (reportCallIssue)
+  /Users/aaronpollack/dev/helion/examples/attention.py:72: 13 - error: Argument of type "list[Config]" cannot be assigned to parameter "configs" of type "list[ConfigLike] | None" in function "kernel"
+  /Users/aaronpollack/dev/helion/examples/softmax.py:49: 15 - error: Cannot access member "sum" for type "Tensor"
+  /Users/aaronpollack/dev/helion/helion/_compiler/ast_extension.py:237: 39 - error: "_Unparser" is not a known member of module "ast" (reportAttributeAccessIssue)
+  /Users/aaronpollack/dev/helion/helion/_compiler/ast_read_writes.py:46: 9 - error: Method "__iter__" overrides class "tuple" in an incompatible manner
+  /Users/aaronpollack/dev/helion/helion/_compiler/compile_environment.py:195: 24 - error: Cannot access member "_sympy_" for type "object"
+  /Users/aaronpollack/dev/helion/helion/_compiler/compile_environment.py:237: 37 - error: Cannot access member "_asdict" for type "tuple[Unknown, ...]"
+  /Users/aaronpollack/dev/helion/helion/_compiler/compile_environment.py:246: 17 - error: Argument of type "DataclassInstance | type[DataclassInstance]" cannot be assigned to parameter "__obj" of type "_DataclassT@replace" in function "replace"
+  /Users/aaronpollack/dev/helion/helion/_compiler/compile_environment.py:288: 24 - error: Argument of type "Basic | None" cannot be assigned to parameter "__x" of type "ConvertibleToInt" in function "__new__" (reportArgumentType)
+  /Users/aaronpollack/dev/helion/helion/_compiler/compile_environment.py:513: 18 - error: Cannot access member "name" for type "Basic"
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_function.py:190: 16 - error: Expression of type "_SympyT@simplify" cannot be assigned to declared type "Expr"
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_function.py:199: 62 - error: Cannot access member "name" for type "Basic"
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_function.py:232: 62 - error: Cannot access member "name" for type "Basic"
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_function.py:397: 67 - error: "rw" is possibly unbound (reportPossiblyUnboundVariable)
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:108: 17 - error: Argument of type "Proxy" cannot be assigned to parameter "value" of type "_PySymProxyType" in function "__setitem__"
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:117: 23 - error: Cannot assign member "force" for type "Proxy"
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:126: 22 - error: "proxy" is not a known member of module "torch.fx" (reportAttributeAccessIssue)
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:128: 24 - error: "proxy" is not a known member of module "torch.fx" (reportAttributeAccessIssue)
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:152: 81 - error: "strip" is not a known member of "None" (reportOptionalMemberAccess)
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:410: 33 - error: "__getitem__" method not defined on type "object" (reportIndexIssue)
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:581: 22 - error: "Never" is not iterable (reportGeneralTypeIssues)
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:586: 32 - error: "Never" is not iterable (reportGeneralTypeIssues)
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:662: 18 - error: "Never" is not iterable (reportGeneralTypeIssues)
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:667: 28 - error: "Never" is not iterable (reportGeneralTypeIssues)
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:792: 29 - error: Argument of type "AST" cannot be assigned to parameter "__iterable" of type "Iterable[Unknown]" in function "extend"
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:798: 17 - error: No overloads for "update" match the provided arguments (reportCallIssue)
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:798: 31 - error: Argument of type "AST" cannot be assigned to parameter "__m" of type "Iterable[tuple[Unknown, Unknown]]" in function "update"
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:803: 42 - error: Cannot access member "_type_info" for type "expr"
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:811: 47 - error: Argument of type "APIFunc | AST" cannot be assigned to parameter "fn" of type "(...) -> object" in function "retry_call"
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:94: 17 - error: Argument of type "Proxy" cannot be assigned to parameter "__value" of type "_ProxyTensor" in function "__setitem__"
+  /Users/aaronpollack/dev/helion/helion/_compiler/host_function.py:182: 16 - error: Expression of type "_SympyT@simplify" cannot be assigned to declared type "Expr"
+  /Users/aaronpollack/dev/helion/helion/_compiler/host_function.py:186: 62 - error: Cannot access member "name" for type "Basic"
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:1023: 29 - error: Argument of type "_SympyT@simplify" cannot be assigned to parameter "__key" of type "Expr" in function "__setitem__"
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:1028: 29 - error: Argument of type "_SympyT@simplify" cannot be assigned to parameter "__key" of type "Expr" in function "__setitem__"
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:156: 26 - error: "config" is not a known member of module "torch._inductor" (reportAttributeAccessIssue)
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:159: 13 - error: Argument of type "Target" cannot be assigned to parameter "target" of type "(...) -> Unknown" in function "call_function"
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:161: 48 - error: Argument of type "(arg: Node) -> TensorBox" cannot be assigned to parameter "fn" of type "(Node) -> Argument" in function "map_arg"
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:179: 12 - error: "buffer" is possibly unbound (reportPossiblyUnboundVariable)
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:549: 28 - error: Argument of type "list[Argument]" cannot be assigned to parameter "proxy_args" of type "list[object]" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:551: 26 - error: Argument of type "list[Argument]" cannot be assigned to parameter "ast_args" of type "list[object]" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:674: 65 - error: "Node" is not iterable
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:674: 65 - error: "OpOverload[..., Any]" is not iterable
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:674: 65 - error: "SymBool" is not iterable
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:674: 65 - error: "SymFloat" is not iterable
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:674: 65 - error: "SymInt" is not iterable
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:674: 65 - error: "bool" is not iterable
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:674: 65 - error: "complex" is not iterable
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:674: 65 - error: "device" is not iterable
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:674: 65 - error: "dtype" is not iterable
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:674: 65 - error: "float" is not iterable
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:674: 65 - error: "int" is not iterable
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:674: 65 - error: "layout" is not iterable
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:674: 65 - error: "memory_format" is not iterable
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:674: 65 - error: "slice" is not iterable
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:674: 65 - error: Object of type "None" cannot be used as iterable value (reportOptionalIterable)
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:727: 13 - error: "Node" is not iterable
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:727: 13 - error: "OpOverload[..., Any]" is not iterable
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:727: 13 - error: "SymBool" is not iterable
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:727: 13 - error: "SymFloat" is not iterable
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:727: 13 - error: "SymInt" is not iterable
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:727: 13 - error: "bool" is not iterable
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:727: 13 - error: "complex" is not iterable
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:727: 13 - error: "device" is not iterable
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:727: 13 - error: "dtype" is not iterable
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:727: 13 - error: "float" is not iterable
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:727: 13 - error: "int" is not iterable
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:727: 13 - error: "layout" is not iterable
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:727: 13 - error: "memory_format" is not iterable
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:727: 13 - error: "slice" is not iterable
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:727: 13 - error: Object of type "None" cannot be used as iterable value (reportOptionalIterable)
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:963: 41 - error: "Module" is not iterable
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:963: 59 - error: Cannot access member "nodes" for type "Tensor"
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:968: 17 - error: Argument of type "object" cannot be assigned to parameter "__value" of type "Iterable[None]" in function "__setitem__"
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:968: 17 - error: No overloads for "__setitem__" match the provided arguments (reportCallIssue)
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering_extra.py:50: 22 - error: Argument of type "object" cannot be assigned to parameter "wrapped" of type "(**_PWrapped@wraps) -> _RWrapped@wraps" in function "wraps"
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering_extra.py:52: 16 - error: Expression of type "list[Any]" cannot be assigned to declared type "tuple[Any, ...]"
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering_extra.py:57: 20 - error: Expression of type "list[Unknown]" cannot be assigned to declared type "tuple[Any, ...]"
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering_extra.py:61: 23 - error: "object" is not iterable
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering_extra.py:66: 24 - error: Expression of type "list[Any]" cannot be assigned to declared type "tuple[Any, ...]"
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering_extra.py:67: 13 - error: Argument of type "tuple[Any, ...] | tuple[Any]" cannot be assigned to parameter "args" of type "list[Any]" in function "transform_args"
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering_extra.py:75: 20 - error: Expression of type "list[tuple[Any, ...]]" cannot be assigned to declared type "tuple[Any, ...]"
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering_extra.py:77: 15 - error: Object of type "object" is not callable (reportCallIssue)
+  /Users/aaronpollack/dev/helion/helion/_compiler/node_masking.py:69: 45 - error: Argument of type "Argument" cannot be assigned to parameter "node" of type "Node" in function "cached_masked_value"
+  /Users/aaronpollack/dev/helion/helion/_compiler/node_masking.py:71: 40 - error: Argument of type "Argument" cannot be assigned to parameter "replace_with" of type "Node" in function "replace_all_uses_with"
+  /Users/aaronpollack/dev/helion/helion/_compiler/static_loop_unroller.py:28: 16 - error: Expression of type "AST" cannot be assigned to declared type "For"
+  /Users/aaronpollack/dev/helion/helion/_compiler/tile_strategy.py:534: 35 - error: Cannot access member "_setup_mask" for type "_BaseNDTileStrategy*"
+  /Users/aaronpollack/dev/helion/helion/_compiler/tile_strategy.py:625: 35 - error: Cannot access member "_setup_mask" for type "_BaseNDTileStrategy*"
+  /Users/aaronpollack/dev/helion/helion/_compiler/traceback_compat.py:102: 27 - error: Operator "+" not supported for "None" (reportOptionalOperand)
+  /Users/aaronpollack/dev/helion/helion/_compiler/traceback_compat.py:126: 37 - error: Argument of type "int | None" cannot be assigned to parameter "off" of type "int" in function "normalize"
+  /Users/aaronpollack/dev/helion/helion/_compiler/traceback_compat.py:127: 38 - error: Operator "+" not supported for "None" (reportOptionalOperand)
+  /Users/aaronpollack/dev/helion/helion/_compiler/traceback_compat.py:35: 8 - error: Cannot assign member "_original_line" for type "FrameSummary"
+  /Users/aaronpollack/dev/helion/helion/_compiler/traceback_compat.py:92: 26 - error: Cannot access member "expr" for type "Expr"
+  /Users/aaronpollack/dev/helion/helion/_compiler/traceback_compat.py:97: 40 - error: Argument of type "int | None" cannot be assigned to parameter "off" of type "int" in function "normalize"
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1153: 21 - error: Argument of type "int | str" cannot be assigned to parameter "__key" of type "SupportsIndex" in function "__setitem__"
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1153: 21 - error: No overloads for "__setitem__" match the provided arguments (reportCallIssue)
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1153: 35 - error: Argument of type "int | str" cannot be assigned to parameter "__s" of type "slice" in function "__getitem__"
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1153: 35 - error: No overloads for "__getitem__" match the provided arguments (reportCallIssue)
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1156: 21 - error: Argument of type "int | str" cannot be assigned to parameter "__key" of type "SupportsIndex" in function "__setitem__"
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1156: 21 - error: No overloads for "__setitem__" match the provided arguments (reportCallIssue)
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1168: 26 - error: "__getitem__" method not defined on type "slice" (reportIndexIssue)
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1168: 26 - error: Argument of type "object" cannot be assigned to parameter "__key" of type "slice" in function "__getitem__"
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1168: 26 - error: Argument of type "object" cannot be assigned to parameter "__key" of type "str | int" in function "__getitem__"
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1168: 26 - error: Argument of type "object" cannot be assigned to parameter "__s" of type "slice" in function "__getitem__"
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1168: 26 - error: No overloads for "__getitem__" match the provided arguments (reportCallIssue)
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1175: 64 - error: Argument of type "object" cannot be assigned to parameter "element_types" of type "list[TypeInfo] | tuple[TypeInfo, ...] | dict[str | int, TypeInfo] | slice" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1330: 16 - error: Operator "+" not supported for type "object" when expected type is "object" (reportOperatorIssue)
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1333: 16 - error: Operator "-" not supported for type "object" when expected type is "object" (reportOperatorIssue)
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1336: 16 - error: Operator "~" not supported for type "object" when expected type is "object" (reportOperatorIssue)
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1960: 47 - error: "fn" is possibly unbound (reportPossiblyUnboundVariable)
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:235: 31 - error: Cannot access member "_fields" for type "tuple[Unknown, ...]"
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:237: 35 - error: Cannot access member "_asdict" for type "tuple[Unknown, ...]"
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:486: 46 - error: "__getitem__" method not defined on type "Tensor" (reportIndexIssue)
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:537: 21 - error: Argument of type "_SympyT@simplify" cannot be assigned to parameter "__key" of type "Expr" in function "__setitem__"
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:628: 42 - error: "__getitem__" method not defined on type "object" (reportIndexIssue)
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:65: 22 - warning: Static methods should not take a "self" or "cls" parameter (reportSelfClsParameterName)
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:653: 18 - error: No overloads for "iter" match the provided arguments (reportCallIssue)
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:653: 23 - error: Argument of type "object" cannot be assigned to parameter "__object" of type "_GetItemIterable[_T@iter]" in function "iter"
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:684: 14 - error: "value" overrides symbol of same name in class "LiteralType"
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:800: 14 - error: "value" overrides symbol of same name in class "LiteralType"
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:890: 13 - error: Argument of type "_SympyT@simplify" cannot be assigned to parameter "__key" of type "Expr" in function "__setitem__"
+  /Users/aaronpollack/dev/helion/helion/_logging/_internal.py:94: 40 - error: Argument expression after ** must be a mapping with a "str" key type (reportCallIssue)
+  /Users/aaronpollack/dev/helion/helion/_testing.py:100: 30 - error: Argument of type "Generator[Unknown | list[Unknown] | None, None, None]" cannot be assigned to parameter "__iterable" of type "Iterable[SupportsRichComparisonT@min]" in function "min"
+  /Users/aaronpollack/dev/helion/helion/_testing.py:42: 27 - error: Argument of type "object" cannot be assigned to parameter "block_sizes" of type "list[int] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/_testing.py:42: 27 - error: Argument of type "object" cannot be assigned to parameter "flatten_loops" of type "list[bool] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/_testing.py:42: 27 - error: Argument of type "object" cannot be assigned to parameter "indexing" of type "IndexingLiteral | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/_testing.py:42: 27 - error: Argument of type "object" cannot be assigned to parameter "l2_groupings" of type "list[int] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/_testing.py:42: 27 - error: Argument of type "object" cannot be assigned to parameter "loop_orders" of type "list[list[int]] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/_testing.py:42: 27 - error: Argument of type "object" cannot be assigned to parameter "num_stages" of type "int | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/_testing.py:42: 27 - error: Argument of type "object" cannot be assigned to parameter "num_warps" of type "int | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/_testing.py:42: 27 - error: Argument of type "object" cannot be assigned to parameter "range_flattens" of type "list[bool | None] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/_testing.py:42: 27 - error: Argument of type "object" cannot be assigned to parameter "range_multi_buffers" of type "list[bool | None] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/_testing.py:42: 27 - error: Argument of type "object" cannot be assigned to parameter "range_num_stages" of type "list[int] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/_testing.py:42: 27 - error: Argument of type "object" cannot be assigned to parameter "range_unroll_factors" of type "list[int] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/_testing.py:42: 27 - error: Argument of type "object" cannot be assigned to parameter "reduction_loops" of type "list[int | None] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/_testing.py:42: 27 - error: Argument of type "object" cannot be assigned to parameter "use_yz_grid" of type "bool | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/autotuner/base_search.py:143: 26 - error: Cannot access member "make_precompiler" for type "function"
+  /Users/aaronpollack/dev/helion/helion/autotuner/base_search.py:454: 24 - error: "sentinel" is not a known member of "None" (reportOptionalMemberAccess)
+  /Users/aaronpollack/dev/helion/helion/autotuner/block_id_sequence.py:144: 27 - error: Argument of type "tuple[()] | object" cannot be assigned to parameter "a" of type "ArgumentT@map_aggregate" in function "map_aggregate"
+  /Users/aaronpollack/dev/helion/helion/autotuner/block_id_sequence.py:75: 9 - error: Method "__getitem__" overrides class "MutableSequence" in an incompatible manner
+  /Users/aaronpollack/dev/helion/helion/autotuner/block_id_sequence.py:78: 9 - error: Method "__setitem__" overrides class "MutableSequence" in an incompatible manner
+  /Users/aaronpollack/dev/helion/helion/autotuner/block_id_sequence.py:82: 9 - error: Method "__delitem__" overrides class "MutableSequence" in an incompatible manner
+  /Users/aaronpollack/dev/helion/helion/language/_decorators.py:35: 11 - warning: Type variable "_T" used in generic protocol "_NoReturnDecorator" should be contravariant (reportInvalidTypeVarUse)
+  /Users/aaronpollack/dev/helion/helion/language/device_print.py:74: 26 - error: "__getitem__" method not defined on type "object" (reportIndexIssue)
+  /Users/aaronpollack/dev/helion/helion/language/loops.py:200: 33 - error: Argument of type "list[object] | object" cannot be assigned to parameter "__iter3" of type "Iterable[_T3@__new__]" in function "__new__"
+  /Users/aaronpollack/dev/helion/helion/language/loops.py:200: 9 - error: Argument of type "list[object] | object" cannot be assigned to parameter "__iter1" of type "Iterable[_T1@__new__]" in function "__new__"
+  /Users/aaronpollack/dev/helion/helion/language/loops.py:387: 33 - error: Argument of type "list[object] | object" cannot be assigned to parameter "__iter3" of type "Iterable[_T3@__new__]" in function "__new__"
+  /Users/aaronpollack/dev/helion/helion/language/loops.py:387: 9 - error: Argument of type "list[object] | object" cannot be assigned to parameter "__iter1" of type "Iterable[_T1@__new__]" in function "__new__"
+  /Users/aaronpollack/dev/helion/helion/language/tile_proxy.py:89: 9 - error: Method "__repr__" overrides class "Tensor" in an incompatible manner
+  /Users/aaronpollack/dev/helion/helion/language/tunable_ops.py:153: 25 - error: Cannot access member "args" for type "ExtendedAST"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:120: 32 - error: "Hashable" is not iterable
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:137: 36 - error: "Hashable" is not iterable
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:337: 35 - error: Argument of type "object" cannot be assigned to parameter "block_sizes" of type "list[int] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:337: 35 - error: Argument of type "object" cannot be assigned to parameter "flatten_loops" of type "list[bool] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:337: 35 - error: Argument of type "object" cannot be assigned to parameter "indexing" of type "IndexingLiteral | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:337: 35 - error: Argument of type "object" cannot be assigned to parameter "l2_groupings" of type "list[int] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:337: 35 - error: Argument of type "object" cannot be assigned to parameter "loop_orders" of type "list[list[int]] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:337: 35 - error: Argument of type "object" cannot be assigned to parameter "num_stages" of type "int | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:337: 35 - error: Argument of type "object" cannot be assigned to parameter "num_warps" of type "int | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:337: 35 - error: Argument of type "object" cannot be assigned to parameter "range_flattens" of type "list[bool | None] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:337: 35 - error: Argument of type "object" cannot be assigned to parameter "range_multi_buffers" of type "list[bool | None] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:337: 35 - error: Argument of type "object" cannot be assigned to parameter "range_num_stages" of type "list[int] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:337: 35 - error: Argument of type "object" cannot be assigned to parameter "range_unroll_factors" of type "list[int] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:337: 35 - error: Argument of type "object" cannot be assigned to parameter "reduction_loops" of type "list[int | None] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:337: 35 - error: Argument of type "object" cannot be assigned to parameter "use_yz_grid" of type "bool | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:356: 31 - error: Argument of type "object" cannot be assigned to parameter "block_sizes" of type "list[int] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:356: 31 - error: Argument of type "object" cannot be assigned to parameter "flatten_loops" of type "list[bool] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:356: 31 - error: Argument of type "object" cannot be assigned to parameter "indexing" of type "IndexingLiteral | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:356: 31 - error: Argument of type "object" cannot be assigned to parameter "l2_groupings" of type "list[int] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:356: 31 - error: Argument of type "object" cannot be assigned to parameter "loop_orders" of type "list[list[int]] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:356: 31 - error: Argument of type "object" cannot be assigned to parameter "num_stages" of type "int | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:356: 31 - error: Argument of type "object" cannot be assigned to parameter "num_warps" of type "int | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:356: 31 - error: Argument of type "object" cannot be assigned to parameter "range_flattens" of type "list[bool | None] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:356: 31 - error: Argument of type "object" cannot be assigned to parameter "range_multi_buffers" of type "list[bool | None] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:356: 31 - error: Argument of type "object" cannot be assigned to parameter "range_num_stages" of type "list[int] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:356: 31 - error: Argument of type "object" cannot be assigned to parameter "range_unroll_factors" of type "list[int] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:356: 31 - error: Argument of type "object" cannot be assigned to parameter "reduction_loops" of type "list[int | None] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:356: 31 - error: Argument of type "object" cannot be assigned to parameter "use_yz_grid" of type "bool | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:424: 19 - error: Argument of type "object" cannot be assigned to parameter "crossover_rate" of type "float" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:424: 19 - error: Argument of type "object" cannot be assigned to parameter "immediate_update" of type "bool | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:424: 19 - error: Argument of type "object" cannot be assigned to parameter "num_generations" of type "int" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:424: 19 - error: Argument of type "object" cannot be assigned to parameter "population_size" of type "int" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:439: 31 - error: Argument of type "object" cannot be assigned to parameter "block_sizes" of type "list[int] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:439: 31 - error: Argument of type "object" cannot be assigned to parameter "flatten_loops" of type "list[bool] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:439: 31 - error: Argument of type "object" cannot be assigned to parameter "indexing" of type "IndexingLiteral | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:439: 31 - error: Argument of type "object" cannot be assigned to parameter "l2_groupings" of type "list[int] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:439: 31 - error: Argument of type "object" cannot be assigned to parameter "loop_orders" of type "list[list[int]] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:439: 31 - error: Argument of type "object" cannot be assigned to parameter "num_stages" of type "int | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:439: 31 - error: Argument of type "object" cannot be assigned to parameter "num_warps" of type "int | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:439: 31 - error: Argument of type "object" cannot be assigned to parameter "range_flattens" of type "list[bool | None] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:439: 31 - error: Argument of type "object" cannot be assigned to parameter "range_multi_buffers" of type "list[bool | None] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:439: 31 - error: Argument of type "object" cannot be assigned to parameter "range_num_stages" of type "list[int] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:439: 31 - error: Argument of type "object" cannot be assigned to parameter "range_unroll_factors" of type "list[int] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:439: 31 - error: Argument of type "object" cannot be assigned to parameter "reduction_loops" of type "list[int | None] | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:439: 31 - error: Argument of type "object" cannot be assigned to parameter "use_yz_grid" of type "bool | None" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:460: 49 - error: Cannot access member "size" for type "Hashable"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:627: 24 - error: Cannot access member "base" for type "object"
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:644: 45 - error: Too many type arguments provided for "AbstractContextManager"; expected 1 but received 2 (reportInvalidTypeArguments)
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:647: 25 - error: "experimental" is not a known member of module "torch.fx" (reportAttributeAccessIssue)
+  /Users/aaronpollack/dev/helion/helion/runtime/settings.py:101: 28 - error: Argument of type "object" cannot be assigned to parameter "autotune_compile_timeout" of type "int" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/settings.py:101: 28 - error: Argument of type "object" cannot be assigned to parameter "autotune_log_level" of type "int" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/settings.py:101: 28 - error: Argument of type "object" cannot be assigned to parameter "autotune_precompile" of type "bool" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/settings.py:101: 28 - error: Argument of type "object" cannot be assigned to parameter "dot_precision" of type "Literal['tf32', 'tf32x3', 'ieee']" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/settings.py:101: 28 - error: Argument of type "object" cannot be assigned to parameter "force_autotune" of type "bool" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/settings.py:101: 28 - error: Argument of type "object" cannot be assigned to parameter "ignore_warnings" of type "list[type[BaseWarning]]" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/settings.py:101: 28 - error: Argument of type "object" cannot be assigned to parameter "index_dtype" of type "dtype" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/settings.py:101: 28 - error: Argument of type "object" cannot be assigned to parameter "print_output_code" of type "bool" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/settings.py:101: 28 - error: Argument of type "object" cannot be assigned to parameter "static_shapes" of type "bool" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/settings.py:101: 28 - error: Argument of type "object" cannot be assigned to parameter "use_default_config" of type "bool" in function "__init__"
+  /Users/aaronpollack/dev/helion/helion/runtime/settings.py:122: 18 - error: Import "aiplatform.runtime_environment.runtime_environment_pybind" could not be resolved (reportMissingImports)
+  /Users/aaronpollack/dev/helion/helion/runtime/settings.py:28: 78 - error: Too many type arguments provided for "AbstractContextManager"; expected 1 but received 2 (reportInvalidTypeArguments)
+
+▶ PYREFLY-only locations:
+  /Users/aaronpollack/dev/helion/examples/attention.py:54: 28-30: Argument `float` is not assignable to parameter `input` with type `Tensor` in function `torch._C._VariableFunctions.exp2` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/examples/bmm.py:21: 9-24:14: `Tensor | Unknown` is not assignable to `bool | complex | float | int` (caused by inconsistent types when breaking cycles) [bad-assignment]
+  /Users/aaronpollack/dev/helion/examples/bmm.py:22: 32-24:14: No matching overload found for function `torch._C._VariableFunctions.baddbmm` [no-matching-overload]
+  /Users/aaronpollack/dev/helion/examples/matmul.py:21: 9-22:73: `Tensor | Unknown` is not assignable to `bool | complex | float | int` (caused by inconsistent types when breaking cycles) [bad-assignment]
+  /Users/aaronpollack/dev/helion/examples/matmul_split_k.py:20: 64-72: Missing argument `default_val` in function `helion.autotuner.config_fragment.PowerOfTwoFragment.__init__` [missing-argument]
+  /Users/aaronpollack/dev/helion/examples/matmul_split_k.py:24: 9-25:75: `Tensor | Unknown` is not assignable to `bool | complex | float | int` (caused by inconsistent types when breaking cycles) [bad-assignment]
+  /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:55: 56-59:18: No matching overload found for function `torch._C._VariableFunctions.where` [no-matching-overload]
+  /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:74: 17-77:59: `Tensor | Unknown` is not assignable to `bool | complex | float | int` (caused by inconsistent types when breaking cycles) [bad-assignment]
+  /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:77: 38-59: No matching overload found for function `torch._C._VariableFunctions.addmm` [no-matching-overload]
+  /Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:83: 27-43: Object of class `bool` has no attribute `view` [missing-attribute]
+  /Users/aaronpollack/dev/helion/examples/softmax.py:10: 15-41: No matching overload found for function `helion.runtime.kernel.kernel` [no-matching-overload]
+  /Users/aaronpollack/dev/helion/examples/softmax.py:20: 15-41: No matching overload found for function `helion.runtime.kernel.kernel` [no-matching-overload]
+  /Users/aaronpollack/dev/helion/examples/softmax.py:34: 15-49: No matching overload found for function `helion.runtime.kernel.kernel` [no-matching-overload]
+  /Users/aaronpollack/dev/helion/examples/template_via_closure.py:40: 9-41:73: `Tensor | Unknown` is not assignable to `bool | complex | float | int` (caused by inconsistent types when breaking cycles) [bad-assignment]
+  /Users/aaronpollack/dev/helion/helion/_compiler/ast_extension.py:177: 17-35: Unexpected keyword argument `_location` in function `object.__init__` [unexpected-keyword]
+  /Users/aaronpollack/dev/helion/helion/_compiler/ast_extension.py:203: 17-35: Unexpected keyword argument `_location` in function `object.__init__` [unexpected-keyword]
+  /Users/aaronpollack/dev/helion/helion/_compiler/ast_extension.py:221: 32-36: Argument `ExtendedAST` is not assignable to parameter `node` with type `AST` in function `ast.NodeVisitor.generic_visit` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/_compiler/compile_environment.py:501: 32-67: Expected class object, got `tuple[type[BaseWarning], ...]` [invalid-argument]
+  /Users/aaronpollack/dev/helion/helion/_compiler/compile_environment.py:56: 9-20: Attribute `device` of class `CompileEnvironment` is a read-only descriptor with no `__set__` and cannot be set [read-only]
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_function.py:378: 16-30: Returned type `ExtendedAST` is not assignable to declared return type `AST` [bad-return]
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:504: 20-31: Object of class `ExtendedAST` has no attribute `orelse` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:505: 27-36: Object of class `ExtendedAST` has no attribute `iter` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:511: 26-37: Object of class `ExtendedAST` has no attribute `target` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:512: 24-33: Object of class `ExtendedAST` has no attribute `body` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:514: 50-54: Argument `ExtendedAST` is not assignable to parameter `node` with type `AST` in function `helion._compiler.ast_read_writes.ReadWrites.from_ast` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:516: 17-520:18: Argument `dict[dict[str, int], object]` is not assignable to parameter `values` with type `dict[str, object]` in function `LiftTensorArgs.__init__` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:517: 35-36: Cannot index into `dict[str, object]` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:519: 78-79: Cannot index into `dict[str, object]` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:523: 55-59: Argument `ExtendedAST` is not assignable to parameter `for_node` with type `For` in function `WalkDeviceAST._extract_tile_begin_end` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:615: 13-619:14: Argument `dict[dict[str, int], object]` is not assignable to parameter `values` with type `dict[str, object]` in function `LiftTensorArgs.__init__` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:616: 31-32: Cannot index into `dict[str, object]` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:618: 74-75: Cannot index into `dict[str, object]` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:691: 29-39: Argument `ExtendedAST` is not assignable to parameter `node` with type `AST` in function `helion._compiler.ast_extension.NodeVisitor.visit` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:753: 27-39: Object of class `ExtendedAST` has no attribute `value` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:756: 26-36: Argument `ExtendedAST` is not assignable to parameter `node` with type `AST` in function `helion._compiler.ast_extension.NodeVisitor.visit` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:774: 13-24: Argument `ExtendedAST` is not assignable to parameter `target` with type `AST` in function `WalkDeviceAST._assign` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:775: 46-57: Argument `ExtendedAST` is not assignable to parameter `node` with type `AST` in function `helion._compiler.ast_extension.NodeVisitor.visit` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:880: 32-36: Argument `ExtendedAST` is not assignable to parameter `node` with type `AST` in function `ast.NodeVisitor.generic_visit` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/_compiler/generate_ast.py:129: 49-53: Argument `ExtendedAST` is not assignable to parameter `node` with type `AST` in function `ast.iter_fields` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/_compiler/generate_ast.py:148: 24-35: Object of class `ExtendedAST` has no attribute `orelse` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_compiler/generate_ast.py:176: 29-38: Object of class `ExtendedAST` has no attribute `iter` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_compiler/generate_ast.py:182: 21-185:65: `ExtendedAST | expr` is not assignable to `expr` (caused by inconsistent types when breaking cycles) [bad-assignment]
+  /Users/aaronpollack/dev/helion/helion/_compiler/generate_ast.py:238: 35-39: Argument `ExtendedAST` is not assignable to parameter `node` with type `AST` in function `GenerateAST.generic_visit` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/_compiler/generate_ast.py:242: 23-31: Object of class `ExtendedAST` has no attribute `ctx` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_compiler/generate_ast.py:254: 16-20: Returned type `ExtendedAST` is not assignable to declared return type `AST` [bad-return]
+  /Users/aaronpollack/dev/helion/helion/_compiler/generate_ast.py:294: 24-33: Object of class `ExtendedAST` has no attribute `args` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_compiler/generate_ast.py:299: 26-39: Object of class `ExtendedAST` has no attribute `keywords` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_compiler/generate_ast.py:313: 35-39: Argument `ExtendedAST` is not assignable to parameter `node` with type `AST` in function `GenerateAST.generic_visit` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/_compiler/generate_ast.py:361: 29-40: `found_calls` is not mutable from the current scope [unknown-name]
+  /Users/aaronpollack/dev/helion/helion/_compiler/generate_ast.py:391: 23-36: Object of class `ExtendedAST` has no attribute `name` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_compiler/generate_ast.py:75: 80-84: Keyword argument `expr` with type `ExtendedAST` is not assignable to parameter `**placeholders` with type `AST` in function `helion._compiler.ast_extension.statement_from_string` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/_compiler/host_function.py:100: 39-43: Argument `ExtendedAST` is not assignable to parameter `root` with type `FunctionDef` in function `HostFunction.validate_ast` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/_compiler/host_function.py:134: 27-46: Object of class `MethodType` has no attribute `__globals__` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_compiler/host_function.py:136: 39-58: Object of class `MethodType` has no attribute `__globals__` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_compiler/host_function.py:147: 28-47: Object of class `MethodType` has no attribute `__globals__` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_compiler/host_function.py:78: 9-16: Attribute `fn` of class `HostFunction` is a read-only descriptor with no `__set__` and cannot be set [read-only]
+  /Users/aaronpollack/dev/helion/helion/_compiler/host_function.py:96: 30-39: Object of class `ExtendedAST` has no attribute `name` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_compiler/host_function.py:97: 40-49: Object of class `ExtendedAST` has no attribute `args` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_compiler/host_function.py:98: 41-50: Object of class `ExtendedAST` has no attribute `body` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:1073: 27-45: Expected class object, got `type[bool | float] | type[bool | int]` [invalid-argument]
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:130: 21-30: Unexpected keyword argument `name` in function `object.__init__` [unexpected-keyword]
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:131: 21-136:22: Unexpected keyword argument `layout` in function `object.__init__` [unexpected-keyword]
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:144: 17-26: Unexpected keyword argument `name` in function `object.__init__` [unexpected-keyword]
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:145: 17-150:18: Unexpected keyword argument `layout` in function `object.__init__` [unexpected-keyword]
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:67: 32-50: Expected a type form, got instance of `Literal['GraphInterpreter']` [not-a-type]
+  /Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:978: 9-986:41: `Name | None` is not assignable to `None` (caused by inconsistent types when breaking cycles) [bad-assignment]
+  /Users/aaronpollack/dev/helion/helion/_compiler/node_masking.py:94: 29-46: Expected class object, got `type[NodeArgsGraphInfo]` [invalid-argument]
+  /Users/aaronpollack/dev/helion/helion/_compiler/node_masking.py:96: 30-65: Object of class `GraphInfo` has no attribute `placeholder_to_outer_arg` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_compiler/node_masking.py:98: 66-82: Expected class object, got `type[ForLoopGraphInfo]` [invalid-argument]
+  /Users/aaronpollack/dev/helion/helion/_compiler/source_location.py:74: 13-24: Object of class `AST` has no attribute `lineno` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_compiler/source_location.py:75: 13-28: Object of class `AST` has no attribute `col_offset` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_compiler/tile_strategy.py:295: 5-15: Class member `FlattenedTileStrategy.block_size` overrides parent class `BlockSizeTileStrategy` in an inconsistent manner [bad-override]
+  /Users/aaronpollack/dev/helion/helion/_compiler/tile_strategy.py:348: 9-357:46: `ComplexInfinity | NaN | One | Unknown` is not assignable to `One` (caused by inconsistent types when breaking cycles) [bad-assignment]
+  /Users/aaronpollack/dev/helion/helion/_compiler/tile_strategy.py:465: 5-15: Class member `_BaseNDTileStrategy.block_size` overrides parent class `BlockSizeTileStrategy` in an inconsistent manner [bad-override]
+  /Users/aaronpollack/dev/helion/helion/_compiler/tile_strategy.py:502: 41-86: No matching overload found for function `zip.__new__` [no-matching-overload]
+  /Users/aaronpollack/dev/helion/helion/_compiler/tile_strategy.py:630: 13-20: Cannot set item in `object` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_compiler/tile_strategy.py:630: 37-42: Expected an iterable, got `object` [not-iterable]
+  /Users/aaronpollack/dev/helion/helion/_compiler/traceback_compat.py:68: 14-24: Unrecognized argument for typed dictionary definition [invalid-argument]
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:102: 50-72: Unexpected keyword argument `function` in function `helion._compiler.variable_origin.GlobalOrigin.__init__` [unexpected-keyword]
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1475: 37-41: Argument `ExtendedAST` is not assignable to parameter `node` with type `AST` in function `TypePropagation.generic_visit` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1509: 40-42: Argument `type[bool | float | int] | type[object]` is not assignable to parameter `python_type` with type `type[bool | float | int]` in function `NumericType.subtype` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1534: 27-42: Expected class object, got `tuple[type[AST], ...]` [invalid-argument]
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1881: 22-33: Argument `ExtendedAST` is not assignable to parameter `lhs` with type `AST` in function `TypePropagation._assign` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1959: 16-27: Object of class `ExtendedAST` has no attribute `orelse` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1971: 32-41: Object of class `ExtendedAST` has no attribute `body` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1974: 40-49: Object of class `ExtendedAST` has no attribute `body` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1975: 29-40: Object of class `ExtendedAST` has no attribute `orelse` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:2063: 43-56: Unexpected keyword argument `function` in function `helion._compiler.variable_origin.ArgumentOrigin.__init__` [unexpected-keyword]
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:207: 71-76: Argument `object` is not assignable to parameter `iterable` with type `Iterable[object]` in function `enumerate.__new__` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:212: 53-58: Argument `object` is not assignable to parameter `iterable` with type `Iterable[object]` in function `enumerate.__new__` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:215: 43-48: Argument `object` is not assignable to parameter `iterable` with type `Iterable[@_]` in function `tuple.__new__` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:218: 59-64: Type `object` is not iterable [not-iterable]
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:222: 55-66: Object of class `object` has no attribute `items` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:226: 25-35: Object of class `object` has no attribute `keys` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:352: 30-33: Expected class object, got `tuple[type[TypeInfo], ...] | type[TypeInfo]` [invalid-argument]
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:637: 56-67: Object of class `TypeInfo` has no attribute `value` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:647: 44-60: Argument `type[object]` is not assignable to parameter `python_type` with type `type[bool | float | int]` in function `NumericType.subtype` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:680: 5-10: Class member `CallableType.value` overrides parent class `LiteralType` in an inconsistent manner [bad-override]
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:796: 5-10: Class member `PythonModuleType.value` overrides parent class `LiteralType` in an inconsistent manner [bad-override]
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:858: 30-75: Expected class object, got `type[SymBool | SymFloat] | type[SymFloat | SymInt]` [invalid-argument]
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:859: 21-33: Object of class `object` has no attribute `_sympy_` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:860: 32-50: Expected class object, got `type[bool | float] | type[bool | int]` [invalid-argument]
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:865: 31-76: Expected class object, got `type[SymBool | SymFloat] | type[SymFloat | SymInt]` [invalid-argument]
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:866: 22-35: Object of class `object` has no attribute `_sympy_` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:867: 32-50: Expected class object, got `type[bool | float] | type[bool | int]` [invalid-argument]
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:90: 21-49: Object of class `MethodType` has no attribute `__globals__` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:94: 51-73: Unexpected keyword argument `function` in function `helion._compiler.variable_origin.BuiltinOrigin.__init__` [unexpected-keyword]
+  /Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:99: 50-72: Unexpected keyword argument `function` in function `helion._compiler.variable_origin.GlobalOrigin.__init__` [unexpected-keyword]
+  /Users/aaronpollack/dev/helion/helion/_logging/_internal.py:89: 14-18: Cannot initialize attribute `func` to a value that depends on method-scoped type variable `P` [invalid-type-var]
+  /Users/aaronpollack/dev/helion/helion/_logging/_internal.py:90: 41-45: `Args[P]` is not assignable to attribute `args` with type `tuple[object, ...]` [bad-assignment]
+  /Users/aaronpollack/dev/helion/helion/_testing.py:112: 55-80: `/` is not supported between `Iterable[Unknown]` and `Iterable[Unknown]` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_testing.py:112: 55-80: `/` is not supported between `Iterable[Unknown]` and `None` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_testing.py:112: 55-80: `/` is not supported between `Iterable[Unknown]` and `int` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/_testing.py:112: 55-80: `/` is not supported between `Iterable[Unknown]` and `list[int]` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_testing.py:112: 55-80: `/` is not supported between `None` and `Iterable[Unknown]` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_testing.py:112: 55-80: `/` is not supported between `None` and `None` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_testing.py:112: 55-80: `/` is not supported between `None` and `int` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/_testing.py:112: 55-80: `/` is not supported between `None` and `list[int]` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_testing.py:112: 55-80: `/` is not supported between `int` and `Iterable[Unknown]` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/_testing.py:112: 55-80: `/` is not supported between `int` and `None` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/_testing.py:112: 55-80: `/` is not supported between `int` and `list[int]` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/_testing.py:112: 55-80: `/` is not supported between `list[int]` and `Iterable[Unknown]` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_testing.py:112: 55-80: `/` is not supported between `list[int]` and `None` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/_testing.py:112: 55-80: `/` is not supported between `list[int]` and `int` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/_testing.py:112: 55-80: `/` is not supported between `list[int]` and `list[int]` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/autotuner/block_id_sequence.py:119: 62-66: Default `None` is not assignable to parameter `default` with type `_D` [bad-function-definition]
+  /Users/aaronpollack/dev/helion/helion/autotuner/config_spec.py:192: 52-78: Cannot index into `object` [missing-attribute]
+  /Users/aaronpollack/dev/helion/helion/autotuner/config_spec.py:220: 16-21: Argument `list[Unknown] | object` is not assignable to parameter `obj` with type `Sized` in function `len` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/autotuner/config_spec.py:221: 76-81: Argument `list[Unknown] | object` is not assignable to parameter `obj` with type `Sized` in function `len` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/autotuner/config_spec.py:222: 13-19: Expected an iterable, got `list[Unknown] | object` [not-iterable]
+  /Users/aaronpollack/dev/helion/helion/autotuner/config_spec.py:224: 16-21: Returned type `list[Unknown] | object` is not assignable to declared return type `list[int]` [bad-return]
+  /Users/aaronpollack/dev/helion/helion/language/_decorators.py:184: 12-17: Returned type `[_C](fn: _C) -> _C` is not assignable to declared return type `_Decorator` [bad-return]
+  /Users/aaronpollack/dev/helion/helion/language/_decorators.py:306: 12-17: Returned type `[_C](fn: _C) -> _C` is not assignable to declared return type `_Decorator` [bad-return]
+  /Users/aaronpollack/dev/helion/helion/language/_tracing_ops.py:304: 1-37: Argument `[_T](value: _T) -> _T` is not assignable to parameter `fn` with type `(...) -> object` in function `helion.language._decorators._NoReturnDecorator.__call__` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/language/_tracing_ops.py:304: 28-36: Argument `[_T](value: _T, /) -> _T` is not assignable to parameter `original_fn` with type `(...) -> object` in function `helion.language._decorators.register_fake` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/language/_tracing_ops.py:307: 16-39: Returned type `Tensor` is not assignable to declared return type `_T` [bad-return]
+  /Users/aaronpollack/dev/helion/helion/language/_tracing_ops.py:311: 16-21: Returned type `bool | float | int` is not assignable to declared return type `_T` [bad-return]
+  /Users/aaronpollack/dev/helion/helion/language/_tracing_ops.py:315: 22-30: Argument `[_T](value: _T, /) -> _T` is not assignable to parameter `original_fn` with type `(...) -> object` in function `helion.language._decorators.codegen` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/language/_tracing_ops.py:326: 31-39: Argument `[_T](value: _T, /) -> _T` is not assignable to parameter `original_fn` with type `(...) -> object` in function `helion.language._decorators.get_masked_value` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/language/device_print.py:54: 32-42: Expected class object, got `type[TensorType]` [invalid-argument]
+  /Users/aaronpollack/dev/helion/helion/language/loops.py:199: 40-201:6: No matching overload found for function `zip.__new__` [no-matching-overload]
+  /Users/aaronpollack/dev/helion/helion/language/loops.py:386: 47-388:6: No matching overload found for function `zip.__new__` [no-matching-overload]
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:292: 21-35: Argument `MethodType` is not assignable to parameter `fn` with type `FunctionType` in function `helion._compiler.host_function.HostFunction.__init__` [bad-argument-type]
+  /Users/aaronpollack/dev/helion/helion/runtime/kernel.py:74: 9-16: Attribute `fn` of class `Kernel` is a read-only descriptor with no `__set__` and cannot be set [read-only]
+  /Users/aaronpollack/dev/helion/helion/runtime/precompile_shim.py:28: 66-72: Cannot index into `defaultdict[str, tuple[dict[Unknown, Unknown], Unknown | None, BaseBackend, Unknown]]` [bad-argument-type]
+
