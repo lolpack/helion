@@ -5,3 +5,4 @@ search_path = ["triton/python", "triton/third_party", "../pytorch", "../pytorch-
 replace_imports_with_any = [
     "torch.*"
 ]
+permissive-ignores = true # respects pyre-fixme and pyre-ignore

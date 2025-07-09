@@ -235,6 +235,7 @@ class DeviceFunction:
             if block_idx is not None:
                 replacements[sym] = self.tile_strategy.user_size(block_idx)
         if replacements:
+            # pyrefly: ignore  # bad-assignment
             expr = expr.xreplace(replacements)
         return self.sympy_expr(expr)
 

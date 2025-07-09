@@ -1078,6 +1078,7 @@ class CodegenState(NamedTuple):
         rv = self.ast_args[i]
         # pyrefly: ignore  # invalid-argument
         if isinstance(rv, int | float | bool):
+            # pyrefly: ignore  # bad-argument-type
             rv = ast.Constant(value=rv)
         assert isinstance(rv, ast.AST), "TODO: convert nested/defaults"
         return rv
