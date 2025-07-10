@@ -12,8 +12,8 @@ site_package_path = [
 ]
 
 # untyped-def-behavior = "check-and-infer-return-any"
-# # [errors]
+[errors]
 # # bad-override = false
 # # bad-assignment = false
-# # missing-attribute = false
+missing-attribute = false
 # # read-only = false

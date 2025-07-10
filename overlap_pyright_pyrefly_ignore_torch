@@ -1,0 +1,1047 @@
+▶ Pyright: pyright
+▶ Pyrefly: pyrefly check --output-format=min-text
+
+================ SUMMARY ================
+Total errors in Pyright         : 913
+Total errors in Pyrefly         : 461
+Overlapping files               : 40
+Overlapping file & row pairs    : 191
+Rows only in Pyright            : 344
+Rows only in Pyrefly            : 119
+=========================================
+
+▶ Rows where Pyright *and* Pyrefly agree:
+
+/Users/aaronpollack/dev/helion/examples/attention.py:69:
+  Pyright : 29 - error: No overloads for "kernel" match the provided arguments (reportCallIssue)
+  Pyrefly : 42-74:2: No matching overload found for function `helion.runtime.kernel.kernel` [no-matching-overload]
+
+/Users/aaronpollack/dev/helion/examples/moe_matmul_ogs.py:145:
+  Pyright : 50 - error: Cannot access member "nonzero" for type "bool"
+  Pyrefly : 21-57: Object of class `bool` has no attribute `nonzero` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/ast_extension.py:168:
+  Pyright : 20 - error: Expression of type "list[Unknown]" cannot be assigned to return type "_R@_replace"
+  Pyrefly : 20-53: Returned type `list[Unknown]` is not assignable to declared return type `_R` [bad-return]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/ast_extension.py:172:
+  Pyright : 20 - error: Expression of type "AST" cannot be assigned to return type "_R@_replace"
+  Pyrefly : 20-41: Returned type `AST` is not assignable to declared return type `_R` [bad-return]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/ast_extension.py:174:
+  Pyright : 16 - error: Expression of type "AST" cannot be assigned to return type "_R@_replace"
+  Pyrefly : 16-179:10: Returned type `AST` is not assignable to declared return type `_R` [bad-return]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/ast_extension.py:206:
+  Pyright : 16 - error: Expression of type "list[AST]" cannot be assigned to return type "AST"
+  Pyright : 43 - error: "Never" is not iterable (reportGeneralTypeIssues)
+  Pyrefly : 16-48: Returned type `list[AST]` is not assignable to declared return type `AST` [bad-return]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/ast_extension.py:237:
+  Pyright : 39 - error: "_Unparser" is not a known member of module "ast" (reportAttributeAccessIssue)
+  Pyrefly : 35-48: No attribute `_Unparser` in module `ast` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/compile_environment.py:195:
+  Pyright : 24 - error: Cannot access member "_sympy_" for type "object"
+  Pyrefly : 22-31: Object of class `object` has no attribute `_sympy_` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/compile_environment.py:518:
+  Pyright : 18 - error: Cannot access member "name" for type "Basic"
+  Pyrefly : 16-22: Object of class `Basic` has no attribute `name` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:413:
+  Pyright : 33 - error: "__getitem__" method not defined on type "object" (reportIndexIssue)
+  Pyrefly : 33-41: Cannot index into `object` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:568:
+  Pyright : 34 - error: Cannot access member "block_id" for type "TypeInfo"
+  Pyrefly : 32-42: Object of class `TypeInfo` has no attribute `block_id` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:686:
+  Pyright : 26 - error: "origin" is not a known member of "None" (reportOptionalMemberAccess)
+  Pyrefly : 16-32: Object of class `NoneType` has no attribute `origin` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:688:
+  Pyright : 30 - error: "proxy" is not a known member of "None" (reportOptionalMemberAccess)
+  Pyrefly : 20-35: Object of class `NoneType` has no attribute `proxy` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:760:
+  Pyright : 49 - error: "origin" is not a known member of "None" (reportOptionalMemberAccess)
+  Pyrefly : 25-55: Object of class `NoneType` has no attribute `origin` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:777:
+  Pyright : 49 - error: "origin" is not a known member of "None" (reportOptionalMemberAccess)
+  Pyrefly : 25-55: Object of class `NoneType` has no attribute `origin` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:781:
+  Pyright : 13 - error: Argument of type "AST" cannot be assigned to parameter "tensor" of type "Tensor"
+  Pyright : 82 - error: Argument of type "object" cannot be assigned to parameter "value" of type "Tensor | SymInt | float"
+  Pyrefly : 24-36: Argument `ExtendedAST` is not assignable to parameter `node` with type `AST` in function `helion._compiler.ast_extension.NodeVisitor.visit` [bad-argument-type]
+  Pyrefly : 67-79: Object of class `ExtendedAST` has no attribute `slice` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:805:
+  Pyright : 22 - error: "origin" is not a known member of "None" (reportOptionalMemberAccess)
+  Pyrefly : 12-28: Object of class `NoneType` has no attribute `origin` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:806:
+  Pyright : 28 - error: Argument of type "AST" cannot be assigned to parameter "tensor" of type "Tensor" in function "load"
+  Pyrefly : 39-44: Argument `ExtendedAST` is not assignable to parameter `node` with type `AST` in function `helion._compiler.ast_extension.NodeVisitor.visit` [bad-argument-type]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:807:
+  Pyright : 29 - error: Argument of type "AST" cannot be assigned to parameter "tensor" of type "Tensor" in function "subscript"
+  Pyrefly : 40-45: Argument `ExtendedAST` is not assignable to parameter `node` with type `AST` in function `helion._compiler.ast_extension.NodeVisitor.visit` [bad-argument-type]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:815:
+  Pyright : 29 - error: Argument of type "AST" cannot be assigned to parameter "__iterable" of type "Iterable[Unknown]" in function "extend"
+  Pyrefly : 29-50: Argument `AST` is not assignable to parameter `iterable` with type `Iterable[Unknown]` in function `list.extend` [bad-argument-type]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:821:
+  Pyright : 17 - error: No overloads for "update" match the provided arguments (reportCallIssue)
+  Pyright : 31 - error: Argument of type "AST" cannot be assigned to parameter "__m" of type "Iterable[tuple[Unknown, Unknown]]" in function "update"
+  Pyrefly : 30-55: No matching overload found for function `typing.MutableMapping.update` [no-matching-overload]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:826:
+  Pyright : 42 - error: Cannot access member "_type_info" for type "expr"
+  Pyrefly : 32-52: Object of class `expr` has no attribute `_type_info` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:834:
+  Pyright : 47 - error: Argument of type "((...) -> object) | AST" cannot be assigned to parameter "fn" of type "(...) -> object" in function "retry_call"
+  Pyrefly : 47-51: Argument `((...) -> object) | AST` is not assignable to parameter `fn` with type `(...) -> object` in function `helion.language.tile_proxy._CheckForIndexCalls.retry_call` [bad-argument-type]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:894:
+  Pyright : 35 - error: Cannot access member "_type_info" for type "expr"
+  Pyrefly : 25-34: Object of class `ExtendedAST` has no attribute `iter` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:898:
+  Pyright : 32 - error: Cannot access member "block_id" for type "TypeInfo"
+  Pyrefly : 30-40: Object of class `TypeInfo` has no attribute `block_id` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/device_ir.py:900:
+  Pyright : 36 - error: Cannot access member "block_id" for type "TypeInfo"
+  Pyrefly : 30-44: Object of class `TypeInfo` has no attribute `block_id` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/generate_ast.py:147:
+  Pyright : 16 - error: Expression of type "ExtendedAST" cannot be assigned to return type "AST"
+  Pyrefly : 16-32: Returned type `ExtendedAST` is not assignable to declared return type `AST` [bad-return]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/generate_ast.py:168:
+  Pyright : 50 - error: "codegen_pid_init" is not a known member of "None" (reportOptionalMemberAccess)
+  Pyright : 50 - error: Cannot access member "codegen_pid_init" for type "ProgramIDs"
+  Pyrefly : 25-66: Object of class `NoneType` has no attribute `codegen_pid_init` [missing-attribute]
+  Pyrefly : 25-66: Object of class `ProgramIDs` has no attribute `codegen_pid_init` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/generate_ast.py:189:
+  Pyright : 57 - error: "proxy" is not a known member of "None" (reportOptionalMemberAccess)
+  Pyrefly : 37-62: Object of class `NoneType` has no attribute `proxy` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/generate_ast.py:193:
+  Pyright : 78 - error: "proxy" is not a known member of "None" (reportOptionalMemberAccess)
+  Pyrefly : 50-83: Object of class `NoneType` has no attribute `proxy` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/generate_ast.py:196:
+  Pyright : 45 - error: "proxy" is not a known member of "None" (reportOptionalMemberAccess)
+  Pyrefly : 26-50: Object of class `NoneType` has no attribute `proxy` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/generate_ast.py:208:
+  Pyright : 34 - error: Argument of type "None" cannot be assigned to parameter "ast_args" of type "list[object]" in function "__init__"
+  Pyrefly : 34-38: Argument `None` is not assignable to parameter `ast_args` with type `list[object]` in function `helion._compiler.inductor_lowering.CodegenState.__new__` [bad-argument-type]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/generate_ast.py:233:
+  Pyright : 59 - error: "codegen_test" is not a known member of "None" (reportOptionalMemberAccess)
+  Pyright : 59 - error: Cannot access member "codegen_test" for type "ProgramIDs"
+  Pyrefly : 34-71: Object of class `NoneType` has no attribute `codegen_test` [missing-attribute]
+  Pyrefly : 34-71: Object of class `ProgramIDs` has no attribute `codegen_test` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/generate_ast.py:244:
+  Pyright : 53 - error: Cannot assign member "body" for type "DeviceFunction"
+  Pyrefly : 53-68: `list[stmt]` is not assignable to attribute `body` with type `list[AST]` [bad-assignment]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/generate_ast.py:288:
+  Pyright : 50 - error: Cannot access member "block_id" for type "TypeInfo"
+  Pyrefly : 48-58: Object of class `TypeInfo` has no attribute `block_id` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/generate_ast.py:316:
+  Pyright : 20 - error: Expression of type "object" cannot be assigned to return type "AST"
+  Pyrefly : 20-322:14: Returned type `object` is not assignable to declared return type `AST` [bad-return]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/helper_function.py:59:
+  Pyright : 12 - error: Expression of type "FunctionType | object" cannot be assigned to return type "FunctionType"
+  Pyrefly : 12-72: Returned type `MethodType | object` is not assignable to declared return type `FunctionType` [bad-return]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/helper_function.py:66:
+  Pyright : 51 - error: "..." is not allowed in this context
+  Pyrefly : 27-82: Unrecognized callable type form [bad-specialization]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:1005:
+  Pyright : 17 - error: Argument of type "object" cannot be assigned to parameter "__value" of type "Iterable[None]" in function "__setitem__"
+  Pyright : 17 - error: No overloads for "__setitem__" match the provided arguments (reportCallIssue)
+  Pyrefly : 17-29: Cannot set item in `list[None]` [no-matching-overload]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:666:
+  Pyright : 13 - error: No parameter named "masked_value_fn" (reportCallIssue)
+  Pyrefly : 13-28: Unexpected keyword argument `masked_value_fn` [unexpected-keyword]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:866:
+  Pyright : 21 - error: Argument of type "<subclass of tuple and AST> | <subclass of Sequence and AST> | <subclass of Mapping and AST> | <subclass of Node and AST> | <subclass of str and AST> | <subclass of int and AST> | <subclass of float and AST> | <subclass of complex and AST> | <subclass of dtype and AST> | <subclass of Tensor and AST> | <subclass of device and AST> | <subclass of memory_format and AST> | <subclass of layout and AST> | <subclass of OpOverload and AST> | <subclass of SymInt and AST> | <subclass of SymBool and AST> | <subclass of SymFloat and AST> | None" cannot be assigned to parameter "acc" of type "AST" in function "expr_from_string"
+  Pyrefly : 21-24: Keyword argument `acc` with type `AST | None` is not assignable to parameter `**placeholders` with type `AST` in function `helion._compiler.ast_extension.expr_from_string` [bad-argument-type]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering.py:889:
+  Pyright : 81 - error: Argument of type "<subclass of tuple and AST> | <subclass of Sequence and AST> | <subclass of Mapping and AST> | <subclass of Node and AST> | <subclass of str and AST> | <subclass of int and AST> | <subclass of float and AST> | <subclass of complex and AST> | <subclass of dtype and AST> | <subclass of Tensor and AST> | <subclass of device and AST> | <subclass of memory_format and AST> | <subclass of layout and AST> | <subclass of OpOverload and AST> | <subclass of SymInt and AST> | <subclass of SymBool and AST> | <subclass of SymFloat and AST> | None" cannot be assigned to parameter "rhs" of type "AST" in function "expr_from_string"
+  Pyrefly : 81-84: Keyword argument `rhs` with type `AST | None` is not assignable to parameter `**placeholders` with type `AST` in function `helion._compiler.ast_extension.expr_from_string` [bad-argument-type]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering_extra.py:50:
+  Pyright : 22 - error: Argument of type "object" cannot be assigned to parameter "wrapped" of type "(**_PWrapped@wraps) -> _RWrapped@wraps" in function "wraps"
+  Pyrefly : 22-31: Argument `object` is not assignable to parameter `wrapped` with type `(ParamSpec(@_)) -> @_` in function `functools.wraps` [bad-argument-type]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering_extra.py:52:
+  Pyright : 16 - error: Expression of type "list[Any]" cannot be assigned to declared type "tuple[Any, ...]"
+  Pyrefly : 16-26: `list[Any]` is not assignable to variable `args` with type `tuple[Any, ...]` [bad-assignment]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering_extra.py:57:
+  Pyright : 20 - error: Expression of type "list[Unknown]" cannot be assigned to declared type "tuple[Any, ...]"
+  Pyrefly : 20-33: `list[Unknown]` is not assignable to variable `args` with type `tuple[Any, ...]` [bad-assignment]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering_extra.py:75:
+  Pyright : 20 - error: Expression of type "list[tuple[Any, ...]]" cannot be assigned to declared type "tuple[Any, ...]"
+  Pyrefly : 20-26: `list[Unknown]` is not assignable to variable `args` with type `tuple[Any, ...]` [bad-assignment]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/inductor_lowering_extra.py:77:
+  Pyright : 15 - error: Object of type "object" is not callable (reportCallIssue)
+  Pyrefly : 15-24: Expected a callable, got object [not-callable]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/lift_closures.py:70:
+  Pyright : 12 - error: Expression of type "_Wrapped[(*args: Any, **kwargs: Any), Any, (*args: object, **kwargs: object), object]" cannot be assigned to return type "FunctionType"
+  Pyrefly : 12-19: Returned type `_Wrapped[[*args: Any, **kwargs: Any], Any, [*args: object, **kwargs: object], object]` is not assignable to declared return type `FunctionType` [bad-return]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/program_id.py:141:
+  Pyright : 5 - error: "shared_pid_var" overrides symbol of same name in class "ProgramIDs"
+  Pyrefly : 5-19: Class member `ForEachProgramID.shared_pid_var` overrides parent class `ProgramIDs` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/source_location.py:76:
+  Pyright : 13 - error: Operator "+" not supported for "None" (reportOptionalOperand)
+  Pyrefly : 13-28: Object of class `AST` has no attribute `end_lineno` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/source_location.py:77:
+  Pyright : 13 - error: Operator "+" not supported for "None" (reportOptionalOperand)
+  Pyrefly : 13-32: Object of class `AST` has no attribute `end_col_offset` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/source_location.py:83:
+  Pyright : 29 - error: Cannot access member "_attributes" for type "ExtendedAST*"
+  Pyrefly : 24-40: Object of class `ExtendedAST` has no attribute `_attributes` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/source_location.py:84:
+  Pyright : 18 - error: Cannot assign member "lineno" for type "AST*"
+  Pyright : 18 - error: Cannot assign member "lineno" for type "ExtendedAST*"
+  Pyrefly : 13-24: Object of class `AST` has no attribute `lineno` [missing-attribute]
+  Pyrefly : 13-24: Object of class `ExtendedAST` has no attribute `lineno` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/source_location.py:85:
+  Pyright : 18 - error: Cannot assign member "col_offset" for type "ExtendedAST*"
+  Pyrefly : 13-28: Object of class `AST` has no attribute `col_offset` [missing-attribute]
+  Pyrefly : 13-28: Object of class `ExtendedAST` has no attribute `col_offset` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/source_location.py:86:
+  Pyright : 18 - error: Cannot assign member "end_lineno" for type "ExtendedAST*"
+  Pyrefly : 13-28: Object of class `AST` has no attribute `end_lineno` [missing-attribute]
+  Pyrefly : 13-28: Object of class `ExtendedAST` has no attribute `end_lineno` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/source_location.py:87:
+  Pyright : 18 - error: Cannot assign member "end_col_offset" for type "ExtendedAST*"
+  Pyrefly : 13-32: Object of class `AST` has no attribute `end_col_offset` [missing-attribute]
+  Pyrefly : 13-32: Object of class `ExtendedAST` has no attribute `end_col_offset` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/static_loop_unroller.py:28:
+  Pyright : 16 - error: Expression of type "AST" cannot be assigned to declared type "For"
+  Pyrefly : 16-40: `AST` is not assignable to variable `node` with type `For` [bad-assignment]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/tile_strategy.py:575:
+  Pyright : 35 - error: Cannot access member "_setup_mask" for type "_BaseNDTileStrategy*"
+  Pyrefly : 30-46: Object of class `_BaseNDTileStrategy` has no attribute `_setup_mask` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/tile_strategy.py:678:
+  Pyright : 35 - error: Cannot access member "_setup_mask" for type "_BaseNDTileStrategy*"
+  Pyrefly : 30-46: Object of class `_BaseNDTileStrategy` has no attribute `_setup_mask` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/traceback_compat.py:102:
+  Pyright : 27 - error: Operator "+" not supported for "None" (reportOptionalOperand)
+  Pyrefly : 27-69: `+` is not supported between `None` and `int` [bad-argument-type]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/traceback_compat.py:126:
+  Pyright : 37 - error: Argument of type "int | None" cannot be assigned to parameter "off" of type "int" in function "normalize"
+  Pyrefly : 37-62: Argument `int | None` is not assignable to parameter `off` with type `int` in function `normalize` [bad-argument-type]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/traceback_compat.py:127:
+  Pyright : 38 - error: Operator "+" not supported for "None" (reportOptionalOperand)
+  Pyrefly : 38-67: `+` is not supported between `None` and `Literal[1]` [bad-argument-type]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/traceback_compat.py:35:
+  Pyright : 8 - error: Cannot assign member "_original_line" for type "FrameSummary"
+  Pyrefly : 5-22: Object of class `FrameSummary` has no attribute `_original_line` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/traceback_compat.py:92:
+  Pyright : 26 - error: Cannot access member "expr" for type "Expr"
+  Pyrefly : 16-30: Object of class `Expr` has no attribute `expr` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/traceback_compat.py:97:
+  Pyright : 40 - error: Argument of type "int | None" cannot be assigned to parameter "off" of type "int" in function "normalize"
+  Pyrefly : 40-64: Argument `int | None` is not assignable to parameter `off` with type `int` in function `normalize` [bad-argument-type]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1153:
+  Pyright : 21 - error: Argument of type "int | str" cannot be assigned to parameter "__key" of type "SupportsIndex" in function "__setitem__"
+  Pyright : 21 - error: No overloads for "__setitem__" match the provided arguments (reportCallIssue)
+  Pyright : 35 - error: Argument of type "int | str" cannot be assigned to parameter "__s" of type "slice" in function "__getitem__"
+  Pyright : 35 - error: No overloads for "__getitem__" match the provided arguments (reportCallIssue)
+  Pyrefly : 21-32: Cannot set item in `dict[int | str, TypeInfo] | list[TypeInfo]` [no-matching-overload]
+  Pyrefly : 35-46: Cannot index into `list[TypeInfo]` [no-matching-overload]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1156:
+  Pyright : 21 - error: Argument of type "int | str" cannot be assigned to parameter "__key" of type "SupportsIndex" in function "__setitem__"
+  Pyright : 21 - error: No overloads for "__setitem__" match the provided arguments (reportCallIssue)
+  Pyrefly : 21-32: Cannot set item in `dict[int | str, TypeInfo] | list[TypeInfo]` [no-matching-overload]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1168:
+  Pyright : 26 - error: "__getitem__" method not defined on type "slice" (reportIndexIssue)
+  Pyright : 26 - error: Argument of type "object" cannot be assigned to parameter "__key" of type "slice" in function "__getitem__"
+  Pyright : 26 - error: Argument of type "object" cannot be assigned to parameter "__key" of type "str | int" in function "__getitem__"
+  Pyright : 26 - error: Argument of type "object" cannot be assigned to parameter "__s" of type "slice" in function "__getitem__"
+  Pyright : 26 - error: No overloads for "__getitem__" match the provided arguments (reportCallIssue)
+  Pyrefly : 26-57: Cannot index into `list[TypeInfo]` [no-matching-overload]
+  Pyrefly : 26-57: Cannot index into `slice[Any, Any, Any]` [missing-attribute]
+  Pyrefly : 26-57: Cannot index into `tuple[TypeInfo, ...]` [no-matching-overload]
+  Pyrefly : 45-56: Cannot index into `dict[int | str, TypeInfo]` [bad-argument-type]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1186:
+  Pyright : 5 - error: "element_types" overrides symbol of same name in class "CollectionType"
+  Pyrefly : 5-18: Class member `SequenceType.element_types` overrides parent class `CollectionType` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1234:
+  Pyright : 5 - error: "element_types" overrides symbol of same name in class "CollectionType"
+  Pyrefly : 5-18: Class member `DictType.element_types` overrides parent class `CollectionType` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:127:
+  Pyright : 9 - error: Method "set" overrides class "Scope" in an incompatible manner
+  Pyrefly : 9-12: Class member `LocalScope.set` overrides parent class `Scope` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1277:
+  Pyright : 5 - error: "element_types" overrides symbol of same name in class "CollectionType"
+  Pyrefly : 5-18: Class member `SliceType.element_types` overrides parent class `CollectionType` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1330:
+  Pyright : 16 - error: Operator "+" not supported for type "object" when expected type is "object" (reportOperatorIssue)
+  Pyrefly : 16-22: Unary `+` is not supported on `object` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1333:
+  Pyright : 16 - error: Operator "-" not supported for type "object" when expected type is "object" (reportOperatorIssue)
+  Pyrefly : 16-22: Unary `-` is not supported on `object` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1336:
+  Pyright : 16 - error: Operator "~" not supported for type "object" when expected type is "object" (reportOperatorIssue)
+  Pyrefly : 16-22: Unary `~` is not supported on `object` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1342:
+  Pyright : 16 - error: Operator "+" not supported for types "object" and "object" (reportOperatorIssue)
+  Pyrefly : 16-28: `+` is not supported between `object` and `object` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1344:
+  Pyright : 16 - error: Operator "-" not supported for types "object" and "object" (reportOperatorIssue)
+  Pyrefly : 16-28: `-` is not supported between `object` and `object` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1346:
+  Pyright : 16 - error: Operator "*" not supported for types "object" and "object" (reportOperatorIssue)
+  Pyrefly : 16-28: `*` is not supported between `object` and `object` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1348:
+  Pyright : 16 - error: Operator "/" not supported for types "object" and "object" (reportOperatorIssue)
+  Pyrefly : 16-28: `/` is not supported between `object` and `object` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1350:
+  Pyright : 16 - error: Operator "//" not supported for types "object" and "object" (reportOperatorIssue)
+  Pyrefly : 16-29: `//` is not supported between `object` and `object` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1352:
+  Pyright : 16 - error: Operator "%" not supported for types "object" and "object" (reportOperatorIssue)
+  Pyrefly : 16-28: `%` is not supported between `object` and `object` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1354:
+  Pyright : 16 - error: Operator "**" not supported for types "object" and "object" (reportOperatorIssue)
+  Pyrefly : 16-27: `**` is not supported between `object` and `object` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1356:
+  Pyright : 16 - error: Operator "<<" not supported for types "object" and "object" (reportOperatorIssue)
+  Pyrefly : 16-29: `<<` is not supported between `object` and `object` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1358:
+  Pyright : 16 - error: Operator ">>" not supported for types "object" and "object" (reportOperatorIssue)
+  Pyrefly : 16-29: `>>` is not supported between `object` and `object` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1360:
+  Pyright : 16 - error: Operator "|" not supported for types "object" and "object" (reportOperatorIssue)
+  Pyrefly : 16-28: `|` is not supported between `object` and `object` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1362:
+  Pyright : 16 - error: Operator "^" not supported for types "object" and "object" (reportOperatorIssue)
+  Pyrefly : 16-28: `^` is not supported between `object` and `object` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1364:
+  Pyright : 16 - error: Operator "&" not supported for types "object" and "object" (reportOperatorIssue)
+  Pyrefly : 16-28: `&` is not supported between `object` and `object` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1366:
+  Pyright : 16 - error: Operator "@" not supported for types "object" and "object" (reportOperatorIssue)
+  Pyrefly : 16-28: `@` is not supported between `object` and `object` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1376:
+  Pyright : 16 - error: Operator "<" not supported for types "object" and "object" (reportOperatorIssue)
+  Pyrefly : 16-28: `<` is not supported between `object` and `object` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1378:
+  Pyright : 16 - error: Operator "<=" not supported for types "object" and "object" (reportOperatorIssue)
+  Pyrefly : 16-29: `<=` is not supported between `object` and `object` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1380:
+  Pyright : 16 - error: Operator ">" not supported for types "object" and "object" (reportOperatorIssue)
+  Pyrefly : 16-28: `>` is not supported between `object` and `object` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1382:
+  Pyright : 16 - error: Operator ">=" not supported for types "object" and "object" (reportOperatorIssue)
+  Pyrefly : 16-29: `>=` is not supported between `object` and `object` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1388:
+  Pyright : 16 - error: Operator "in" not supported for types "object" and "object" (reportOperatorIssue)
+  Pyrefly : 16-29: `in` is not supported between `object` and `object` [unsupported-operand]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1390:
+  Pyright : 16 - error: Operator "not in" not supported for types "object" and "object" (reportOperatorIssue)
+  Pyrefly : 16-33: `not in` is not supported between `object` and `object` [unsupported-operand]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1568:
+  Pyright : 19 - error: Expression of type "list[expr]" cannot be assigned to declared type "AST"
+  Pyrefly : 19-27: `list[expr]` is not assignable to variable `lhs` with type `AST` [bad-assignment]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1575:
+  Pyright : 57 - error: Argument of type "AST" cannot be assigned to parameter "__obj" of type "Sized" in function "len"
+  Pyrefly : 57-60: Argument `AST` is not assignable to parameter `obj` with type `Sized` in function `len` [bad-argument-type]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1578:
+  Pyright : 24 - error: "AST" is not iterable
+  Pyrefly : 24-27: Type `AST` is not iterable [not-iterable]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1583:
+  Pyright : 52 - error: Argument of type "AST" cannot be assigned to parameter "__obj" of type "Sized" in function "len"
+  Pyrefly : 52-55: Argument `AST` is not assignable to parameter `obj` with type `Sized` in function `len` [bad-argument-type]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1665:
+  Pyright : 32 - error: Expression of type "(self: Self@TypePropagation, node: List | Tuple) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_List" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 32-46: `(self: Self@TypePropagation, node: List | Tuple) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-15: Class member `TypePropagation.visit_List` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1666:
+  Pyright : 33 - error: Expression of type "(self: Self@TypePropagation, node: List | Tuple) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_Tuple" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 33-47: `(self: Self@TypePropagation, node: List | Tuple) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-16: Class member `TypePropagation.visit_Tuple` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1667:
+  Pyright : 31 - error: Expression of type "(TypePropagation, AST) -> NoReturn" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_Set" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 31-48: `(TypePropagation, AST) -> NoReturn` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-14: Class member `TypePropagation.visit_Set` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1694:
+  Pyright : 35 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_Starred" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 35-48: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-18: Class member `TypePropagation.visit_Starred` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1801:
+  Pyright : 16 - error: Expression of type "TypeInfo | None" cannot be assigned to return type "TypeInfo"
+  Pyrefly : 16-71: Returned type `TypeInfo | None` is not assignable to declared return type `TypeInfo` [bad-return]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1892:
+  Pyright : 33 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_Raise" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 33-50: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-16: Class member `TypePropagation.visit_Raise` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1893:
+  Pyright : 34 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_Delete" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 34-51: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-17: Class member `TypePropagation.visit_Delete` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1894:
+  Pyright : 32 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_Pass" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 32-49: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-15: Class member `TypePropagation.visit_Pass` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1895:
+  Pyright : 37 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyrefly : 37-54: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1896:
+  Pyright : 34 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_Import" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 34-51: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-17: Class member `TypePropagation.visit_Import` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1897:
+  Pyright : 38 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_ImportFrom" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 38-55: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-21: Class member `TypePropagation.visit_ImportFrom` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1904:
+  Pyright : 34 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_Lambda" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 34-47: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-17: Class member `TypePropagation.visit_Lambda` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1991:
+  Pyright : 33 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_Break" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 33-50: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-16: Class member `TypePropagation.visit_Break` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:1992:
+  Pyright : 36 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_Continue" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 36-53: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-19: Class member `TypePropagation.visit_Continue` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:2004:
+  Pyright : 35 - error: Expression of type "(self: Self@TypePropagation, node: Try) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyrefly : 35-44: `(self: Self@TypePropagation, node: Try) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:2011:
+  Pyright : 41 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_ExceptHandler" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 41-65: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-24: Class member `TypePropagation.visit_ExceptHandler` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:2012:
+  Pyright : 32 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_With" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 32-56: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-15: Class member `TypePropagation.visit_With` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:2013:
+  Pyright : 34 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_Return" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 34-58: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-17: Class member `TypePropagation.visit_Return` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:2019:
+  Pyright : 36 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_ListComp" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 36-50: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-19: Class member `TypePropagation.visit_ListComp` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:2020:
+  Pyright : 35 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_SetComp" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 35-49: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-18: Class member `TypePropagation.visit_SetComp` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:2021:
+  Pyright : 40 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_GeneratorExp" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 40-54: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-23: Class member `TypePropagation.visit_GeneratorExp` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:2022:
+  Pyright : 36 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_DictComp" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 36-50: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-19: Class member `TypePropagation.visit_DictComp` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:2025:
+  Pyright : 39 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_FunctionDef" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 39-53: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-22: Class member `TypePropagation.visit_FunctionDef` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:2027:
+  Pyright : 36 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_ClassDef" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 36-50: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-19: Class member `TypePropagation.visit_ClassDef` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:2028:
+  Pyright : 33 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_Yield" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 33-47: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-16: Class member `TypePropagation.visit_Yield` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:2029:
+  Pyright : 37 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_YieldFrom" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 37-51: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-20: Class member `TypePropagation.visit_YieldFrom` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:2030:
+  Pyright : 44 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_AsyncFunctionDef" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 44-58: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-27: Class member `TypePropagation.visit_AsyncFunctionDef` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:2031:
+  Pyright : 36 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_AsyncFor" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 36-50: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-19: Class member `TypePropagation.visit_AsyncFor` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:2032:
+  Pyright : 37 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_AsyncWith" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 37-51: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-20: Class member `TypePropagation.visit_AsyncWith` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:2033:
+  Pyright : 33 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_Await" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 33-47: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-16: Class member `TypePropagation.visit_Await` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:2034:
+  Pyright : 33 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_Match" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 33-47: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-16: Class member `TypePropagation.visit_Match` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:2035:
+  Pyright : 38 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_MatchValue" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 38-52: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-21: Class member `TypePropagation.visit_MatchValue` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:2036:
+  Pyright : 42 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_MatchSingleton" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 42-56: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-25: Class member `TypePropagation.visit_MatchSingleton` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:2037:
+  Pyright : 41 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_MatchSequence" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 41-55: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-24: Class member `TypePropagation.visit_MatchSequence` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:2038:
+  Pyright : 37 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_MatchStar" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 37-51: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-20: Class member `TypePropagation.visit_MatchStar` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:2039:
+  Pyright : 40 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_MatchMapping" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 40-54: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-23: Class member `TypePropagation.visit_MatchMapping` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:2040:
+  Pyright : 38 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_MatchClass" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 38-52: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-21: Class member `TypePropagation.visit_MatchClass` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:2041:
+  Pyright : 35 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_MatchAs" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 35-49: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-18: Class member `TypePropagation.visit_MatchAs` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:2042:
+  Pyright : 35 - error: Expression of type "(self: Self@TypePropagation, node: AST) -> TypeInfo" cannot be assigned to declared type "_VisitMethod"
+  Pyright : 5 - error: "visit_MatchOr" overrides method of same name in class "NodeVisitor" with incompatible type "_VisitMethod" (reportIncompatibleMethodOverride)
+  Pyrefly : 35-49: `(self: Self@TypePropagation, node: AST) -> TypeInfo` is not assignable to `_VisitMethod` [bad-assignment]
+  Pyrefly : 5-18: Class member `TypePropagation.visit_MatchOr` overrides parent class `NodeVisitor` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:543:
+  Pyright : 5 - error: "origin" overrides symbol of same name in class "TypeInfo"
+  Pyrefly : 5-11: Class member `TensorAttributeType.origin` overrides parent class `TypeInfo` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:628:
+  Pyright : 42 - error: "__getitem__" method not defined on type "object" (reportIndexIssue)
+  Pyrefly : 42-70: Cannot index into `object` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:653:
+  Pyright : 18 - error: No overloads for "iter" match the provided arguments (reportCallIssue)
+  Pyright : 23 - error: Argument of type "object" cannot be assigned to parameter "__object" of type "_GetItemIterable[_T@iter]" in function "iter"
+  Pyrefly : 22-34: No matching overload found for function `iter` [no-matching-overload]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:672:
+  Pyright : 5 - error: "value" overrides symbol of same name in class "LiteralType"
+  Pyrefly : 5-10: Class member `ConfigFragmentType.value` overrides parent class `LiteralType` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_compiler/type_propagation.py:699:
+  Pyright : 9 - error: Method "propagate_call" overrides class "TypeInfo" in an incompatible manner
+  Pyrefly : 9-23: Class member `CallableType.propagate_call` overrides parent class `LiteralType` in an inconsistent manner [bad-override]
+
+/Users/aaronpollack/dev/helion/helion/_testing.py:33:
+  Pyright : 26 - error: "util" is not a known member of module "importlib" (reportAttributeAccessIssue)
+  Pyrefly : 16-30: No attribute `util` in module `importlib` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_testing.py:35:
+  Pyright : 28 - error: "util" is not a known member of module "importlib" (reportAttributeAccessIssue)
+  Pyrefly : 18-32: No attribute `util` in module `importlib` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/_testing.py:49:
+  Pyright : 27 - error: Argument of type "object" cannot be assigned to parameter "block_sizes" of type "list[int] | None" in function "__init__"
+  Pyright : 27 - error: Argument of type "object" cannot be assigned to parameter "flatten_loops" of type "list[bool] | None" in function "__init__"
+  Pyright : 27 - error: Argument of type "object" cannot be assigned to parameter "indexing" of type "IndexingLiteral | None" in function "__init__"
+  Pyright : 27 - error: Argument of type "object" cannot be assigned to parameter "l2_groupings" of type "list[int] | None" in function "__init__"
+  Pyright : 27 - error: Argument of type "object" cannot be assigned to parameter "loop_orders" of type "list[list[int]] | None" in function "__init__"
+  Pyright : 27 - error: Argument of type "object" cannot be assigned to parameter "num_stages" of type "int | None" in function "__init__"
+  Pyright : 27 - error: Argument of type "object" cannot be assigned to parameter "num_warps" of type "int | None" in function "__init__"
+  Pyright : 27 - error: Argument of type "object" cannot be assigned to parameter "pid_type" of type "PidTypeLiteral | None" in function "__init__"
+  Pyright : 27 - error: Argument of type "object" cannot be assigned to parameter "range_flattens" of type "list[bool | None] | None" in function "__init__"
+  Pyright : 27 - error: Argument of type "object" cannot be assigned to parameter "range_multi_buffers" of type "list[bool | None] | None" in function "__init__"
+  Pyright : 27 - error: Argument of type "object" cannot be assigned to parameter "range_num_stages" of type "list[int] | None" in function "__init__"
+  Pyright : 27 - error: Argument of type "object" cannot be assigned to parameter "range_unroll_factors" of type "list[int] | None" in function "__init__"
+  Pyright : 27 - error: Argument of type "object" cannot be assigned to parameter "range_warp_specializes" of type "list[bool | None] | None" in function "__init__"
+  Pyright : 27 - error: Argument of type "object" cannot be assigned to parameter "reduction_loops" of type "list[int | None] | None" in function "__init__"
+  Pyright : 27 - error: Argument of type "object" cannot be assigned to parameter "static_ranges" of type "list[bool] | None" in function "__init__"
+  Pyrefly : 25-33: Unpacked keyword argument `object` is not assignable to parameter `block_sizes` with type `list[int] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 25-33: Unpacked keyword argument `object` is not assignable to parameter `flatten_loops` with type `list[bool] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 25-33: Unpacked keyword argument `object` is not assignable to parameter `indexing` with type `Literal['block_ptr', 'pointer', 'tensor_descriptor'] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 25-33: Unpacked keyword argument `object` is not assignable to parameter `l2_groupings` with type `list[int] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 25-33: Unpacked keyword argument `object` is not assignable to parameter `loop_orders` with type `list[list[int]] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 25-33: Unpacked keyword argument `object` is not assignable to parameter `num_stages` with type `int | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 25-33: Unpacked keyword argument `object` is not assignable to parameter `num_warps` with type `int | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 25-33: Unpacked keyword argument `object` is not assignable to parameter `pid_type` with type `Literal['flat', 'persistent_blocked', 'persistent_interleaved', 'xyz'] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 25-33: Unpacked keyword argument `object` is not assignable to parameter `range_flattens` with type `list[bool | None] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 25-33: Unpacked keyword argument `object` is not assignable to parameter `range_multi_buffers` with type `list[bool | None] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 25-33: Unpacked keyword argument `object` is not assignable to parameter `range_num_stages` with type `list[int] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 25-33: Unpacked keyword argument `object` is not assignable to parameter `range_unroll_factors` with type `list[int] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 25-33: Unpacked keyword argument `object` is not assignable to parameter `range_warp_specializes` with type `list[bool | None] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 25-33: Unpacked keyword argument `object` is not assignable to parameter `reduction_loops` with type `list[int | None] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 25-33: Unpacked keyword argument `object` is not assignable to parameter `static_ranges` with type `list[bool] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+
+/Users/aaronpollack/dev/helion/helion/autotuner/base_search.py:118:
+  Pyright : 20 - error: Expression of type "Unknown | list[Unknown] | None" cannot be assigned to return type "float"
+  Pyrefly : 20-23: Returned type `list[Unknown] | Unknown | None` is not assignable to declared return type `float` [bad-return]
+
+/Users/aaronpollack/dev/helion/helion/autotuner/base_search.py:149:
+  Pyright : 26 - error: Cannot access member "make_precompiler" for type "function"
+  Pyrefly : 23-42: Object of class `FunctionType` has no attribute `make_precompiler` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/autotuner/config_spec.py:171:
+  Pyright : 17 - error: Argument of type "object" cannot be assigned to parameter "config" of type "list[_T@config_get]" in function "config_get"
+  Pyrefly : 17-48: Argument `object` is not assignable to parameter `config` with type `list[@_]` in function `helion.autotuner.block_id_sequence.BlockIdSequence.config_get` [bad-argument-type]
+
+/Users/aaronpollack/dev/helion/helion/language/_decorators.py:188:
+  Pyright : 16 - error: Expression of type "_Wrapped[..., object, (*args: object, **kwargs: object), object]" cannot be assigned to return type "_C@_impl"
+  Pyrefly : 16-23: Returned type `_Wrapped[Ellipsis, object, [*args: object, **kwargs: object], object]` is not assignable to declared return type `_C` [bad-return]
+
+/Users/aaronpollack/dev/helion/helion/language/_decorators.py:208:
+  Pyright : 12 - error: Expression of type "(fake_fn: (...) -> object) -> ((...) -> Never)" cannot be assigned to return type "_NoReturnDecorator[object]"
+  Pyrefly : 12-17: Returned type `(fake_fn: (...) -> object) -> (...) -> Never` is not assignable to declared return type `_NoReturnDecorator[object]` [bad-return]
+
+/Users/aaronpollack/dev/helion/helion/language/_decorators.py:221:
+  Pyright : 12 - error: Expression of type "(type_fn: (...) -> TypeInfo) -> ((...) -> Never)" cannot be assigned to return type "_NoReturnDecorator[TypeInfo]"
+  Pyrefly : 12-17: Returned type `(type_fn: (...) -> TypeInfo) -> (...) -> Never` is not assignable to declared return type `_NoReturnDecorator[TypeInfo]` [bad-return]
+
+/Users/aaronpollack/dev/helion/helion/language/_decorators.py:239:
+  Pyright : 12 - error: Expression of type "(prep_fn: (...) -> tuple[object, ...]) -> ((...) -> Never)" cannot be assigned to return type "_NoReturnDecorator[tuple[object, ...]]"
+  Pyrefly : 12-17: Returned type `(prep_fn: (...) -> tuple[object, ...]) -> (...) -> Never` is not assignable to declared return type `_NoReturnDecorator[tuple[object, ...]]` [bad-return]
+
+/Users/aaronpollack/dev/helion/helion/language/_decorators.py:255:
+  Pyright : 12 - error: Expression of type "(codegen_fn: (CodegenState) -> object) -> ((...) -> Never)" cannot be assigned to return type "_NoReturnDecorator[object]"
+  Pyrefly : 12-17: Returned type `(codegen_fn: (CodegenState) -> object) -> (...) -> Never` is not assignable to declared return type `_NoReturnDecorator[object]` [bad-return]
+
+/Users/aaronpollack/dev/helion/helion/language/_decorators.py:273:
+  Pyright : 12 - error: Expression of type "(mask_value_fn: (Node) -> (float | bool | None)) -> ((...) -> Never)" cannot be assigned to return type "_NoReturnDecorator[object]"
+  Pyrefly : 12-17: Returned type `(mask_value_fn: (Unknown) -> bool | float | None) -> (...) -> Never` is not assignable to declared return type `_NoReturnDecorator[object]` [bad-return]
+
+/Users/aaronpollack/dev/helion/helion/language/_decorators.py:287:
+  Pyright : 12 - error: Expression of type "(to_device_ir_fn: (...) -> object) -> ((...) -> Never)" cannot be assigned to return type "_NoReturnDecorator[object]"
+  Pyrefly : 12-17: Returned type `(to_device_ir_fn: (...) -> object) -> (...) -> Never` is not assignable to declared return type `_NoReturnDecorator[object]` [bad-return]
+
+/Users/aaronpollack/dev/helion/helion/language/_tracing_ops.py:160:
+  Pyright : 12 - error: Expression of type "AST" cannot be assigned to return type "None"
+  Pyrefly : 12-87: Returned type `AST` is not assignable to declared return type `None` [bad-return]
+
+/Users/aaronpollack/dev/helion/helion/language/_tracing_ops.py:211:
+  Pyright : 12 - error: Expression of type "AST" cannot be assigned to return type "None"
+  Pyrefly : 12-86: Returned type `AST` is not assignable to declared return type `None` [bad-return]
+
+/Users/aaronpollack/dev/helion/helion/language/_tracing_ops.py:80:
+  Pyright : 12 - error: Argument of type "object" cannot be assigned to parameter "__s" of type "slice" in function "__getitem__"
+  Pyright : 12 - error: No overloads for "__getitem__" match the provided arguments (reportCallIssue)
+  Pyrefly : 12-71: Cannot index into `list[GraphInfo]` [no-matching-overload]
+
+/Users/aaronpollack/dev/helion/helion/language/_tracing_ops.py:92:
+  Pyright : 12 - error: Argument of type "object" cannot be assigned to parameter "__s" of type "slice" in function "__getitem__"
+  Pyright : 12 - error: No overloads for "__getitem__" match the provided arguments (reportCallIssue)
+  Pyrefly : 12-71: Cannot index into `list[GraphInfo]` [no-matching-overload]
+
+/Users/aaronpollack/dev/helion/helion/language/device_print.py:40:
+  Pyright : 2 - error: Argument of type "(*args: object, origin: object, **kwargs: object) -> object" cannot be assigned to parameter "fn" of type "(...) -> TypeInfo" in function "__call__"
+  Pyrefly : 1-44: Argument `(*args: object, *, origin: object, **kwargs: object) -> object` is not assignable to parameter `fn` with type `(...) -> TypeInfo` in function `helion.language._decorators._NoReturnDecorator.__call__` [bad-argument-type]
+
+/Users/aaronpollack/dev/helion/helion/language/device_print.py:65:
+  Pyright : 26 - error: Argument of type "object" cannot be assigned to parameter "origin" of type "Origin" in function "__init__"
+  Pyrefly : 26-32: Argument `object` is not assignable to parameter `origin` with type `Origin` in function `helion._compiler.type_propagation.TypeInfo.__init__` [bad-argument-type]
+
+/Users/aaronpollack/dev/helion/helion/language/device_print.py:78:
+  Pyright : 26 - error: "__getitem__" method not defined on type "object" (reportIndexIssue)
+  Pyrefly : 26-40: Cannot index into `object` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/language/loops.py:325:
+  Pyright : 68 - error: "object" is not iterable
+  Pyrefly : 68-79: Type `object` is not iterable [not-iterable]
+
+/Users/aaronpollack/dev/helion/helion/language/loops.py:328:
+  Pyright : 23 - error: "object" is not iterable
+  Pyright : 49 - error: "object" is not iterable
+  Pyrefly : 22-67: Expected an iterable, got `list[object] | object` [not-iterable]
+
+/Users/aaronpollack/dev/helion/helion/language/loops.py:426:
+  Pyright : 24 - error: Cannot access member "block_id" for type "TypeInfo"
+  Pyrefly : 22-32: Object of class `TypeInfo` has no attribute `block_id` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/language/loops.py:562:
+  Pyright : 68 - error: "object" is not iterable
+  Pyrefly : 68-79: Type `object` is not iterable [not-iterable]
+
+/Users/aaronpollack/dev/helion/helion/language/loops.py:565:
+  Pyright : 23 - error: "object" is not iterable
+  Pyright : 49 - error: "object" is not iterable
+  Pyrefly : 22-61: Expected an iterable, got `list[object] | object` [not-iterable]
+
+/Users/aaronpollack/dev/helion/helion/language/memory_ops.py:58:
+  Pyright : 12 - error: Expression of type "tuple[Tensor, list[object], Unknown | Tensor | SymInt | float, Tensor | None]" cannot be assigned to return type "tuple[Tensor, list[object], Tensor | SymInt | int | float]"
+  Pyrefly : 12-46: Returned type `tuple[Unknown, list[object], Unknown, Unknown]` is not assignable to declared return type `tuple[Unknown, list[object], Unknown]` [bad-return]
+
+/Users/aaronpollack/dev/helion/helion/language/reduce_ops.py:250:
+  Pyright : 45 - error: Argument of type "tuple[float, ...] | float | int" cannot be assigned to parameter "other" of type "float | bool" in function "mask_node_inputs" (reportArgumentType)
+  Pyrefly : 45-50: Argument `float | list[Unknown] | tuple[Unknown, ...]` is not assignable to parameter `other` with type `bool | float` in function `helion._compiler.node_masking.mask_node_inputs` [bad-argument-type]
+
+/Users/aaronpollack/dev/helion/helion/language/reduce_ops.py:341:
+  Pyright : 60 - error: Argument of type "GraphInfo" cannot be assigned to parameter "helper_graph_info" of type "HelperFunctionGraphInfo" in function "register_helper_function"
+  Pyrefly : 60-77: Argument `GraphInfo` is not assignable to parameter `helper_graph_info` with type `HelperFunctionGraphInfo` in function `helion._compiler.device_function.DeviceFunction.register_helper_function` [bad-argument-type]
+
+/Users/aaronpollack/dev/helion/helion/language/scan_ops.py:356:
+  Pyright : 60 - error: Argument of type "GraphInfo" cannot be assigned to parameter "helper_graph_info" of type "HelperFunctionGraphInfo" in function "register_helper_function"
+  Pyrefly : 60-77: Argument `GraphInfo` is not assignable to parameter `helper_graph_info` with type `HelperFunctionGraphInfo` in function `helion._compiler.device_function.DeviceFunction.register_helper_function` [bad-argument-type]
+
+/Users/aaronpollack/dev/helion/helion/language/tunable_ops.py:156:
+  Pyright : 25 - error: Cannot access member "args" for type "ExtendedAST"
+  Pyrefly : 12-29: Object of class `ExtendedAST` has no attribute `args` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/language/view_ops.py:92:
+  Pyright : 16 - error: "object" is not iterable
+  Pyrefly : 16-34: Type `object` is not iterable [not-iterable]
+
+/Users/aaronpollack/dev/helion/helion/runtime/kernel.py:123:
+  Pyright : 32 - error: "Hashable" is not iterable
+  Pyrefly : 31-74: Expected an iterable, got `Hashable` [not-iterable]
+
+/Users/aaronpollack/dev/helion/helion/runtime/kernel.py:140:
+  Pyright : 36 - error: "Hashable" is not iterable
+  Pyrefly : 35-78: Expected an iterable, got `Hashable` [not-iterable]
+
+/Users/aaronpollack/dev/helion/helion/runtime/kernel.py:353:
+  Pyright : 35 - error: Argument of type "object" cannot be assigned to parameter "block_sizes" of type "list[int] | None" in function "__init__"
+  Pyright : 35 - error: Argument of type "object" cannot be assigned to parameter "flatten_loops" of type "list[bool] | None" in function "__init__"
+  Pyright : 35 - error: Argument of type "object" cannot be assigned to parameter "indexing" of type "IndexingLiteral | None" in function "__init__"
+  Pyright : 35 - error: Argument of type "object" cannot be assigned to parameter "l2_groupings" of type "list[int] | None" in function "__init__"
+  Pyright : 35 - error: Argument of type "object" cannot be assigned to parameter "loop_orders" of type "list[list[int]] | None" in function "__init__"
+  Pyright : 35 - error: Argument of type "object" cannot be assigned to parameter "num_stages" of type "int | None" in function "__init__"
+  Pyright : 35 - error: Argument of type "object" cannot be assigned to parameter "num_warps" of type "int | None" in function "__init__"
+  Pyright : 35 - error: Argument of type "object" cannot be assigned to parameter "pid_type" of type "PidTypeLiteral | None" in function "__init__"
+  Pyright : 35 - error: Argument of type "object" cannot be assigned to parameter "range_flattens" of type "list[bool | None] | None" in function "__init__"
+  Pyright : 35 - error: Argument of type "object" cannot be assigned to parameter "range_multi_buffers" of type "list[bool | None] | None" in function "__init__"
+  Pyright : 35 - error: Argument of type "object" cannot be assigned to parameter "range_num_stages" of type "list[int] | None" in function "__init__"
+  Pyright : 35 - error: Argument of type "object" cannot be assigned to parameter "range_unroll_factors" of type "list[int] | None" in function "__init__"
+  Pyright : 35 - error: Argument of type "object" cannot be assigned to parameter "range_warp_specializes" of type "list[bool | None] | None" in function "__init__"
+  Pyright : 35 - error: Argument of type "object" cannot be assigned to parameter "reduction_loops" of type "list[int | None] | None" in function "__init__"
+  Pyright : 35 - error: Argument of type "object" cannot be assigned to parameter "static_ranges" of type "list[bool] | None" in function "__init__"
+  Pyrefly : 33-41: Unpacked keyword argument `object` is not assignable to parameter `block_sizes` with type `list[int] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 33-41: Unpacked keyword argument `object` is not assignable to parameter `flatten_loops` with type `list[bool] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 33-41: Unpacked keyword argument `object` is not assignable to parameter `indexing` with type `Literal['block_ptr', 'pointer', 'tensor_descriptor'] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 33-41: Unpacked keyword argument `object` is not assignable to parameter `l2_groupings` with type `list[int] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 33-41: Unpacked keyword argument `object` is not assignable to parameter `loop_orders` with type `list[list[int]] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 33-41: Unpacked keyword argument `object` is not assignable to parameter `num_stages` with type `int | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 33-41: Unpacked keyword argument `object` is not assignable to parameter `num_warps` with type `int | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 33-41: Unpacked keyword argument `object` is not assignable to parameter `pid_type` with type `Literal['flat', 'persistent_blocked', 'persistent_interleaved', 'xyz'] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 33-41: Unpacked keyword argument `object` is not assignable to parameter `range_flattens` with type `list[bool | None] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 33-41: Unpacked keyword argument `object` is not assignable to parameter `range_multi_buffers` with type `list[bool | None] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 33-41: Unpacked keyword argument `object` is not assignable to parameter `range_num_stages` with type `list[int] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 33-41: Unpacked keyword argument `object` is not assignable to parameter `range_unroll_factors` with type `list[int] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 33-41: Unpacked keyword argument `object` is not assignable to parameter `range_warp_specializes` with type `list[bool | None] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 33-41: Unpacked keyword argument `object` is not assignable to parameter `reduction_loops` with type `list[int | None] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 33-41: Unpacked keyword argument `object` is not assignable to parameter `static_ranges` with type `list[bool] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+
+/Users/aaronpollack/dev/helion/helion/runtime/kernel.py:372:
+  Pyright : 31 - error: Argument of type "object" cannot be assigned to parameter "block_sizes" of type "list[int] | None" in function "__init__"
+  Pyright : 31 - error: Argument of type "object" cannot be assigned to parameter "flatten_loops" of type "list[bool] | None" in function "__init__"
+  Pyright : 31 - error: Argument of type "object" cannot be assigned to parameter "indexing" of type "IndexingLiteral | None" in function "__init__"
+  Pyright : 31 - error: Argument of type "object" cannot be assigned to parameter "l2_groupings" of type "list[int] | None" in function "__init__"
+  Pyright : 31 - error: Argument of type "object" cannot be assigned to parameter "loop_orders" of type "list[list[int]] | None" in function "__init__"
+  Pyright : 31 - error: Argument of type "object" cannot be assigned to parameter "num_stages" of type "int | None" in function "__init__"
+  Pyright : 31 - error: Argument of type "object" cannot be assigned to parameter "num_warps" of type "int | None" in function "__init__"
+  Pyright : 31 - error: Argument of type "object" cannot be assigned to parameter "pid_type" of type "PidTypeLiteral | None" in function "__init__"
+  Pyright : 31 - error: Argument of type "object" cannot be assigned to parameter "range_flattens" of type "list[bool | None] | None" in function "__init__"
+  Pyright : 31 - error: Argument of type "object" cannot be assigned to parameter "range_multi_buffers" of type "list[bool | None] | None" in function "__init__"
+  Pyright : 31 - error: Argument of type "object" cannot be assigned to parameter "range_num_stages" of type "list[int] | None" in function "__init__"
+  Pyright : 31 - error: Argument of type "object" cannot be assigned to parameter "range_unroll_factors" of type "list[int] | None" in function "__init__"
+  Pyright : 31 - error: Argument of type "object" cannot be assigned to parameter "range_warp_specializes" of type "list[bool | None] | None" in function "__init__"
+  Pyright : 31 - error: Argument of type "object" cannot be assigned to parameter "reduction_loops" of type "list[int | None] | None" in function "__init__"
+  Pyright : 31 - error: Argument of type "object" cannot be assigned to parameter "static_ranges" of type "list[bool] | None" in function "__init__"
+  Pyrefly : 29-37: Unpacked keyword argument `object` is not assignable to parameter `block_sizes` with type `list[int] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 29-37: Unpacked keyword argument `object` is not assignable to parameter `flatten_loops` with type `list[bool] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 29-37: Unpacked keyword argument `object` is not assignable to parameter `indexing` with type `Literal['block_ptr', 'pointer', 'tensor_descriptor'] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 29-37: Unpacked keyword argument `object` is not assignable to parameter `l2_groupings` with type `list[int] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 29-37: Unpacked keyword argument `object` is not assignable to parameter `loop_orders` with type `list[list[int]] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 29-37: Unpacked keyword argument `object` is not assignable to parameter `num_stages` with type `int | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 29-37: Unpacked keyword argument `object` is not assignable to parameter `num_warps` with type `int | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 29-37: Unpacked keyword argument `object` is not assignable to parameter `pid_type` with type `Literal['flat', 'persistent_blocked', 'persistent_interleaved', 'xyz'] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 29-37: Unpacked keyword argument `object` is not assignable to parameter `range_flattens` with type `list[bool | None] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 29-37: Unpacked keyword argument `object` is not assignable to parameter `range_multi_buffers` with type `list[bool | None] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 29-37: Unpacked keyword argument `object` is not assignable to parameter `range_num_stages` with type `list[int] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 29-37: Unpacked keyword argument `object` is not assignable to parameter `range_unroll_factors` with type `list[int] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 29-37: Unpacked keyword argument `object` is not assignable to parameter `range_warp_specializes` with type `list[bool | None] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 29-37: Unpacked keyword argument `object` is not assignable to parameter `reduction_loops` with type `list[int | None] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 29-37: Unpacked keyword argument `object` is not assignable to parameter `static_ranges` with type `list[bool] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+
+/Users/aaronpollack/dev/helion/helion/runtime/kernel.py:441:
+  Pyright : 19 - error: Argument of type "object" cannot be assigned to parameter "crossover_rate" of type "float" in function "__init__"
+  Pyright : 19 - error: Argument of type "object" cannot be assigned to parameter "immediate_update" of type "bool | None" in function "__init__"
+  Pyright : 19 - error: Argument of type "object" cannot be assigned to parameter "num_generations" of type "int" in function "__init__"
+  Pyright : 19 - error: Argument of type "object" cannot be assigned to parameter "population_size" of type "int" in function "__init__"
+  Pyrefly : 17-25: Unpacked keyword argument `object` is not assignable to parameter `crossover_rate` with type `float` in function `helion.autotuner.differential_evolution.DifferentialEvolutionSearch.__init__` [bad-argument-type]
+  Pyrefly : 17-25: Unpacked keyword argument `object` is not assignable to parameter `immediate_update` with type `bool | None` in function `helion.autotuner.differential_evolution.DifferentialEvolutionSearch.__init__` [bad-argument-type]
+  Pyrefly : 17-25: Unpacked keyword argument `object` is not assignable to parameter `num_generations` with type `int` in function `helion.autotuner.differential_evolution.DifferentialEvolutionSearch.__init__` [bad-argument-type]
+  Pyrefly : 17-25: Unpacked keyword argument `object` is not assignable to parameter `population_size` with type `int` in function `helion.autotuner.differential_evolution.DifferentialEvolutionSearch.__init__` [bad-argument-type]
+
+/Users/aaronpollack/dev/helion/helion/runtime/kernel.py:456:
+  Pyright : 31 - error: Argument of type "object" cannot be assigned to parameter "block_sizes" of type "list[int] | None" in function "__init__"
+  Pyright : 31 - error: Argument of type "object" cannot be assigned to parameter "flatten_loops" of type "list[bool] | None" in function "__init__"
+  Pyright : 31 - error: Argument of type "object" cannot be assigned to parameter "indexing" of type "IndexingLiteral | None" in function "__init__"
+  Pyright : 31 - error: Argument of type "object" cannot be assigned to parameter "l2_groupings" of type "list[int] | None" in function "__init__"
+  Pyright : 31 - error: Argument of type "object" cannot be assigned to parameter "loop_orders" of type "list[list[int]] | None" in function "__init__"
+  Pyright : 31 - error: Argument of type "object" cannot be assigned to parameter "num_stages" of type "int | None" in function "__init__"
+  Pyright : 31 - error: Argument of type "object" cannot be assigned to parameter "num_warps" of type "int | None" in function "__init__"
+  Pyright : 31 - error: Argument of type "object" cannot be assigned to parameter "pid_type" of type "PidTypeLiteral | None" in function "__init__"
+  Pyright : 31 - error: Argument of type "object" cannot be assigned to parameter "range_flattens" of type "list[bool | None] | None" in function "__init__"
+  Pyright : 31 - error: Argument of type "object" cannot be assigned to parameter "range_multi_buffers" of type "list[bool | None] | None" in function "__init__"
+  Pyright : 31 - error: Argument of type "object" cannot be assigned to parameter "range_num_stages" of type "list[int] | None" in function "__init__"
+  Pyright : 31 - error: Argument of type "object" cannot be assigned to parameter "range_unroll_factors" of type "list[int] | None" in function "__init__"
+  Pyright : 31 - error: Argument of type "object" cannot be assigned to parameter "range_warp_specializes" of type "list[bool | None] | None" in function "__init__"
+  Pyright : 31 - error: Argument of type "object" cannot be assigned to parameter "reduction_loops" of type "list[int | None] | None" in function "__init__"
+  Pyright : 31 - error: Argument of type "object" cannot be assigned to parameter "static_ranges" of type "list[bool] | None" in function "__init__"
+  Pyrefly : 29-37: Unpacked keyword argument `object` is not assignable to parameter `block_sizes` with type `list[int] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 29-37: Unpacked keyword argument `object` is not assignable to parameter `flatten_loops` with type `list[bool] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 29-37: Unpacked keyword argument `object` is not assignable to parameter `indexing` with type `Literal['block_ptr', 'pointer', 'tensor_descriptor'] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 29-37: Unpacked keyword argument `object` is not assignable to parameter `l2_groupings` with type `list[int] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 29-37: Unpacked keyword argument `object` is not assignable to parameter `loop_orders` with type `list[list[int]] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 29-37: Unpacked keyword argument `object` is not assignable to parameter `num_stages` with type `int | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 29-37: Unpacked keyword argument `object` is not assignable to parameter `num_warps` with type `int | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 29-37: Unpacked keyword argument `object` is not assignable to parameter `pid_type` with type `Literal['flat', 'persistent_blocked', 'persistent_interleaved', 'xyz'] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 29-37: Unpacked keyword argument `object` is not assignable to parameter `range_flattens` with type `list[bool | None] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 29-37: Unpacked keyword argument `object` is not assignable to parameter `range_multi_buffers` with type `list[bool | None] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 29-37: Unpacked keyword argument `object` is not assignable to parameter `range_num_stages` with type `list[int] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 29-37: Unpacked keyword argument `object` is not assignable to parameter `range_unroll_factors` with type `list[int] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 29-37: Unpacked keyword argument `object` is not assignable to parameter `range_warp_specializes` with type `list[bool | None] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 29-37: Unpacked keyword argument `object` is not assignable to parameter `reduction_loops` with type `list[int | None] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 29-37: Unpacked keyword argument `object` is not assignable to parameter `static_ranges` with type `list[bool] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+
+/Users/aaronpollack/dev/helion/helion/runtime/kernel.py:477:
+  Pyright : 49 - error: Cannot access member "size" for type "Hashable"
+  Pyrefly : 37-53: Object of class `Hashable` has no attribute `size` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/runtime/kernel.py:611:
+  Pyright : 5 - error: Expression of type "dict[type[Tensor] | type[Parameter] | type[FakeTensor] | type[dtype] | type[device] | type[int] | type[float] | type[bool] | type[str] | type[list[Unknown]] | type[tuple[Unknown, ...]] | type[dict[Unknown, Unknown]] | str | type[FunctionType] | type[BuiltinFunctionType] | type[ConstExpr], ((fn: Kernel[Unknown], obj: Tensor) -> Hashable) | ((fn: Kernel[Unknown], x: object) -> object) | ((fn: Kernel[Unknown], n: float | bool) -> object) | ((fn: Kernel[Unknown], obj: Sequence[Unknown]) -> Hashable) | ((fn: Kernel[Unknown], x: object) -> Hashable) | ((fn: Kernel[Unknown], obj: FunctionType) -> object) | ((fn: Kernel[Unknown], x: object) -> Unknown)]" cannot be assigned to declared type "dict[type[object] | str, (Kernel[Unknown], object) -> Hashable]"
+  Pyrefly : 5-629:2: `dict[str | type[object], ((Kernel[Unknown], object) -> Hashable) | ((fn: Kernel[Unknown], n: bool | float) -> object) | ((fn: Kernel[Unknown], obj: FunctionType) -> object) | ((fn: Kernel[Unknown], obj: Sequence[Unknown]) -> Hashable)]` is not assignable to `dict[str | type[object], (Kernel[Unknown], object) -> Hashable]` [bad-assignment]
+
+/Users/aaronpollack/dev/helion/helion/runtime/kernel.py:623:
+  Pyright : 42 - error: Argument of type "object" cannot be assigned to parameter "obj" of type "dict[str | int, object]" in function "_mapping_key"
+  Pyrefly : 42-43: Argument `object` is not assignable to parameter `obj` with type `dict[int | str, object]` in function `_mapping_key` [bad-argument-type]
+
+/Users/aaronpollack/dev/helion/helion/runtime/kernel.py:624:
+  Pyright : 52 - error: Cannot access member "_asdict" for type "object"
+  Pyrefly : 50-59: Object of class `object` has no attribute `_asdict` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/runtime/kernel.py:625:
+  Pyright : 49 - error: Argument of type "dict[str, Any]" cannot be assigned to parameter "obj" of type "dict[str | int, object]" in function "_mapping_key"
+  Pyright : 68 - error: Argument of type "object" cannot be assigned to parameter "obj" of type "DataclassInstance" in function "asdict"
+  Pyrefly : 67-70: No matching overload found for function `dataclasses.asdict` [no-matching-overload]
+
+/Users/aaronpollack/dev/helion/helion/runtime/kernel.py:628:
+  Pyright : 32 - error: Cannot access member "value" for type "object"
+  Pyrefly : 30-37: Object of class `object` has no attribute `value` [missing-attribute]
+
+/Users/aaronpollack/dev/helion/helion/runtime/kernel.py:78:
+  Pyright : 22 - error: Argument of type "object" cannot be assigned to parameter "block_sizes" of type "list[int] | None" in function "__init__"
+  Pyright : 22 - error: Argument of type "object" cannot be assigned to parameter "flatten_loops" of type "list[bool] | None" in function "__init__"
+  Pyright : 22 - error: Argument of type "object" cannot be assigned to parameter "indexing" of type "IndexingLiteral | None" in function "__init__"
+  Pyright : 22 - error: Argument of type "object" cannot be assigned to parameter "l2_groupings" of type "list[int] | None" in function "__init__"
+  Pyright : 22 - error: Argument of type "object" cannot be assigned to parameter "loop_orders" of type "list[list[int]] | None" in function "__init__"
+  Pyright : 22 - error: Argument of type "object" cannot be assigned to parameter "num_stages" of type "int | None" in function "__init__"
+  Pyright : 22 - error: Argument of type "object" cannot be assigned to parameter "num_warps" of type "int | None" in function "__init__"
+  Pyright : 22 - error: Argument of type "object" cannot be assigned to parameter "pid_type" of type "PidTypeLiteral | None" in function "__init__"
+  Pyright : 22 - error: Argument of type "object" cannot be assigned to parameter "range_flattens" of type "list[bool | None] | None" in function "__init__"
+  Pyright : 22 - error: Argument of type "object" cannot be assigned to parameter "range_multi_buffers" of type "list[bool | None] | None" in function "__init__"
+  Pyright : 22 - error: Argument of type "object" cannot be assigned to parameter "range_num_stages" of type "list[int] | None" in function "__init__"
+  Pyright : 22 - error: Argument of type "object" cannot be assigned to parameter "range_unroll_factors" of type "list[int] | None" in function "__init__"
+  Pyright : 22 - error: Argument of type "object" cannot be assigned to parameter "range_warp_specializes" of type "list[bool | None] | None" in function "__init__"
+  Pyright : 22 - error: Argument of type "object" cannot be assigned to parameter "reduction_loops" of type "list[int | None] | None" in function "__init__"
+  Pyright : 22 - error: Argument of type "object" cannot be assigned to parameter "static_ranges" of type "list[bool] | None" in function "__init__"
+  Pyrefly : 20-23: Unpacked keyword argument `object` is not assignable to parameter `block_sizes` with type `list[int] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 20-23: Unpacked keyword argument `object` is not assignable to parameter `flatten_loops` with type `list[bool] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 20-23: Unpacked keyword argument `object` is not assignable to parameter `indexing` with type `Literal['block_ptr', 'pointer', 'tensor_descriptor'] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 20-23: Unpacked keyword argument `object` is not assignable to parameter `l2_groupings` with type `list[int] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 20-23: Unpacked keyword argument `object` is not assignable to parameter `loop_orders` with type `list[list[int]] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 20-23: Unpacked keyword argument `object` is not assignable to parameter `num_stages` with type `int | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 20-23: Unpacked keyword argument `object` is not assignable to parameter `num_warps` with type `int | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 20-23: Unpacked keyword argument `object` is not assignable to parameter `pid_type` with type `Literal['flat', 'persistent_blocked', 'persistent_interleaved', 'xyz'] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 20-23: Unpacked keyword argument `object` is not assignable to parameter `range_flattens` with type `list[bool | None] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 20-23: Unpacked keyword argument `object` is not assignable to parameter `range_multi_buffers` with type `list[bool | None] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 20-23: Unpacked keyword argument `object` is not assignable to parameter `range_num_stages` with type `list[int] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 20-23: Unpacked keyword argument `object` is not assignable to parameter `range_unroll_factors` with type `list[int] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 20-23: Unpacked keyword argument `object` is not assignable to parameter `range_warp_specializes` with type `list[bool | None] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 20-23: Unpacked keyword argument `object` is not assignable to parameter `reduction_loops` with type `list[int | None] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+  Pyrefly : 20-23: Unpacked keyword argument `object` is not assignable to parameter `static_ranges` with type `list[bool] | None` in function `helion.runtime.config.Config.__init__` [bad-argument-type]
+
+/Users/aaronpollack/dev/helion/helion/runtime/precompile_shim.py:24:
+  Pyright : 31 - error: Argument of type "list[object]" cannot be assigned to parameter "args" of type "tuple[object, ...]" in function "_find_device"
+  Pyrefly : 31-56: Argument `list[object]` is not assignable to parameter `args` with type `tuple[object, ...]` in function `helion.runtime.kernel._find_device` [bad-argument-type]
+
+/Users/aaronpollack/dev/helion/helion/runtime/settings.py:109:
+  Pyright : 28 - error: Argument of type "object" cannot be assigned to parameter "allow_warp_specialize" of type "bool" in function "__init__"
+  Pyright : 28 - error: Argument of type "object" cannot be assigned to parameter "autotune_compile_timeout" of type "int" in function "__init__"
+  Pyright : 28 - error: Argument of type "object" cannot be assigned to parameter "autotune_log_level" of type "int" in function "__init__"
+  Pyright : 28 - error: Argument of type "object" cannot be assigned to parameter "autotune_precompile" of type "bool" in function "__init__"
+  Pyright : 28 - error: Argument of type "object" cannot be assigned to parameter "dot_precision" of type "Literal['tf32', 'tf32x3', 'ieee']" in function "__init__"
+  Pyright : 28 - error: Argument of type "object" cannot be assigned to parameter "force_autotune" of type "bool" in function "__init__"
+  Pyright : 28 - error: Argument of type "object" cannot be assigned to parameter "ignore_warnings" of type "list[type[BaseWarning]]" in function "__init__"
+  Pyright : 28 - error: Argument of type "object" cannot be assigned to parameter "index_dtype" of type "dtype" in function "__init__"
+  Pyright : 28 - error: Argument of type "object" cannot be assigned to parameter "print_output_code" of type "bool" in function "__init__"
+  Pyright : 28 - error: Argument of type "object" cannot be assigned to parameter "static_shapes" of type "bool" in function "__init__"
+  Pyright : 28 - error: Argument of type "object" cannot be assigned to parameter "use_default_config" of type "bool" in function "__init__"
+  Pyrefly : 26-36: Unpacked keyword argument `object` is not assignable to parameter `allow_warp_specialize` with type `bool` in function `_Settings.__init__` [bad-argument-type]
+  Pyrefly : 26-36: Unpacked keyword argument `object` is not assignable to parameter `autotune_compile_timeout` with type `int` in function `_Settings.__init__` [bad-argument-type]
+  Pyrefly : 26-36: Unpacked keyword argument `object` is not assignable to parameter `autotune_log_level` with type `int` in function `_Settings.__init__` [bad-argument-type]
+  Pyrefly : 26-36: Unpacked keyword argument `object` is not assignable to parameter `autotune_precompile` with type `bool` in function `_Settings.__init__` [bad-argument-type]
+  Pyrefly : 26-36: Unpacked keyword argument `object` is not assignable to parameter `dot_precision` with type `Literal['ieee', 'tf32', 'tf32x3']` in function `_Settings.__init__` [bad-argument-type]
+  Pyrefly : 26-36: Unpacked keyword argument `object` is not assignable to parameter `force_autotune` with type `bool` in function `_Settings.__init__` [bad-argument-type]
+  Pyrefly : 26-36: Unpacked keyword argument `object` is not assignable to parameter `ignore_warnings` with type `list[type[BaseWarning]]` in function `_Settings.__init__` [bad-argument-type]
+  Pyrefly : 26-36: Unpacked keyword argument `object` is not assignable to parameter `print_output_code` with type `bool` in function `_Settings.__init__` [bad-argument-type]
+  Pyrefly : 26-36: Unpacked keyword argument `object` is not assignable to parameter `static_shapes` with type `bool` in function `_Settings.__init__` [bad-argument-type]
+  Pyrefly : 26-36: Unpacked keyword argument `object` is not assignable to parameter `use_default_config` with type `bool` in function `_Settings.__init__` [bad-argument-type]
+
+/Users/aaronpollack/dev/helion/helion/runtime/triton_helpers.py:141:
+  Pyright : 33 - error: Expression of type "Literal[False]" cannot be assigned to parameter of type "constexpr"
+  Pyrefly : 33-38: Default `Literal[False]` is not assignable to parameter `sync_before` with type `constexpr` [bad-function-definition]
+
+/Users/aaronpollack/dev/helion/helion/runtime/triton_helpers.py:67:
+  Pyright : 33 - error: Expression of type "Literal[False]" cannot be assigned to parameter of type "constexpr"
+  Pyrefly : 33-38: Default `Literal[False]` is not assignable to parameter `sync_before` with type `constexpr` [bad-function-definition]
+
+/Users/aaronpollack/dev/helion/helion/runtime/triton_helpers.py:86:
+  Pyright : 19 - error: Cannot access member "is_ptr" for type "base_type"
+  Pyrefly : 9-25: Object of class `base_type` has no attribute `is_ptr` [missing-attribute]
+

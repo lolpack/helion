@@ -55,6 +55,20 @@ def parse(text: str) -> List[Tuple[str, str, str]]:
 # ───────── main ───────── #
 def main() -> None:
     ap = argparse.ArgumentParser(description="Compare Pyright vs Pyrefly output")
+    ap = argparse.ArgumentParser(
+        description="Compare Pyright vs Pyrefly output",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+    )
+    ap.add_argument(
+        "-a",
+        "--agree-only",
+        action="store_true",
+        help=(
+            "Only list rows where *both* tools report an error. "
+            "For each agreed row the messages from Pyright and Pyrefly "
+            "are shown."
+        ),
+    )
     ap.add_argument("targets", nargs="*", help="files / directories to check")
     args = ap.parse_args()
 
@@ -110,6 +124,22 @@ def main() -> None:
     print(f"Rows only in Pyrefly            : {len(pr_only_rows)}")
     print("=========================================\n")
 
+    # ――― agree‑only mode ――― #
+    if args.agree_only:
+        if not overlapping_locs:
+            print("✅ No rows where both tools agree on an error.")
+            return
+
+        print("▶ Rows where Pyright *and* Pyrefly agree:\n")
+        for loc in sorted(overlapping_locs):        # loc is "path:row"
+            print(f"{loc}:")
+            for msg in sorted(py_map[loc]):
+                print(f"  Pyright : {msg}")
+            for msg in sorted(pr_map[loc]):
+                print(f"  Pyrefly : {msg}")
+            print()
+        return
+
     if py_only_rows:
         print("▶ PYRIGHT-only locations:")
         for key in sorted(py_only_rows):
@@ -123,6 +153,7 @@ def main() -> None:
             for msg in sorted(pr_map[key]):
                 print(f"  {key}: {msg}")
         print()
+
 
 
 if __name__ == "__main__":

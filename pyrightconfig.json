@@ -10,5 +10,9 @@
   "extraPaths": ["triton/python", "../pytorch", "../pytorch-hg", "../pytorch-nightly"],
 
   // Target Python language level
-  "pythonVersion": "3.10"
+  "pythonVersion": "3.10",
+
+  // Ignore torch imports for now
+  "reportMissingImports": "none",
+  "reportAttributeAccessIssue": "none"
 }
