@@ -1,0 +1,31 @@
+project_includes = ["helion", "examples"]
+python_version = "3.10"
+replace_imports_with_any = [
+    # "torch.*",
+    # "triton/python.*"
+]
+permissive-ignores = true
+
+search-path = ["triton/python"]#, "../pytorch", "../pytorch-hg", "../pytorch-nightly"]
+
+# untyped-def-behavior = "check-and-infer-return-any"
+
+site-package-path = ["venv/lib/python3.12/site-packages", "../pytorch", "../pytorch-hg", "../pytorch-nightly"]
+
+[errors]
+# bad-argument-type: 37 instances
+# missing-attribute: 33 instances
+# bad-assignment: 15 instances
+# no-matching-overload: 11 instances
+# bad-return: 9 instances
+# unexpected-keyword: 8 instances
+# unsupported-operation: 6 instances
+# index-error: 6 instances
+# missing-argument: 5 instances
+# bad-override: 4 instances
+# read-only: 2 instances
+# no-access: 2 instances
+# import-error: 1 instance
+# not-a-type: 1 instance
+# invalid-argument: 1 instance
+# bad-function-definition: 1 instance
