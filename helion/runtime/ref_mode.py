@@ -147,7 +147,7 @@ class RefModeTorchFunctionMode(BaseTorchFunctionMode):
         }
 
         # Map method names to their handlers for tensor methods
-        self._method_handlers = {
+        self._method_handlers: dict[Any, Any] = {
             **{
                 method: lambda args, kwargs, m=method: self._handle_factory_method(
                     args, kwargs, m, has_fill=False

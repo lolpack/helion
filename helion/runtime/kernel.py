@@ -313,7 +313,7 @@ class BoundKernel(Generic[_R]):
 
         if is_ref_mode_enabled(self.kernel.settings):
             self.fake_args = []  # type: ignore[assignment]
-            self.host_function = None  # type: ignore[assignment]
+            self.host_function: HostFunction = None  # type: ignore[assignment]
             return
 
         with self.env:

@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING
 from typing import Callable
 from typing import cast
 from typing import overload
+from typing import Any
 
 import torch
 from torch.fx.experimental import proxy_tensor
@@ -121,7 +122,7 @@ def _(
         assert isinstance(other, (int, float)), (
             "other must be a scalar for single tensor input"
         )
-        input_data = [input_tensor]
+        input_data: list[Any] = [input_tensor]
         other = (other,)
         # Wrap single-tensor combine function to work with tuples
         original_fn = cast("CombineFunctionBasic", combine_fn)
@@ -134,7 +135,7 @@ def _(
 
         combine_fn = wrapped_combine_fn
     else:
-        input_data = list(input_tensor)
+        input_data: list[Any] = list(input_tensor)
         # Ensure other is a tuple with same length
         if not isinstance(other, tuple):
             other = (other,) * len(input_data)
@@ -190,7 +191,7 @@ def _(
 
     # Perform reduction
     # Create index iterators for non-reduced dimensions
-    index_iterators = [
+    index_iterators: list[Any] = [
         [slice(None)] if i in dims_to_reduce else list(range(shape[i]))
         for i in range(len(shape))
     ]
