@@ -5,7 +5,6 @@ from typing import TYPE_CHECKING
 from typing import Callable
 from typing import MutableSequence
 from typing import TypeVar
-from typing import Optional
 
 from torch.fx.node import map_aggregate
 
@@ -121,14 +120,14 @@ class BlockIdSequence(MutableSequence[_BlockIdItemT]):
         self._reindex()
 
     def config_get(
-        self, config: list[_T], block_id: int, default: Optional[_D] = None
-    ) -> _T | _D:
+        self, config: list[_T], block_id: int, default: _D = None # pyrefly: ignore None intersection
+    ) -> _T | _D: 
         """
         Get the config value for the given block_id, or return default if not found.
         """
         index = self._block_id_to_index.get(block_id, None)
         if index is None:
-            return default
+            return default 
         return config[index]
 
     def _flat_config(
