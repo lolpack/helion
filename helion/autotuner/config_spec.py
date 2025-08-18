@@ -5,6 +5,7 @@ import functools
 import operator
 from typing import TYPE_CHECKING
 from typing import cast
+from typing import Any
 
 from torch._inductor.runtime.runtime_utils import next_power_of_2
 
@@ -250,7 +251,8 @@ class ConfigSpec:
 
     def flat_config(self, fn: Callable[[ConfigSpecFragment], object]) -> helion.Config:
         """Map a flattened version of the config using the given function."""
-        config = {
+        # Container inference needs to be overridden
+        config: dict[str, Any] = {
             "block_sizes": self.block_sizes._flat_config(self, fn),
             "loop_orders": self.loop_orders._flat_config(self, fn),
             "flatten_loops": self.flatten_loops._flat_config(self, fn),

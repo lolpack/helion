@@ -314,6 +314,10 @@ def _(
         # The combine function expects (left_tuple, right_tuple)
         fake_inputs = [tuple(left_fake_tensors), tuple(right_fake_tensors)]
     else:
+        # makes the code statically check in that area
+        # otherwise its really unclear why this is safe unless you track htat a boolean means a particular type nearby
+        
+        assert isinstance(input_tensor, torch.Tensor)
         # For single tensor inputs, create two different fake tensors for left and right args
         left_fake_tensor = torch.empty(
             [1], dtype=input_tensor.dtype, device=input_tensor.device
