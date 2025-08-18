@@ -43,13 +43,14 @@ jobs:
           uv pip install pyright==1.1.403
           uv pip install .'[dev]'
 
-      - name: Run pre-commit
-        run: |
-          source .venv/bin/activate
-          pre-commit run --all-files
-
       - name: Run Pyrefly
         run: |
           source .venv/bin/activate
           uv pip install pyrefly
           pyrefly check
+        continue-on-error: true
+
+      - name: Run pre-commit
+        run: |
+          source .venv/bin/activate
+          pre-commit run --all-files

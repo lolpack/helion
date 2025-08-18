@@ -316,7 +316,7 @@ def _(
     else:
         # makes the code statically check in that area
         # otherwise its really unclear why this is safe unless you track htat a boolean means a particular type nearby
-        
+
         assert isinstance(input_tensor, torch.Tensor)
         # For single tensor inputs, create two different fake tensors for left and right args
         left_fake_tensor = torch.empty(

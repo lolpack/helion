@@ -116,7 +116,7 @@ class RefModeTorchFunctionMode(BaseTorchFunctionMode):
     def __init__(self) -> None:
         super().__init__()
         # Map functions to their handlers
-        # Pyrefly infers containers so this needs an explicit Any which 
+        # Pyrefly infers containers so this needs an explicit Any which
         # pyright does automatically
         self._func_handlers: dict[Any, Any] = {
             torch.addmm: lambda args, kwargs: self._handle_mm_with_bias(
