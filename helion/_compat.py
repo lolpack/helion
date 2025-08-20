@@ -9,7 +9,6 @@ import triton
 from triton.backends.compiler import GPUTarget
 import triton.language as tl
 
-
 def supports_tensor_descriptor() -> bool:
     # call private func we can patch in testing
     return _supports_tensor_descriptor()
@@ -57,6 +56,7 @@ def _min_dot_size(
         # TODO(jansel): support non-cuda properly
         return (16, 16, 16)
 
+    # type: ignore cross OS compat
     from triton.backends.nvidia.compiler import min_dot_size as min_dot_size_cuda
 
     props = DeviceProperties.create(device)

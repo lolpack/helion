@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from typing import Callable
 from typing import MutableSequence
 from typing import TypeVar
+from typing import Any
 
 from torch.fx.node import map_aggregate
 
@@ -161,7 +162,7 @@ class BlockIdSequence(MutableSequence[_BlockIdItemT]):
         if flatten:
             if values is None:
                 values = ()
-            new_values = []
+            new_values: list[Any] = []
 
             map_aggregate(values, new_values.append)  # pyright: ignore[reportArgumentType]
             values = new_values

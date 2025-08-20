@@ -338,7 +338,7 @@ class BlockSizeSpec(_PowerOfTwoBlockIdItem):
         assert self.min_size <= self.max_size
 
     def __repr__(self) -> str:
-        fields = []
+        fields: list[str] = []
         for field, default in (
             ("block_id", None),
             ("size_hint", None),
