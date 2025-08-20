@@ -200,7 +200,7 @@ def convert(node: ast.AST) -> ast.AST:
                 _location=location,  # pyright: ignore[reportCallIssue]
             )
     elif isinstance(node, list):
-        return [convert(item) for item in node]
+        return [convert(item) for item in node] # pyrefly: ignore (THIS IS A REAL BUG?? Supposed to return AST or AST LIST??)
     else:
         return node
 

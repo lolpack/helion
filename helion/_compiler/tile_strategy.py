@@ -380,7 +380,7 @@ class FlattenedTileStrategy(BlockSizeTileStrategy):
         block_ids = self.block_ids
         env = CompileEnvironment.current()
         total_numel = sympy.S.One
-        statements = []
+        statements: list[ast.AST] = [] # Pyrefly infers a more precise type and needs explicit annotatoins
 
         for i, block_idx in enumerate(self._reorder(block_ids)):
             numel = env.block_sizes[block_idx].numel
@@ -574,7 +574,7 @@ class _BaseNDTileStrategy(BlockSizeTileStrategy):
                 state.add_statement(
                     f"{index_var} = {offset_var} + tl.zeros([1], {dtype})"
                 )
-            mask_statement = self._setup_mask(
+            mask_statement = self._setup_mask( #pyrefly: ignore Probably a bug since _BasedNDTileStrategy doesn't define _setup_mask
                 state, block_idx, block_size, index_var, numel
             )
             if mask_statement is not None:

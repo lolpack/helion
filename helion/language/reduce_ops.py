@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING
 from typing import Callable
 from typing import cast
 from typing import overload
+from typing import Any
 
 import torch
 from torch.fx.experimental import proxy_tensor
@@ -121,7 +122,7 @@ def _(
         assert isinstance(other, (int, float)), (
             "other must be a scalar for single tensor input"
         )
-        input_data = [input_tensor]
+        input_data: list[Any] = [input_tensor]
         other = (other,)
         # Wrap single-tensor combine function to work with tuples
         original_fn = cast("CombineFunctionBasic", combine_fn)
@@ -134,7 +135,7 @@ def _(
 
         combine_fn = wrapped_combine_fn
     else:
-        input_data = list(input_tensor)
+        input_data: list[Any] = list(input_tensor)
         # Ensure other is a tuple with same length
         if not isinstance(other, tuple):
             other = (other,) * len(input_data)
@@ -190,7 +191,7 @@ def _(
 
     # Perform reduction
     # Create index iterators for non-reduced dimensions
-    index_iterators = [
+    index_iterators: list[Any] = [
         [slice(None)] if i in dims_to_reduce else list(range(shape[i]))
         for i in range(len(shape))
     ]
@@ -314,6 +315,10 @@ def _(
         # The combine function expects (left_tuple, right_tuple)
         fake_inputs = [tuple(left_fake_tensors), tuple(right_fake_tensors)]
     else:
+        # makes the code statically check in that area
+        # otherwise its really unclear why this is safe unless you track htat a boolean means a particular type nearby
+
+        assert isinstance(input_tensor, torch.Tensor)
         # For single tensor inputs, create two different fake tensors for left and right args
         left_fake_tensor = torch.empty(
             [1], dtype=input_tensor.dtype, device=input_tensor.device

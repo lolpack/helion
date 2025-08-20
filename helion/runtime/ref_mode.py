@@ -7,6 +7,7 @@ from typing import TYPE_CHECKING
 from typing import Callable
 from typing import Protocol
 from typing import cast
+from typing import Any
 
 import torch
 from torch.overrides import BaseTorchFunctionMode
@@ -115,7 +116,9 @@ class RefModeTorchFunctionMode(BaseTorchFunctionMode):
     def __init__(self) -> None:
         super().__init__()
         # Map functions to their handlers
-        self._func_handlers = {
+        # Pyrefly infers containers so this needs an explicit Any which
+        # pyright does automatically
+        self._func_handlers: dict[Any, Any] = {
             torch.addmm: lambda args, kwargs: self._handle_mm_with_bias(
                 args, kwargs, torch.mm, "addmm"
             ),
@@ -144,7 +147,7 @@ class RefModeTorchFunctionMode(BaseTorchFunctionMode):
         }
 
         # Map method names to their handlers for tensor methods
-        self._method_handlers = {
+        self._method_handlers: dict[Any, Any] = {
             **{
                 method: lambda args, kwargs, m=method: self._handle_factory_method(
                     args, kwargs, m, has_fill=False

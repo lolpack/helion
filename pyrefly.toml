@@ -1,0 +1,9 @@
+project_includes = ["helion", "examples"]
+python_version = "3.10"
+
+permissive-ignores = true
+
+search-path = ["triton/python", "../pytorch", "../pytorch-hg", "../pytorch-nightly"]
+
+[errors]
+implicitly-defined-attribute = false
