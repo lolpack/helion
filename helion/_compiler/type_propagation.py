@@ -720,6 +720,7 @@ class LiteralType(TypeInfo):
                 float,
                 bool,
             ):
+                # pyrefly: ignore [bad-argument-type]
                 return NumericType.subtype(self.python_type).new_unbacked(self.origin)
         return super().merge(other, var_name=var_name)
 
@@ -752,6 +753,7 @@ class ConfigFragmentType(LiteralType):
 
 
 class CallableType(LiteralType):
+    # pyrefly: ignore [bad-override]
     value: Callable[..., object]
 
     def __init__(self, origin: Origin, value: Callable[..., object]) -> None:
@@ -877,6 +879,7 @@ def _raise_shape_specializing(*args: object) -> None:
 
 
 class PythonModuleType(LiteralType):
+    # pyrefly: ignore [bad-override]
     value: types.ModuleType
 
     def __init__(self, origin: Origin, value: types.ModuleType) -> None:
@@ -1627,6 +1630,7 @@ class TypePropagation(ast.NodeVisitor):
                     f"visit_{node.__class__.__name__}",
                     self.generic_visit,
                 )
+                # pyrefly: ignore [bad-argument-type]
                 type_info = visitor(node)
                 assert isinstance(type_info, TypeInfo), (
                     f"expected TypeInfo, got {type_info!r} from {visitor!r}"
@@ -1661,6 +1665,7 @@ class TypePropagation(ast.NodeVisitor):
             and left.python_type == right.python_type
             and (pt := left.python_type) in (int, float, bool)
         ):
+            # pyrefly: ignore [bad-argument-type]
             return NumericType.subtype(pt).new_unbacked(self.origin())
         raise exc.TypeInferenceError(
             f"{type(op).__name__} not supported on {left!s} and {right!s}"
@@ -2113,6 +2118,7 @@ class TypePropagation(ast.NodeVisitor):
             ):
                 raise exc.CannotModifyHostVariableOnDevice(node.target.id) from e
             raise
+        # pyrefly: ignore [bad-argument-type]
         self._assign(node.target, type_info)
         return NoType(origin=self.origin())
 

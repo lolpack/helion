@@ -357,6 +357,7 @@ class BlockSizeTileStrategy(TileStrategy):
 class FlattenedTileStrategy(BlockSizeTileStrategy):
     """Collapse all dimensions into single flat iteration space."""
 
+    # pyrefly: ignore [bad-override]
     block_size: SymIntLike
 
     def __init__(
@@ -562,6 +563,7 @@ class FlattenedTileStrategy(BlockSizeTileStrategy):
 
 
 class _BaseNDTileStrategy(BlockSizeTileStrategy):
+    # pyrefly: ignore [bad-override]
     block_size: list[SymIntLike]
 
     def __init__(

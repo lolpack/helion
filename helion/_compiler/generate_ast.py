@@ -95,6 +95,7 @@ class GenerateAST(NodeVisitor, CodegenInterface):
         with expr:
             varname = self.tmpvar(dce=dce, prefix=prefix)
             self.add_statement(
+                # pyrefly: ignore [bad-argument-type]
                 statement_from_string(f"{varname} = {{expr}}", expr=expr)
             )
             return create(ast.Name, id=varname, ctx=ast.Load())
@@ -135,6 +136,7 @@ class GenerateAST(NodeVisitor, CodegenInterface):
             # Emit the temporary into the chosen statement list so the symbolic
             # expression is computed exactly once at the appropriate scope.
             target_statements.append(
+                # pyrefly: ignore [bad-argument-type]
                 statement_from_string(f"{varname} = {{expr}}", expr=expr)
             )
             # Reuse the temporary everywhere else in the kernel body.
@@ -204,6 +206,7 @@ class GenerateAST(NodeVisitor, CodegenInterface):
     def generic_visit(self, node: ast.AST) -> ast.AST:
         assert isinstance(node, ExtendedAST)
         fields = {}
+        # pyrefly: ignore [bad-argument-type]
         for field, old_value in ast.iter_fields(node):
             if isinstance(old_value, list):
                 fields[field] = new_list = []
@@ -327,6 +330,7 @@ class GenerateAST(NodeVisitor, CodegenInterface):
                 self.device_function.dead_code_elimination()
                 return self.device_function.codegen_function_call()
             return None
+        # pyrefly: ignore [bad-argument-type]
         return self.generic_visit(node)
 
     def visit_Name(self, node: ast.Name) -> ast.AST:
@@ -343,6 +347,7 @@ class GenerateAST(NodeVisitor, CodegenInterface):
             if origin.needs_rename():
                 # `x` => `_source_module.x`
                 return expr_from_string(origin.host_str())
+        # pyrefly: ignore [bad-return]
         return node
 
     def visit_Call(self, node: ast.Call) -> ast.AST:
@@ -407,6 +412,7 @@ class GenerateAST(NodeVisitor, CodegenInterface):
                     ast_args=[*ast_params.arguments.values()],
                 )
             )
+        # pyrefly: ignore [bad-argument-type]
         return self.generic_visit(node)
 
     def host_dead_code_elimination(self) -> None:

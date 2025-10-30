@@ -130,6 +130,7 @@ def swiglu_bwd(gout: Tensor, x1: Tensor, x2: Tensor) -> tuple[Tensor, Tensor]:
 
 class SwigluFunction(torch.autograd.Function):
     @staticmethod
+    # pyrefly: ignore [bad-override]
     def forward(
         ctx: Any,  # noqa: ANN401
         x1: Tensor,

@@ -133,6 +133,7 @@ def track_run_ref_calls() -> Generator[list[int], None, None]:
         run_ref_count[0] += 1
         return original_run_ref(self, *args)
 
+    # pyrefly: ignore [bad-assignment]
     BoundKernel.run_ref = tracked_run_ref
 
     try:
@@ -222,6 +223,7 @@ class RefEagerTestBase:
 
         # Patch torch.testing.assert_close to count calls
         if RefEagerTestBase._original_assert_close_func is None:
+            # pyrefly: ignore [bad-assignment]
             RefEagerTestBase._original_assert_close_func = torch.testing.assert_close
 
         def counting_assert_close(*args: object, **kwargs: object) -> None:
@@ -232,6 +234,7 @@ class RefEagerTestBase:
 
         # Patch self.assertRaises to count calls
         if RefEagerTestBase._original_assert_raises_func is None:
+            # pyrefly: ignore [bad-assignment]
             RefEagerTestBase._original_assert_raises_func = self.assertRaises
 
         def counting_assert_raises(*args: object, **kwargs: object) -> object:
@@ -242,6 +245,7 @@ class RefEagerTestBase:
 
         # Patch self.skipTest to count calls
         if RefEagerTestBase._original_skip_test_func is None:
+            # pyrefly: ignore [bad-assignment]
             RefEagerTestBase._original_skip_test_func = self.skipTest
 
         def counting_skip_test(*args: object, **kwargs: object) -> object:
@@ -256,6 +260,7 @@ class RefEagerTestBase:
 
         # Patch pytest.raises to count calls
         if RefEagerTestBase._original_pytest_raises is None:  # pyright: ignore[reportAttributeAccessIssue]
+            # pyrefly: ignore [bad-assignment]
             RefEagerTestBase._original_pytest_raises = pytest.raises
 
         def counting_pytest_raises(*args: object, **kwargs: object) -> object:
@@ -268,6 +273,7 @@ class RefEagerTestBase:
 
         # Patch self.assertTrue to count calls
         if RefEagerTestBase._original_assert_true_func is None:
+            # pyrefly: ignore [bad-assignment]
             RefEagerTestBase._original_assert_true_func = self.assertTrue
 
         def counting_assert_true(*args: object, **kwargs: object) -> None:
@@ -278,6 +284,7 @@ class RefEagerTestBase:
 
         # Patch self.assertFalse to count calls
         if RefEagerTestBase._original_assert_false_func is None:
+            # pyrefly: ignore [bad-assignment]
             RefEagerTestBase._original_assert_false_func = self.assertFalse
 
         def counting_assert_false(*args: object, **kwargs: object) -> None:
@@ -288,6 +295,7 @@ class RefEagerTestBase:
 
         # Patch self.assertGreater to count calls
         if RefEagerTestBase._original_assert_greater_func is None:
+            # pyrefly: ignore [bad-assignment]
             RefEagerTestBase._original_assert_greater_func = self.assertGreater
 
         def counting_assert_greater(*args: object, **kwargs: object) -> None:
@@ -595,6 +603,7 @@ def run_example(
     all_benchmarks = {**kernels, **baselines}
     bench_fns = [functools.partial(fn, *args) for fn in all_benchmarks.values()]
     repeat = compute_repeat(bench_fns[0])
+    # pyrefly: ignore [bad-argument-type]
     timings = interleaved_bench(bench_fns, repeat=repeat, desc="Benchmarking")
     all_times = dict(zip(all_benchmarks.keys(), timings, strict=True))
     best_baseline_time = min(all_times[name] for name in baselines)  # pyright: ignore[reportArgumentType]
@@ -891,12 +900,14 @@ class TestCase(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls) -> None:
+        # pyrefly: ignore [no-access]
         cls._expected_journal = AssertExpectedJournal(cls)
         super().setUpClass()
 
     @classmethod
     def tearDownClass(cls) -> None:
         super().tearDownClass()
+        # pyrefly: ignore [no-access]
         del cls._expected_journal
 
     def setUp(self) -> None:

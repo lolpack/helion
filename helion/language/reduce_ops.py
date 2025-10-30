@@ -161,6 +161,7 @@ def _(
                 left_tuple: tuple[torch.Tensor, ...],
                 right_tuple: tuple[torch.Tensor, ...],
             ) -> tuple[torch.Tensor, ...]:
+                # pyrefly: ignore [bad-return]
                 return original_fn(*left_tuple, *right_tuple)
 
             combine_fn = wrapped_combine_fn2
@@ -196,6 +197,7 @@ def _(
     ]
 
     # Iterate over all combinations of non-reduced dimensions
+    # pyrefly: ignore [no-matching-overload]
     for idx in itertools.product(*index_iterators):
         # Gather values along reduction dimensions
         values_list = []
@@ -209,6 +211,7 @@ def _(
             # Fill in the reduction dimension indices
             for d, pos in zip(dims_to_reduce, reduction_indices, strict=False):
                 full_idx[d] = pos
+            # pyrefly: ignore [bad-index]
             values_list.append(tuple(t[tuple(full_idx)] for t in input_data))
 
         if not values_list:
@@ -416,6 +419,7 @@ def _(
             output_tensors.append(reduced_tensor)
         return tuple(output_tensors)
 
+    # pyrefly: ignore [bad-argument-type]
     output_tensor = _fake_reduce_tensor(input_tensor, dim, keep_dims)
     proxy_tensor.track_tensor_tree(
         output_tensor, proxy_out, constant=None, tracer=tracer

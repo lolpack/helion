@@ -326,10 +326,12 @@ def _new_var(value: _T, /) -> _T:
 @_decorators.register_fake(_new_var)
 def _(value: _T) -> _T:
     if isinstance(value, torch.Tensor):
+        # pyrefly: ignore [bad-return]
         return torch.empty_like(value)
     if isinstance(value, torch.SymInt):
         return CompileEnvironment.current().create_unbacked_symint()  # pyright: ignore[reportReturnType]
     if isinstance(value, (int, float, bool)) or value is None:
+        # pyrefly: ignore [bad-return]
         return value
     raise NotImplementedError(f"Unsupported type for _new_var: {type(value)}")
 

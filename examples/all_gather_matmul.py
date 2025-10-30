@@ -124,7 +124,9 @@ def helion_matmul_w_progress(
             ],
             signal=1,
         )
+        # pyrefly: ignore [bad-assignment]
         for tile_k in hl.tile(K):
+            # pyrefly: ignore [no-matching-overload]
             acc = torch.addmm(acc, a[tile_m, tile_k], b[tile_k, tile_n])
         out[tile_m, tile_n] = acc
     return out

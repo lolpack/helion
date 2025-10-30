@@ -107,6 +107,7 @@ class ConfigSpec:
     )
     indexing: ListOf = dataclasses.field(
         default_factory=lambda: ListOf(
+            # pyrefly: ignore [unbound-name]
             EnumFragment(choices=ConfigSpec._valid_indexing_types()), length=0
         )
     )
@@ -320,6 +321,7 @@ class ConfigSpec:
             if not config.get(name):
                 config.pop(name, None)
         self.normalize(config)
+        # pyrefly: ignore [bad-argument-type, bad-argument-type, bad-argument-type, bad-argument-type, bad-argument-type, bad-argument-type, bad-argument-type, bad-argument-type, bad-argument-type, bad-argument-type, bad-argument-type, bad-argument-type, bad-argument-type, bad-argument-type, bad-argument-type, bad-argument-type]
         return helion.Config(**config)
 
 

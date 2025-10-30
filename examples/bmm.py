@@ -47,7 +47,9 @@ def bmm(A: torch.Tensor, B: torch.Tensor) -> torch.Tensor:
     )
     for tile_b, tile_m, tile_n in hl.tile([b, m, n]):
         acc = hl.zeros([tile_b, tile_m, tile_n], dtype=torch.float32)
+        # pyrefly: ignore [bad-assignment]
         for tile_k in hl.tile(k):
+            # pyrefly: ignore [no-matching-overload]
             acc = torch.baddbmm(
                 acc, A[tile_b, tile_m, tile_k], B[tile_b, tile_k, tile_n]
             )

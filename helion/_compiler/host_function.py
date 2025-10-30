@@ -79,6 +79,7 @@ class HostFunction:
     ) -> None:
         super().__init__()
         env = CompileEnvironment.current()
+        # pyrefly: ignore [read-only]
         self.fn = fn
         self.constexpr_args = constexpr_args
         self.location: SourceLocation = UnknownLocation()
@@ -104,6 +105,7 @@ class HostFunction:
             self.params = inspect.signature(fn).bind(*fake_args)
             self.params.apply_defaults()
 
+            # pyrefly: ignore [bad-argument-type]
             HostFunction.validate_ast(root)
 
             from .device_ir import lower_to_device_ir

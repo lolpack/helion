@@ -86,6 +86,7 @@ def var_mean_helper_(
 
     out_dtype = x.get_dtype()
     compute_dtype = get_computation_dtype(out_dtype)
+    # pyrefly: ignore [bad-assignment]
     x = to_dtype(x, compute_dtype, copy=False)
 
     kwargs = {
@@ -98,6 +99,7 @@ def var_mean_helper_(
     # TODO(yf225): support Welford reduction in Helion, then switch back to use Inductor `var_mean_helper_()`.
     output = var_mean_sum_(**kwargs)
     output = tuple(to_dtype(o, out_dtype, copy=False) for o in output)
+    # pyrefly: ignore [bad-return]
     return output[0] if not return_mean else output
 
 

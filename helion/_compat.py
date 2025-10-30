@@ -266,6 +266,7 @@ def _min_dot_size(
         )
         return tuple(int(v) for v in dot_size_val)  # pyright: ignore[reportReturnType]
 
+    # pyrefly: ignore [missing-import]
     from triton.backends.nvidia.compiler import min_dot_size as min_dot_size_cuda
 
     props = DeviceProperties.create(device)

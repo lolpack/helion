@@ -330,6 +330,7 @@ def create_extra_node(
         )
     with proxy_tensor.disable_proxy_modes_tracing():
         node.meta["val"] = torch.empty(
+            # pyrefly: ignore [no-matching-overload]
             [*map(to_symint, buffer.get_size())],
             dtype=buffer.get_dtype(),
             device=buffer.get_device(),
@@ -1383,6 +1384,7 @@ class GraphInterpreter(Interpreter):
 
         # Ensure all outputs are found and are ast.Name nodes
         final_outputs = []
+        # pyrefly: ignore [bad-assignment]
         for i, result in enumerate(outputs):
             assert result is not None
             if not isinstance(result, ast.Name):

@@ -172,11 +172,13 @@ class RefModeTorchFunctionMode(BaseTorchFunctionMode):
         kwargs = kwargs or {}
 
         if func in self._func_handlers:
+            # pyrefly: ignore [bad-index, missing-argument]
             return self._func_handlers[func](args, kwargs)
 
         func_name = getattr(func, "__name__", None)
         if func_name:
             if func_name in self._method_handlers:
+                # pyrefly: ignore [missing-argument]
                 return self._method_handlers[func_name](args, kwargs)
             if func_name in self._binary_op_names:
                 return self._handle_binary_op(func, args, kwargs)

@@ -87,6 +87,7 @@ class Kernel(Generic[_R]):
         assert isinstance(fn, types.FunctionType)
         assert_no_conflicts(fn)
         self.name: str = fn.__name__
+        # pyrefly: ignore [read-only]
         self.fn: types.FunctionType = fn
         self.signature: inspect.Signature = inspect.signature(fn)
         self.settings: Settings = settings or Settings()
@@ -356,7 +357,9 @@ class BoundKernel(Generic[_R]):
                 _maybe_skip_dtype_check_in_meta_registrations(),
                 patch_inductor_lowerings(),
             ):
+                # pyrefly: ignore [bad-assignment]
                 self.host_function: HostFunction = HostFunction(
+                    # pyrefly: ignore [bad-argument-type]
                     self.kernel.fn, self.fake_args, constexpr_args
                 )
 
@@ -417,6 +420,7 @@ class BoundKernel(Generic[_R]):
             if not isinstance(config, Config):
                 config = Config(**config)  # pyright: ignore[reportArgumentType]
             self.env.config_spec.normalize(config)
+            # pyrefly: ignore [bad-argument-type]
             root = generate_ast(self.host_function, config, emit_repro_caller)
             if output_origin_lines is None:
                 output_origin_lines = self.settings.output_origin_lines

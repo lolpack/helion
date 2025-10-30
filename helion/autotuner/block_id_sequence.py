@@ -120,6 +120,7 @@ class BlockIdSequence(MutableSequence[_BlockIdItemT]):
         self._reindex()
 
     def config_get(
+        # pyrefly: ignore [bad-function-definition]
         self, config: list[_T], block_id: int, default: _D = None
     ) -> _T | _D:
         """

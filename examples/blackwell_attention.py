@@ -76,6 +76,7 @@ def _fma_f32x2(a: torch.Tensor, b: torch.Tensor, c: torch.Tensor) -> torch.Tenso
 
 
 # %%
+# pyrefly: ignore [no-matching-overload]
 @helion.kernel(
     configs=[
         helion.Config(
@@ -169,6 +170,7 @@ def blackwell_attention_kernel(
 
             if SUBTILING:
                 acc0, acc1 = hl.split(
+                    # pyrefly: ignore [no-matching-overload]
                     acc.reshape([tile_m, 2, Dv // 2]).permute(0, 2, 1)
                 )
                 if VECT_MUL == 1 or VECT_MUL == 3:

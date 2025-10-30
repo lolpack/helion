@@ -154,6 +154,7 @@ def _get_autotune_log_level() -> int:
     if text.lstrip("+-").isdigit():
         return int(text)
     upper = text.upper()
+    # pyrefly: ignore [deprecated]
     level = logging.getLevelName(upper)
     if isinstance(level, int):
         return level

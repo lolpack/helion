@@ -155,6 +155,7 @@ def layer_norm_bwd(
 # %%
 class LayerNormFunction(torch.autograd.Function):
     @staticmethod
+    # pyrefly: ignore [bad-override]
     def forward(
         ctx: Any,  # noqa: ANN401
         x: torch.Tensor,

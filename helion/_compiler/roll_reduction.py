@@ -260,7 +260,9 @@ class ReductionRoller:
             new_node = self.inner_graph.create_node(
                 node.op,
                 node.target,
+                # pyrefly: ignore [bad-argument-type, bad-argument-type, bad-argument-type]
                 *map_arg((node.args, node.kwargs), self.get_inner_arg),
+                # pyrefly: ignore [bad-keyword-argument]
                 name=node.name,
             )
             new_node.meta.update(node.meta)
@@ -293,7 +295,9 @@ class ReductionRoller:
             self.inner_nodes[node] = new_node = self.inner_graph.create_node(
                 node.op,
                 node.target,
+                # pyrefly: ignore [bad-argument-type, bad-argument-type, bad-argument-type]
                 *map_arg((node.args, node.kwargs), self.get_inner_arg),
+                # pyrefly: ignore [bad-keyword-argument]
                 name=node.name,
             )
             new_node.meta.update(node.meta)
@@ -379,7 +383,9 @@ class ReductionRoller:
                 new_node = self.inner_graph.create_node(
                     node.op,
                     node.target,
+                    # pyrefly: ignore [bad-argument-type, bad-argument-type, bad-argument-type]
                     *map_arg((node.args, node.kwargs), self.get_inner_arg),
+                    # pyrefly: ignore [bad-keyword-argument]
                     name=node.name,
                 )
                 new_node.meta.update(node.meta)
@@ -396,7 +402,9 @@ class ReductionRoller:
                 new_node = self.outer_graph.create_node(
                     node.op,
                     node.target,
+                    # pyrefly: ignore [bad-argument-type, bad-argument-type, bad-argument-type]
                     *map_arg((node.args, node.kwargs), self.outer_nodes.__getitem__),
+                    # pyrefly: ignore [bad-keyword-argument]
                     name=node.name,
                 )
                 new_node.meta.update(node.meta)

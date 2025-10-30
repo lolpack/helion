@@ -71,9 +71,11 @@ def moe_matmul_ogs(
                     expert_sorted_token_indices.squeeze(0)
                 ]
                 acc = hl.zeros([tile_t, tile_n], dtype=torch.float32)
+                # pyrefly: ignore [bad-assignment]
                 for tile_k in hl.tile(K):
                     A_frag = A[expert_orig_token_indices, tile_k]
                     W_frag = W[e_idx, tile_k, tile_n]
+                    # pyrefly: ignore [no-matching-overload]
                     acc = torch.addmm(acc, A_frag, W_frag)
                 block_T, block_N = acc.size()
                 existing_values = C[expert_orig_token_indices, tile_n]

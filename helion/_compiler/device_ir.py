@@ -591,6 +591,7 @@ class WalkDeviceAST(NodeVisitor):
 
         # Check if we're iterating directly over a sequence (tuple unrolling)
         if isinstance(iter_type, SequenceType):
+            # pyrefly: ignore [bad-argument-type]
             self._handle_tuple_unrolling(node)
             return
 
@@ -600,6 +601,7 @@ class WalkDeviceAST(NodeVisitor):
             if isinstance(scope_value, (tuple, list)):
                 # This is a sequence in the scope, we should try to unroll it
                 # even if the type info doesn't indicate it's a SequenceType
+                # pyrefly: ignore [bad-argument-type]
                 self._handle_tuple_unrolling(node)
                 return
 
@@ -610,15 +612,20 @@ class WalkDeviceAST(NodeVisitor):
             self._assign(node.target, inner_type.proxy())
             self._body(node.body)
         elif node._loop_type == LoopType.DEVICE:
+            # pyrefly: ignore [bad-argument-type]
             rw: ReadWrites = ReadWrites.from_ast(node)
             inputs: LiftTensorArgs = LiftTensorArgs(
+                # pyrefly: ignore [bad-argument-type]
                 {
+                    # pyrefly: ignore [bad-index]
                     k: self.scope[k]
                     for k in rw
+                    # pyrefly: ignore [bad-index]
                     if k in self.scope and self.should_become_arg(self.scope[k])
                 }
             )
             outputs: LiftTensorArgs | None = None
+            # pyrefly: ignore [bad-argument-type]
             begin, end = self._extract_tile_begin_end(node)
             if isinstance(inner_type, SequenceType):
                 iter_vars = inner_type.unpack()
@@ -712,9 +719,12 @@ class WalkDeviceAST(NodeVisitor):
     def _create_if_subgraph(self, test_proxy: object, body: list[ast.stmt]) -> None:
         rw: ReadWrites = ReadWrites.from_list(body)
         inputs: LiftTensorArgs = LiftTensorArgs(
+            # pyrefly: ignore [bad-argument-type]
             {
+                # pyrefly: ignore [bad-index]
                 k: self.scope[k]
                 for k in rw
+                # pyrefly: ignore [bad-index]
                 if k in self.scope and self.should_become_arg(self.scope[k])
             }
         )
@@ -788,6 +798,7 @@ class WalkDeviceAST(NodeVisitor):
 
     def _subscript_slice_proxy(self, slice_node: ast.AST) -> list[object]:
         assert isinstance(slice_node, ExtendedAST)
+        # pyrefly: ignore [bad-argument-type]
         result = self.visit(slice_node)
         if isinstance(result, (list, tuple)):
             return [*result]
@@ -804,17 +815,20 @@ class WalkDeviceAST(NodeVisitor):
         assert isinstance(node, ExtendedAST)
 
         # Only handle simple cases with single generator and no if conditions
+        # pyrefly: ignore [bad-index]
         if len(node.generators) != 1 or node.generators[0].ifs:
             raise exc.StatementNotSupported(
                 "Complex list comprehensions are not supported"
             )
 
+        # pyrefly: ignore [bad-index]
         generator = node.generators[0]
         assert isinstance(generator.iter, ExtendedAST)
         iter_type = generator.iter._type_info
 
         # Check if we're iterating over a sequence (similar to tuple unrolling)
         if isinstance(iter_type, SequenceType):
+            # pyrefly: ignore [bad-argument-type]
             return self._handle_listcomp_unrolling(node)
 
         # For non-sequence iterables, we could extend this later
@@ -923,7 +937,9 @@ class WalkDeviceAST(NodeVisitor):
                 else str(target.value)
             )
             raise exc.DeviceTensorSubscriptAssignmentNotAllowed(var_name)
+        # pyrefly: ignore [bad-argument-type]
         val = self.visit(node.value)
+        # pyrefly: ignore [bad-argument-type]
         self._assign_subscript(target, val)
 
     def _assign_subscript(self, target: ast.Subscript, val: object) -> None:
@@ -963,7 +979,9 @@ class WalkDeviceAST(NodeVisitor):
     def visit_AugAssign(self, node: ast.AugAssign) -> None:
         assert isinstance(node.target, ExtendedAST)
         self._assign(
+            # pyrefly: ignore [bad-argument-type]
             node.target,
+            # pyrefly: ignore [bad-argument-type]
             _eval_binary(node.op, self.visit(node.target), self.visit(node.value)),
         )
 
@@ -1063,6 +1081,7 @@ class WalkHostAST(NodeVisitor):
         assert isinstance(node, ExtendedAST)
         if node._loop_type == LoopType.GRID:
             self.device_ir.add_root_graph(
+                # pyrefly: ignore [bad-argument-type]
                 _make_fx(lambda: WalkDeviceAST(self.device_ir).visit(node))
             )
             iter_type = node.iter._type_info  # pyright: ignore[reportAttributeAccessIssue]
@@ -1074,6 +1093,7 @@ class WalkHostAST(NodeVisitor):
                 block_ids = [inner.block_id]  # pyright: ignore[reportAttributeAccessIssue]
             self.device_ir.grid_block_ids.append(block_ids)
         else:
+            # pyrefly: ignore [bad-argument-type]
             self.generic_visit(node)
 
 

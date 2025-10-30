@@ -93,10 +93,12 @@ def grouped_gemm_jagged(
             for tile_m, tile_n in hl.tile([M_g, N]):
                 acc = hl.zeros([tile_m, tile_n], dtype=torch.float32)
                 # K-reduction loop: multiply tiles along K dimension
+                # pyrefly: ignore [bad-assignment]
                 for tile_k in hl.tile(K):
                     a_blk = A_packed[start + tile_m.index, tile_k]
                     b_blk = B[tile_k, tile_n]
                     # Perform fused multiply-add with FP32 accumulation for numerical stability
+                    # pyrefly: ignore [no-matching-overload]
                     acc = torch.addmm(acc, a_blk, b_blk)
                 # Convert accumulator to output dtype and store result
                 out[start + tile_m.index, tile_n] = acc.to(out.dtype)
@@ -196,6 +198,7 @@ def grouped_gemm_jagged_persistent(
                         acc = hl.zeros([BLOCK_M, BLOCK_N], dtype=torch.float32)
 
                         # Iterate over K dimension in blocks for matrix multiplication
+                        # pyrefly: ignore [bad-assignment]
                         for k_tile in hl.tile(K):
                             k_idx = k_tile.index
 
@@ -212,6 +215,7 @@ def grouped_gemm_jagged_persistent(
                             )
 
                             # Perform tile-level matrix multiplication and accumulate
+                            # pyrefly: ignore [no-matching-overload]
                             acc = torch.addmm(acc, a_blk, b_blk)
 
                         # Write accumulated result to output with boundary masking

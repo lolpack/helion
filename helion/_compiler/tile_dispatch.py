@@ -61,6 +61,7 @@ class TileStrategyDispatch:
         env = CompileEnvironment.current()
         block_size_infos = [env.block_sizes[i] for i in block_ids]
         loop_order = env.config_spec.loop_orders.config_get(
+            # pyrefly: ignore [bad-argument-type]
             config.loop_orders, block_ids[0]
         ) or [*range(len(block_ids))]
         l2_grouping = env.config_spec.l2_groupings.config_get(

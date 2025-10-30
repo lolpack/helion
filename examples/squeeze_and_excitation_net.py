@@ -52,7 +52,9 @@ def squeeze_and_excitation_net_fwd(
         # Compute d = sigmoid(c @ b) and out = x * d for this tile_m
         for tile_n in hl.tile(n):
             acc = hl.zeros([tile_m, tile_n], dtype=torch.float32)
+            # pyrefly: ignore [bad-assignment]
             for tile_k in hl.tile(k):
+                # pyrefly: ignore [no-matching-overload]
                 acc = torch.addmm(acc, c[tile_m, tile_k], b[tile_k, tile_n])
             d[tile_m, tile_n] = torch.sigmoid(acc)
             out[tile_m, tile_n] = x[tile_m, tile_n] * d[tile_m, tile_n]
@@ -88,6 +90,7 @@ def squeeze_and_excitation_net_bwd_dx(
         acc += grad_out[tile_m, tile_n] * d[tile_m, tile_n]
 
         # Second term: accumulate gradient chain over k dimension
+        # pyrefly: ignore [bad-assignment]
         for tile_k in hl.tile(k):
             # Compute grad_to_d for the full row: shape [tile_m, n]
             grad_to_d = (
@@ -103,6 +106,7 @@ def squeeze_and_excitation_net_bwd_dx(
 
             # Backprop through (x @ a): grad_x_contribution = grad_c_masked @ a.T
             # [tile_m, tile_k] @ [tile_k, tile_n] = [tile_m, tile_n]
+            # pyrefly: ignore [no-matching-overload]
             acc = torch.addmm(acc, grad_c_masked, a[tile_n, tile_k].T)
 
         grad_x[tile_m, tile_n] = acc
@@ -127,6 +131,7 @@ def squeeze_and_excitation_net_bwd_da(
     # Compute grad_a: x.T @ grad_c
     for tile_n, tile_k in hl.tile([n, k]):
         acc_a = hl.zeros([tile_n, tile_k], dtype=torch.float32)
+        # pyrefly: ignore [bad-assignment]
         for tile_m in hl.tile(m):
             # Backprop through sigmoid: need full row for matmul with b.T
             grad_to_d = grad_out[tile_m, :] * x[tile_m, :]
@@ -136,6 +141,7 @@ def squeeze_and_excitation_net_bwd_da(
             # Backprop through relu
             grad_through_relu = grad_to_c * (c[tile_m, tile_k] > 0)
             # Accumulate x.T @ grad_c: [tile_n, tile_m] @ [tile_m, tile_k] = [tile_n, tile_k]
+            # pyrefly: ignore [no-matching-overload]
             acc_a = torch.addmm(acc_a, x[tile_m, tile_n].T, grad_through_relu)
         grad_a[tile_n, tile_k] = acc_a
 
@@ -157,6 +163,7 @@ def squeeze_and_excitation_net_bwd_db(
 
     for tile_k, tile_n in hl.tile([k, n]):
         acc = hl.zeros([tile_k, tile_n], dtype=torch.float32)
+        # pyrefly: ignore [bad-assignment]
         for tile_m in hl.tile(m):
             grad_d = (
                 grad_out[tile_m, tile_n]
@@ -164,6 +171,7 @@ def squeeze_and_excitation_net_bwd_db(
                 * d[tile_m, tile_n]
                 * (1.0 - d[tile_m, tile_n])
             )
+            # pyrefly: ignore [no-matching-overload]
             acc = torch.addmm(acc, c[tile_m, tile_k].T, grad_d)
         grad_b[tile_k, tile_n] = acc
 

@@ -58,7 +58,9 @@ def matmul(
     )
     for tile_m, tile_n in hl.tile([m, n]):
         acc = hl.zeros([tile_m, tile_n], dtype=torch.float32)
+        # pyrefly: ignore [bad-assignment]
         for tile_k in hl.tile(k):
+            # pyrefly: ignore [no-matching-overload]
             acc = torch.addmm(acc, x[tile_m, tile_k], y[tile_k, tile_n])
         out[tile_m, tile_n] = epilogue(acc, (tile_m, tile_n))
     return out
@@ -100,8 +102,10 @@ def matmul_bwd(
     # First loop block: compute grad_mat1 = grad_out @ mat2.T
     for tile_m1, tile_k1 in hl.tile([m, k]):
         acc1 = hl.zeros([tile_m1, tile_k1], dtype=torch.float32)
+        # pyrefly: ignore [bad-assignment]
         for tile_n1 in hl.tile(n):
             # Need mat2.T: mat2 is [k, n], so mat2[tile_k, tile_n].T gives [tile_n, tile_k]
+            # pyrefly: ignore [no-matching-overload]
             acc1 = torch.addmm(
                 acc1, grad_out[tile_m1, tile_n1], mat2[tile_k1, tile_n1].T
             )
@@ -110,8 +114,10 @@ def matmul_bwd(
     # Second loop block: compute grad_mat2 = mat1.T @ grad_out
     for tile_k2, tile_n2 in hl.tile([k, n]):
         acc2 = hl.zeros([tile_k2, tile_n2], dtype=torch.float32)
+        # pyrefly: ignore [bad-assignment]
         for tile_m2 in hl.tile(m):
             # Need mat1.T: mat1 is [m, k], so mat1[tile_m, tile_k].T gives [tile_k, tile_m]
+            # pyrefly: ignore [no-matching-overload]
             acc2 = torch.addmm(
                 acc2, mat1[tile_m2, tile_k2].T, grad_out[tile_m2, tile_n2]
             )
@@ -170,7 +176,9 @@ def addmm_bwd(
     # First loop block: compute grad_mat1 = alpha * (grad_out @ mat2.T)
     for tile_m1, tile_k1 in hl.tile([m, k]):
         acc1 = hl.zeros([tile_m1, tile_k1], dtype=torch.float32)
+        # pyrefly: ignore [bad-assignment]
         for tile_n1 in hl.tile(n):
+            # pyrefly: ignore [no-matching-overload]
             acc1 = torch.addmm(
                 acc1, grad_out[tile_m1, tile_n1], mat2[tile_k1, tile_n1].T
             )
@@ -179,7 +187,9 @@ def addmm_bwd(
     # Second loop block: compute grad_mat2 = alpha * (mat1.T @ grad_out)
     for tile_k2, tile_n2 in hl.tile([k, n]):
         acc2 = hl.zeros([tile_k2, tile_n2], dtype=torch.float32)
+        # pyrefly: ignore [bad-assignment]
         for tile_m2 in hl.tile(m):
+            # pyrefly: ignore [no-matching-overload]
             acc2 = torch.addmm(
                 acc2, mat1[tile_m2, tile_k2].T, grad_out[tile_m2, tile_n2]
             )
@@ -191,6 +201,7 @@ def addmm_bwd(
 # %%
 class MatMulFunction(torch.autograd.Function):
     @staticmethod
+    # pyrefly: ignore [bad-override]
     def forward(
         ctx: Any,  # noqa: ANN401
         mat1: Tensor,
@@ -220,6 +231,7 @@ def matmul_autograd(mat1: Tensor, mat2: Tensor) -> Tensor:
 
 class AddMMFunction(torch.autograd.Function):
     @staticmethod
+    # pyrefly: ignore [bad-override]
     def forward(
         ctx: Any,  # noqa: ANN401
         bias: Tensor,

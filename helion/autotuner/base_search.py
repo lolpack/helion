@@ -738,6 +738,7 @@ class PopulationBasedSearch(BaseSearch):
             assert config_out is member.config
             member.perfs.append(perf)
             member.fn = fn
+            # pyrefly: ignore [bad-assignment]
             member.status = status
         return members
 
@@ -793,8 +794,10 @@ class PopulationBasedSearch(BaseSearch):
         repeat = min(1000, max(3, base_repeat))
         iterator = [functools.partial(m.fn, *self.args) for m in members]
         if self.settings.autotune_progress_bar:
+            # pyrefly: ignore [bad-argument-type]
             new_timings = interleaved_bench(iterator, repeat=repeat, desc=desc)
         else:
+            # pyrefly: ignore [bad-argument-type]
             new_timings = interleaved_bench(iterator, repeat=repeat)
         for m, t in zip(members, new_timings, strict=True):
             m.perfs.append(t)
@@ -1223,6 +1226,7 @@ class PrecompileFuture:
             )
         if classification == "warn":
             self.search.log.warning(formatted)
+        # pyrefly: ignore [unbound-name]
         elif not ignore_errors:
             self.search.log.debug(formatted)
         self._remote_error_handled = True

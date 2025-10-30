@@ -110,6 +110,7 @@ def rms_norm_bwd(
             w_m = weight[None, :].to(torch.float32)
             grad_x[mb, :] = (
                 w_m * do_m * rsqrt_m
+                # pyrefly: ignore [unsupported-operation, unsupported-operation]
                 - x_m * rsqrt_m**3 * (w_m * do_m * x_m).mean(-1)[:, None]
             ).to(x.dtype)
         grad_weight[mb_cta.id, :] = grad_w_m
@@ -119,6 +120,7 @@ def rms_norm_bwd(
 # %%
 class RMSNormFunction(torch.autograd.Function):
     @staticmethod
+    # pyrefly: ignore [bad-override]
     def forward(
         ctx: Any,  # noqa: ANN401
         x: torch.Tensor,

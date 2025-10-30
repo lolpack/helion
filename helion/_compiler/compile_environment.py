@@ -77,6 +77,7 @@ class CompileEnvironment:
         from ..autotuner.config_spec import ConfigSpec
 
         super().__init__()
+        # pyrefly: ignore [read-only]
         self.device = device
         self.settings = settings
         self.shape_env = ShapeEnv(

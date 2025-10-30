@@ -259,6 +259,7 @@ def convert(node: ast.AST) -> ast.AST:
                 _location=location,  # pyright: ignore[reportCallIssue]
             )
     elif isinstance(node, list):
+        # pyrefly: ignore [bad-return]
         return [convert(item) for item in node]
     else:
         return node
@@ -274,6 +275,7 @@ class NodeVisitor(ast.NodeVisitor):
                     f"visit_{node.__class__.__name__}",
                     self.generic_visit,
                 )
+                # pyrefly: ignore [bad-argument-type]
                 return visitor(node)
             except exc.Base:
                 raise
@@ -409,6 +411,7 @@ class _HelionUnparser(_TupleParensRemovedUnparser):
         if output_origin_lines:
             self.output = _LocationAnnotatingOutputLines(self)
         else:
+            # pyrefly: ignore [bad-assignment]
             self.output = OutputLines(self)
         self._source = self.output
         self._output_origin_lines = output_origin_lines

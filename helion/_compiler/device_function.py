@@ -81,6 +81,7 @@ def find_block_size_symbols(
     for symbol in expr.free_symbols:
         origin_info = hf.expr_to_origin.get(symbol)  # pyright: ignore[reportArgumentType]
         if origin_info is None or not isinstance(origin_info.origin, BlockSizeOrigin):
+            # pyrefly: ignore [bad-argument-type]
             non_block_size_symbols.add(symbol)
         else:
             block_sizes[symbol] = origin_info.origin.block_id
@@ -283,6 +284,7 @@ class DeviceFunction:
                     f"{len(self._indexing_config)}. Please specify indexing for all loads and stores."
                 )
                 strategy = IndexingStrategy.select(
+                    # pyrefly: ignore [redundant-cast]
                     cast("IndexingLiteral", self._indexing_config[idx])
                 )
             else:
@@ -308,6 +310,7 @@ class DeviceFunction:
 
         # Ensure seed buffer parameter name exists
         if self.rng_seed_buffer_param_name is None:
+            # pyrefly: ignore [bad-assignment]
             self.rng_seed_buffer_param_name = self.new_var("rng_seed_buffer")
 
         return seed_index
@@ -360,6 +363,7 @@ class DeviceFunction:
             var_map[symbol] = sympy.Symbol(block_var, integer=True)
 
         # Successfully mapped all symbols
+        # pyrefly: ignore [bad-return]
         return expr.xreplace(var_map)
 
     def merge_variable_names(self, a: str, b: str) -> None:
@@ -423,6 +427,7 @@ class DeviceFunction:
             if block_idx is not None:
                 replacements[sym] = self.tile_strategy.user_size(block_idx)
         if replacements:
+            # pyrefly: ignore [bad-assignment]
             expr = expr.xreplace(replacements)
         return self.sympy_expr(expr)
 
@@ -676,6 +681,7 @@ class DeviceFunction:
         assert isinstance(call_statement, ExtendedAST)
         # Mark the kernel call we can find it in codegen_precompile_def
         call_statement._is_kernel_call = True
+        # pyrefly: ignore [bad-return]
         return call_statement
 
     def dead_code_elimination(self) -> None:

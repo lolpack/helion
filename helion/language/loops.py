@@ -329,6 +329,7 @@ def _(
         )
     block_size_list = Tile._tiles_to_sizes(block_size_list)
 
+    # pyrefly: ignore [unbound-name]
     if unpack:
         target = getattr(parent, "target", None)
         if isinstance(target, (ast.Tuple, ast.List)) and len(target.elts) > 1:
@@ -375,6 +376,7 @@ def _(
             )
         ],
     )
+    # pyrefly: ignore [unbound-name]
     if unpack:
         (result,) = results
     else:
@@ -746,6 +748,7 @@ def _(
             )
         ],
     )
+    # pyrefly: ignore [unbound-name]
     if unpack:
         (result,) = results
     else:
